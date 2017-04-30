@@ -13,3 +13,5 @@
 1. 用csdn将首页的图片做成外链，用外链来访问  
 1. 用caesium压缩图片  
 1. 用FreeVideoCompressor压缩视频  
+1. 娱乐软件的下载页面重新复制一份为download_play
+1. 用七牛云做成视频外链
