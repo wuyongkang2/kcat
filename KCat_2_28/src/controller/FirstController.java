@@ -64,4 +64,48 @@ public class FirstController {
 		firstDAO.addUser(first);
 		return true;
 	}
+
+/*
+ * 获取所有用户信息 
+ * 	
+ */
+		@RequestMapping("/getAllUser.do")
+		@ResponseBody
+		public ArrayList<First> getAllUser(){		
+			return firstDAO.getAllUser(); 
+		}
+		
+/*
+ * 修改用户信息 
+ * 	
+ */
+		
+		@RequestMapping("/modifyUser.do")
+		@ResponseBody
+		public boolean modifyUser(First first){
+			System.out.println("进入controller_modify:"+first.getUserName()+":"+first.getUserPwd()+":"+first.getSex()+":"+first.getEmail());
+			
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");    //设置日期格式
+			System.out.println(df.format(new Date()));    //new Date()为获取当前系统时间
+
+			firstDAO.modifyUser(first);
+			return true;
+		}
+
+/*
+ * 删除用户信息 
+ * 	
+ */
+		@RequestMapping("/deleteUser.do")
+		@ResponseBody
+		public boolean deleteUser(int id){
+			System.out.println("进入controller_delete:id = "+id);
+			
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");    //设置日期格式
+			System.out.println(df.format(new Date()));    //new Date()为获取当前系统时间
+
+			firstDAO.deleteUser(id);
+			return true;
+		}
+		
 }

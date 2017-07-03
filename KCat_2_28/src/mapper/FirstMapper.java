@@ -13,4 +13,5 @@ public interface FirstMapper {
 	public void deleteUser(int id);   //根据id删除用户
 	public void modifyUser(First first);   //修改指定id的用户信息
 	public First findUserById(int id);   //根据id查询用户对象
+	public ArrayList<First> getAllUser(); //获取所有用户信息
 }

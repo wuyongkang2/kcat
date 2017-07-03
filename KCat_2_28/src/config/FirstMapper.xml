@@ -30,6 +30,8 @@
 		update user set userName=#{userName},userPwd=#{userPwd},email=#{email},sex=#{sex},birthday=#{birthday},date=#{date} where id=#{id}
 	</update>
 	
+	<select id="getAllUser" resultType="model.First">
+		SELECT * FROM user
+	</select>
 	
-
 </mapper>
