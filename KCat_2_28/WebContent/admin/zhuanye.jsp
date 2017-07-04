@@ -14,6 +14,31 @@
 <!-- 包括所有已编译的插件 -->
 		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="css/bootstrap-maizi.css" /> <!-- 覆盖原生样式-->
+		<script src="../dist/crypto.js"></script>
+		<script type="text/javascript" src="../dist/cos-js-sdk-v4.js"></script>
+		<script type="text/javascript" src="../dist/sdk.js"></script>
+		<script type="text/javascript">
+		$(function init(){
+			var zhuanye = [["请选择专业","尚未选择学院"],["请选择专业","计算机应用技术","云计算","动漫设计与制作","电子商务","电子信息工程"],["请选择专业","工商企业管理","城市轨道交通运营管理","物流管理","社会工作","旅游英语"],["请选择专业","应用英语","财务管理","国际经济与贸易","会展策划与管理","市场营销","金融管理"],["请选择专业","电气自动化技术","模具设计与制造","机电一体化技术","汽车检测与维修技术","汽车技术服务与运营"],["请选择专业","艺术设计(影视动画设计与制作)","艺术设计(广告设计与制作应用)","产品造型设计","环境艺术设计"],["请选择专业","皮具设计","服装设计","音乐表演"]];
+			$("#option_SoftType").change(function(){
+				
+			});
+			
+			$("#option_xueyuan").change(function(){
+				var xueyuan_selected_index = $("#option_xueyuan").get(0).selectedIndex;
+				var selDom = $("#option_zhuanye");
+				selDom.empty();
+				for(var i = 0;i < zhuanye[xueyuan_selected_index].length;i++){
+					selDom.append("<option>"+zhuanye[xueyuan_selected_index][i]+"</option>");
+				}
+			});
+			
+			$("#option_zhuanye").change(function(){
+				
+			});
+		});
+			
+		</script>
 	</head>
 	
 	<body>
@@ -108,87 +133,68 @@
 						</li>
 					</ul>
 <!--上传专业软件内容s-->			
-					<form action="#" class="user_search" style="height: 570px;">
+					<form action="#" class="user_search" style="height: 1000px;">
 						<div class="form-group">
 							<label for="name">名称</label>
 							<input type="text" id="name" class="form-control" placeholder="请输入软件名称" />
 						</div>
-						<div class="form-group">
-							<label for="uid">选择类型</label>
-							<div class="row">
-								<div role="presentation" class="dropdown col-md-4">
-									<!--修改为div-->
-									<button class="btn btn-default dropdown-toggle mar_l40" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">类型<span class="caret"></span>  <!-- 修改为button-->
-								    </button>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="#">办公</a>
-										</li>
-										<li>
-											<a href="#">工具</a>
-										</li>
-										<li>
-											<a href="#">图形</a>
-										</li>
-										<li>
-											<a href="#">开发</a>
-										</li>
-									</ul>
-								</div>	
-									
-								<div role="presentation" class="dropdown col-md-4">	
-									<button class="btn btn-default dropdown-toggle mar_l40" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">学院<span class="caret"></span>  <!-- 修改为button-->
-								    </button>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="#">信息工程学院</a>
-										</li>
-										<li>
-											<a href="#">管理学院</a>
-										</li>
-										<li>
-											<a href="#">商贸学院</a>
-										</li>
-										<li>
-											<a href="#">机电工程学院</a>
-										</li>
-										<li>
-											<a href="#">创意与设计学院</a>
-										</li>									
-										<li>
-											<a href="#">服装艺术学院</a>
-										</li>
-									</ul>
-								</div>
-								
-								<div role="presentation" class="dropdown col-md-4">
-									<button class="btn btn-default dropdown-toggle mar_l40" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">专业<span class="caret"></span>  <!-- 修改为button-->
-								    </button>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="#">计算机应用技术</a>
-										</li>
-										<li>
-											<a href="#">云计算</a>
-										</li>
-										<li>
-											<a href="#">动漫设计与制作</a>
-										</li>
-										<li>
-											<a href="#">电子商务</a>
-										</li>
-										<li>
-											<a href="#">电子信息工程</a>
-										</li>
-									</ul>
-								</div>
+						<div class="row">
+							<div role="presentation" class="dropdown col-md-4">
+								<select id="option_SoftType" class="form-control">
+								  <option>请选择软件类型</option>
+								  <option>办公</option>
+								  <option>工具</option>
+								  <option>图形</option>
+								  <option>开发</option>
+								</select>
 							</div>
+							<div role="presentation" class="dropdown col-md-4">
+								<select id="option_xueyuan" class="form-control">
+								  <option>请选择学院</option>
+								  <option>信息工程学院</option>
+								  <option>管理学院</option>
+								  <option>商贸学院</option>
+								  <option>机电工程学院</option>
+								  <option>创意与设计学院</option>
+								  <option>服装艺术学院</option>
+								</select>
+							</div>
+							<div role="presentation" class="dropdown col-md-4">
+								<select id="option_zhuanye" class="form-control">
+								  <option>请选择专业</option>
+								  <option>尚未选择学院</option>
+								</select>
+							</div>
+							
+						</div>
+						
+						<div class="form-group">
+							<label for="name">图标上传</label>
+							<div class="col-md-12"><img src="#" id="uploadFile_img1" class="img-rounded mar_b15" style="width: 100px; height: 100px;"/></div>
+							<div class="col-md-10"><input type="text" id="result1" class="form-control" placeholder="请选择要上传的图片" /></div>
+							
+							<div class="col-md-2">
+							<form id="form1">
+						        <input id="js-file1" type="file" style="display:none;"/>
+						    </form>
+							<div class="row">
+						    	<button id="uploadFile1" type="button" class="btn btn-default">选择图片</button>
+								<button id="uploadFile_submit1" type="button" class="btn btn-default">上传</button>
+						    </div>
 						</div>
 						<div class="form-group">
-							<label for="name">图片上传</label>
-							<div class="col-md-12"><img src="#" class="img-rounded mar_b15" style="width: 100px; height: 100px;"/></div>
-							<div class="col-md-10"><input type="text" id="name" class="form-control" placeholder="请选择要上传的图片" /></div>
-							<div class="col-md-2"><button type="submit" class="btn btn-default">上传</button></div>
+							<label for="name">大图上传</label>
+							<div class="col-md-12"><img src="#" id="uploadFile_img2" class="img-rounded mar_b15" style="width: 100px; height: 100px;"/></div>
+							<div class="col-md-10"><input type="text" id="result2" class="form-control" placeholder="请选择要上传的图片" /></div>
+							
+							<div class="col-md-2">
+							<form id="form2">
+						        <input id="js-file2" type="file" style="display:none;"/>
+						    </form>
+						    <div class="row">
+						    	<button id="uploadFile2" type="button" class="btn btn-default">选择图片</button>
+								<button id="uploadFile_submit2" type="button" class="btn btn-default">上传</button>
+						    </div>
 						</div>
 						<div class="form-group">
 							<label for="content">描述内容</label>
@@ -196,7 +202,7 @@
 						</div>
 						
 						<button type="submit" class="btn btn-default col-md-12 mar_t15">提交</button>
-					</form>			
+					</form>		
 
 
 <!--上传专业软件内容e-->		
