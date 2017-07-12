@@ -51,9 +51,9 @@
 				}
 			});
 			
-			$("#option_zhuanye").change(function(){
+			//$("#option_zhuanye").change(function(){
 				
-			});
+			//});
 			
 			$("#option_softName").change(function(){
 				var selected_index = $("#option_softName").get(0).selectedIndex;
