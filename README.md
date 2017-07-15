@@ -53,7 +53,7 @@
 今天任务
 1. 完成了计应的所有视频录制工作
 2. 完成了专业软件所有软件的视频链接
-# 2017.07.05
+# 2017.07.14
 1. 完成腾讯云对象存储的api接入
 
    ```javascript
@@ -82,6 +82,7 @@
                    bucket: bucket,//bucketName 必填参数
                    region: region,//地域信息 必填参数 华南地区填gz 华东填sh 华北填tj
                    getAppSign: function (callback) {//获取签名 必填参数
+   ```
 
 
                        //下面简单讲一下获取签名的几种办法，签名请做一次 url encode
@@ -102,12 +103,12 @@
                        var path = '';//多次签名这里填空
                        var str = 'a=' + self.appid + '&k=' + sid + '&e=' + e + '&t=' + now + '&r=' + random +
                                '&f=' + path + '&b=' + self.bucket;
-
+    
                        var sha1Res = CryptoJS.HmacSHA1(str, skey);//这里使用CryptoJS计算sha1值，你也可以用其他开源库或自己实现
                        var strWordArray = CryptoJS.enc.Utf8.parse(str);
                        var resWordArray = sha1Res.concat(strWordArray);
                        var res = resWordArray.toString(CryptoJS.enc.Base64);
-
+    
                        setTimeout(function () {//setTimeout模拟一下网络延迟的情况
                            callback(res);
                        }, 1000);
@@ -126,18 +127,18 @@
                        var path = self.path;
                        var str = 'a=' + self.appid + '&k=' + sid + '&e=' + e + '&t=' + now + '&r=' + random +
                                '&f=' + path + '&b=' + self.bucket;
-
+    
                        var sha1Res = CryptoJS.HmacSHA1(str, skey);//这里使用CryptoJS计算sha1值，你也可以用其他开源库或自己实现
                        var strWordArray = CryptoJS.enc.Utf8.parse(str);
                        var resWordArray = sha1Res.concat(strWordArray);
                        var res = resWordArray.toString(CryptoJS.enc.Base64);
-
+    
                        setTimeout(function () {//setTimeout模拟一下网络延迟的情况
                            callback(res);
                        }, 1000);
                    }
                });
-
+    
                var successCallBack1 = function (result1) {
                    console.log('request success.');
                    
@@ -163,7 +164,7 @@
                    console.log('request error:', result && result.message);
                    $("#result2").val("上传失败");
                };
-
+    
                var progressCallBack1 = function (curr, sha1) {
                    var sha1CheckProgress = ((sha1 * 100).toFixed(2) || 100) + '%';
                    var uploadProgress = ((curr || 0) * 100).toFixed(2) + '%';
@@ -179,7 +180,7 @@
                    console.log(msg);
                    $("#result2").val(msg);
                };
-
+    
                var lastTaskId;
                var taskReady = function (taskId) {
                    lastTaskId = taskId;
@@ -202,11 +203,11 @@
                        	return false;
                        });
                    });
-
+    
                    setTimeout(function () {
                        $('#js-file1').click();
                    }, 0);
-
+    
                    return false;
                });
                
@@ -226,11 +227,11 @@
                        	return false;
                        });
                    });
-
+    
                    setTimeout(function () {
                        $('#js-file2').click();
                    }, 0);
-
+    
                    return false;
                });
                
@@ -239,78 +240,80 @@
                    var newFolder = '/333/';//填你需要创建的文件夹，记得用斜杠包一下
                    cos.createFolder(successCallBack, errorCallBack, bucket, newFolder);
                });
-
+    
                //删除文件夹
                $('#deleteFolder').on('click', function () {
                    var newFolder = '/333/';//填你需要删除的文件夹，记得用斜杠包一下
                    cos.deleteFolder(successCallBack, errorCallBack, bucket, newFolder);
                });
-
+    
                //获取指定文件夹内的列表,默认每次返回20条
                $('#getFolderList').on('click', function () {
                    cos.getFolderList(successCallBack, errorCallBack, bucket, myFolder);
                });
-
+    
                //获取文件夹属性
                $('#getFolderStat').on('click', function () {
                    cos.getFolderStat(successCallBack, errorCallBack, bucket, '/333/');
                });
-
+    
                //更新文件夹属性
                $('#updateFolder').on('click', function () {
                    cos.updateFolder(successCallBack, errorCallBack, bucket, '/333/', 'authority');
                });
 
 
-               //删除文件
-               $('#deleteFile').on('click', function () {
-                   var myFile = myFolder + '2.txt';//填你自己实际存在的文件
-                   cos.deleteFile(successCallBack, errorCallBack, bucket, myFile);
-               });
-
-               //获取文件属性
-               $('#getFileStat').on('click', function () {
-                   var myFile = myFolder + '2.txt';//填你自己实际存在的文件
-                   cos.getFileStat(successCallBack, errorCallBack, bucket, myFile);
-               });
-
-               //更新文件属性
-               $('#updateFile').on('click', function () {
-                   var myFile = myFolder + '2.txt';//填你自己实际存在的文件
-                   cos.updateFile(successCallBack, errorCallBack, bucket, myFile, 'my new file attr');
-               });
-
-               //拷贝文件，从源文件地址复制一份到新地址
-               $('#copyFile').on('click', function () {
-
-                   var myFile = '111/2.txt';//填你自己实际存在的文件
-
-                   //注意一下目标的路径，这里如果填333/2.txt 则表示文件复制到111/333/2.txt
-                   //如果填/333/2.txt 则表示文件复制到bucket根目录下的333/2.txt
-                   var newFile = '/333/2.txt';
-                   var overWrite = 1;//0 表示不覆盖 1表示覆盖
-                   cos.copyFile(successCallBack, errorCallBack, bucket, myFile, newFile, overWrite);
-               });
-
-               //移动文件，把源文件移动到新地址，如果是同一个目录移动且文件名不同的话，相当于改了一个文件名
-               //如果是移动到新目录，相当于剪切当前的文件，粘贴到了新目录
-               $('#moveFile').on('click', function () {
-
-                   var myFile = '/111/2.txt';//填你自己实际存在的文件
-
-                   //注意一下目标的路径，这里如果填333/2.txt 则表示文件移动到111/333/2.txt
-                   //如果填/333/2.txt 则表示文件移动到bucket根目录下的333/2.txt
-                   //如果填/111/3.txt 则相当于把2.txt改名成3.txt
-                   var newFile = '/333/2.txt';
-                   var overWrite = 1;//0 表示不覆盖 1表示覆盖
-                   cos.moveFile(successCallBack, errorCallBack, bucket, myFile, newFile, overWrite);
-               });
-
-               $('#cancelTask').on('click', function () {
-                   cos.cancelTask(lastTaskId);
-               });
-
+```javascript
+           //删除文件
+           $('#deleteFile').on('click', function () {
+               var myFile = myFolder + '2.txt';//填你自己实际存在的文件
+               cos.deleteFile(successCallBack, errorCallBack, bucket, myFile);
            });
-   ```
 
-   ​
+           //获取文件属性
+           $('#getFileStat').on('click', function () {
+               var myFile = myFolder + '2.txt';//填你自己实际存在的文件
+               cos.getFileStat(successCallBack, errorCallBack, bucket, myFile);
+           });
+
+           //更新文件属性
+           $('#updateFile').on('click', function () {
+               var myFile = myFolder + '2.txt';//填你自己实际存在的文件
+               cos.updateFile(successCallBack, errorCallBack, bucket, myFile, 'my new file attr');
+           });
+
+           //拷贝文件，从源文件地址复制一份到新地址
+           $('#copyFile').on('click', function () {
+
+               var myFile = '111/2.txt';//填你自己实际存在的文件
+
+               //注意一下目标的路径，这里如果填333/2.txt 则表示文件复制到111/333/2.txt
+               //如果填/333/2.txt 则表示文件复制到bucket根目录下的333/2.txt
+               var newFile = '/333/2.txt';
+               var overWrite = 1;//0 表示不覆盖 1表示覆盖
+               cos.copyFile(successCallBack, errorCallBack, bucket, myFile, newFile, overWrite);
+           });
+
+           //移动文件，把源文件移动到新地址，如果是同一个目录移动且文件名不同的话，相当于改了一个文件名
+           //如果是移动到新目录，相当于剪切当前的文件，粘贴到了新目录
+           $('#moveFile').on('click', function () {
+
+               var myFile = '/111/2.txt';//填你自己实际存在的文件
+
+               //注意一下目标的路径，这里如果填333/2.txt 则表示文件移动到111/333/2.txt
+               //如果填/333/2.txt 则表示文件移动到bucket根目录下的333/2.txt
+               //如果填/111/3.txt 则相当于把2.txt改名成3.txt
+               var newFile = '/333/2.txt';
+               var overWrite = 1;//0 表示不覆盖 1表示覆盖
+               cos.moveFile(successCallBack, errorCallBack, bucket, myFile, newFile, overWrite);
+           });
+
+           $('#cancelTask').on('click', function () {
+               cos.cancelTask(lastTaskId);
+           });
+
+       });
+```
+# 2017.07.15
+
+1. 准备七牛云SDK的接入
