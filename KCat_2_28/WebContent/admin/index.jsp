@@ -5,12 +5,10 @@
 		<meta charset="UTF-8">   
 		<meta http-equiv="x-ua-compatible" content="IE=Edge"> <!--IE8标准渲染模式-->
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<title>K-Cat后台管理</title>
-<!-- 引入 Bootstrap -->
-		<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-		<script src="https://code.jquery.com/jquery.js"></script>
+		<title>K-Cat后台管理</title>	
 <!-- 包括所有已编译的插件 -->
+		<script type="text/javascript" src="../dist/jquery.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="css/bootstrap-maizi.css" /> <!-- 覆盖原生样式-->
 		<script src="js/Chart.js"></script>

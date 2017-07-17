@@ -384,4 +384,57 @@
    // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
    ```
 
+
+# 2017.07.17
+
+七牛云和项目接入
+
+1. main.js
+
+```javascript
+$(function() {
+    var uploader = Qiniu.uploader({
+        runtimes: 'html5,flash,html4',
+        browse_button: 'pickfiles',
+        container: 'container',
+        drop_element: 'container',
+        flash_swf_url: 'bower_components/plupload/js/Moxie.swf',
+        dragdrop: true,
+        chunk_size: '4mb',
+
+        // uptoken_url: $('#uptoken_url').val(),
+        uptoken:"7o_8Y11I7c16sa25PnnIUk1y7gqK5gCYe6U2****B7CGQq5u-Ql2-9Am3NfFc8nBc=:eyJzY29wZSI6ImtjYXQiLCJkZWFkbGluZSI6MTUwMDI4OTM4Mjk5OTl9",
+        multi_selection: !(mOxie.Env.OS.toLowerCase()==="ios"),
+```
+
+1. zhuanye.js
+
+   ```html
+   <div class="col-md-12">
+   			                        <div id="container" style="position: relative;">
+   			                            <a class="btn btn-default btn-lg " id="pickfiles" href="http://jssdk.demo.qiniu.io/#" style="position: relative; z-index: 1;">
+   			                                <i class="glyphicon glyphicon-plus"></i>
+   			                                <span>选择视频</span>
+   			                            </a>
+   			                        <div id="html5_1aj3rtennnga1n5h927gjn8343_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 0px; left: 0px; width: 171px; height: 46px; overflow: hidden; z-index: 0;"><input id="html5_1aj3rtennnga1n5h927gjn8343" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept=""></div></div>
+   			                    </div>
+   			                    <div style="display:none" id="success" class="col-md-12">
+   			                        <div class="alert-success" style="border-radius: 10px;">视频上传完毕</div>
+   			                    </div>
+   			                    <div class="col-md-12 ">
+   			                        <table class="table table-striped table-hover text-left" style="margin-top:40px;display:none">
+   			                            <thead>
+   			                              <tr>
+   			                                <th class="col-md-4">视频名称</th>
+   			                                <th class="col-md-2">大小</th>
+   			                                <th class="col-md-6">详细信息</th>
+   			                              </tr>
+   			                            </thead>
+   			                            <tbody id="fsUploadProgress">
+   			                            </tbody>
+   			                        </table>
+   			                    </div>
+   ```
+
    ​
+
