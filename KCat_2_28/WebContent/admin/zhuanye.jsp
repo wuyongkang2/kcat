@@ -199,6 +199,34 @@
 						    </div>
 						</div>
 						<div class="form-group">
+							<label for="name">选择软件或上传</label>
+							<div class="col-md-12"></div>
+							
+							<div class="row">
+								<div role="presentation" class="dropdown col-md-4">
+									<select id="option_zhuanye" class="form-control">
+									  <option>请选择软件</option>
+									  <option>我要上传</option>
+									</select>
+								</div>
+							</div>
+							
+							<div style="display:none;">
+								<div class="col-md-10">
+								<input type="text" id="result2" class="form-control" placeholder="请选择要上传的软件" /></div>
+								<div class="col-md-2">
+								<form id="form3">
+							        <input id="js-file3" type="file" style="display:none;"/>
+							    </form>
+							    <div class="row">
+							    	<button id="uploadFile2" type="button" class="btn btn-default">选择图片</button>
+									<button id="uploadFile_submit2" type="button" class="btn btn-default">上传</button>
+						    	</div>
+							</div>
+							
+						    
+						</div>
+						<div class="form-group">
 							<label for="content">描述内容</label>
 							<textarea class="form-control" rows="5" cols="10" placeholder="请输入软件简介" id="content"></textarea>
 						</div>

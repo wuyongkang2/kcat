@@ -17,5 +17,9 @@
 	<insert id="uploadPlay" parameterType="model.PlaySoft">
 		insert into ylSoftware (softName,softType,softImage,softUrl,soft_to_title) values (#{softName},#{softType},#{softImage},#{softUrl},#{soft_to_title})   
 	</insert>
+	
+	<select id="getAllSoftName" resultType="model.PlaySoft">
+		select * from soft
+	</select>
 
 </mapper>

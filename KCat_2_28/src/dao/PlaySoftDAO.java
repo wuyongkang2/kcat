@@ -48,4 +48,10 @@ public class PlaySoftDAO {
 		playSoftMapper.uploadPlay(playSoft);
 	}
 	
+/**
+ * 获取所有的软件名字
+ */
+	public  ArrayList<PlaySoft> getAllSoftName(){
+		return playSoftMapper.getAllSoftName();
+	}
 }

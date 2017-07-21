@@ -6,6 +6,5 @@
 	<select id="checkAdmin" parameterType="model.Admin" resultType="model.Admin">
 		select * from admin where userName=#{userName} and userPwd=#{userPwd}
 	</select>
-	
 
 </mapper>
