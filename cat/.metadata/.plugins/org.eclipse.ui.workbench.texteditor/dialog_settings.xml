@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="uploadFile1" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="uploadFile1"/>
+			<item value="initHighlightingOnLoad"/>
+			<item value="result"/>
+			<item value="uploadFile"/>
+			<item value="js-file"/>
+			<item value="#form"/>
+			<item value="form"/>
+			<item value="上传成功"/>
+		</list>
+		<list key="replacehistory">
+			<item value=".jsp"/>
+			<item value=""/>
+			<item value="tubiao"/>
+			<item value="id"/>
+			<item value="&quot;"/>
+			<item value="src=&quot;${pageContext.request.contextPath}/"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="489" key="DIALOG_WIDTH"/>
+		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
+		<item value="244" key="DIALOG_HEIGHT"/>
+		<item value="321" key="DIALOG_X_ORIGIN"/>
+		<item value="451" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
