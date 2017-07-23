@@ -20,7 +20,20 @@
    		
 		
 		<script type="text/javascript">
+
 		$(function init(){
+			var softName = $("#option_softName");
+			softName.empty();
+			softName.append("<option>选择软件</option>");
+			softName.append("<option>"+0+"-找不到对应的软件，我要上传</option>");
+			$.ajaxSetup({async:false});
+		 	$.post("${pageContext.request.contextPath}/getAllSoftName.do",function(data){ //循环获得软件名字并添加到下拉选项
+		 		$.each(data,function(i,e){
+		 			softName.append("<option>"+data[i].id+"-"+data[i].softName+"</option>");
+				});
+		 	});
+		 	
+			
 			var zhuanye = [["请选择专业","尚未选择学院"],["请选择专业","计算机应用技术","云计算","动漫设计与制作","电子商务","电子信息工程"],["请选择专业","工商企业管理","城市轨道交通运营管理","物流管理","社会工作","旅游英语"],["请选择专业","应用英语","财务管理","国际经济与贸易","会展策划与管理","市场营销","金融管理"],["请选择专业","电气自动化技术","模具设计与制造","机电一体化技术","汽车检测与维修技术","汽车技术服务与运营"],["请选择专业","艺术设计(影视动画设计与制作)","艺术设计(广告设计与制作应用)","产品造型设计","环境艺术设计"],["请选择专业","皮具设计","服装设计","音乐表演"]];
 			var titleS = 0;
 			$("#option_SoftType").change(function(){
@@ -40,14 +53,9 @@
 				
 			});
 			
-			var softName = $("#option_softName");
-			softName.empty();
-			$.ajaxSetup({async:false});
-		 	$.post("${pageContext.request.contextPath}/getAllSoftName.do",function(data){ //循环获得软件名字并添加到下拉选项
-		 		$.each(data,function(i,e){
-		 			option_softName.append("<option>"+data[i]+"</option>");
-				});
-		 	});
+			$("#option_softName").click(function(){
+				
+			});
 		});
 			
 		</script>
