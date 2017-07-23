@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="uploadFile1" key="selection"/>
+		<item value="User_list" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="User_list"/>
 			<item value="uploadFile1"/>
 			<item value="initHighlightingOnLoad"/>
 			<item value="result"/>
@@ -15,7 +16,6 @@
 			<item value="js-file"/>
 			<item value="#form"/>
 			<item value="form"/>
-			<item value="上传成功"/>
 		</list>
 		<list key="replacehistory">
 			<item value=".jsp"/>
