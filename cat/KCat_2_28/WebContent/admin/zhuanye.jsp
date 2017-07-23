@@ -17,6 +17,7 @@
 		<script type="text/javascript" src="../dist/sdk.js"></script>
 		<link rel="stylesheet" href="../dist/main.css">
    		<link rel="stylesheet" href="../dist/highlight.css">
+   		
 		
 		<script type="text/javascript">
 		$(function init(){
@@ -38,6 +39,15 @@
 			$("#option_zhuanye").change(function(){
 				
 			});
+			
+			var softName = $("#option_softName");
+			softName.empty();
+			$.ajaxSetup({async:false});
+		 	$.post("${pageContext.request.contextPath}/getAllSoftName.do",function(data){ //循环获得软件名字并添加到下拉选项
+		 		$.each(data,function(i,e){
+		 			option_softName.append("<option>"+data[i]+"</option>");
+				});
+		 	});
 		});
 			
 		</script>
@@ -204,11 +214,11 @@
 							
 							<div class="row">
 								<div role="presentation" class="dropdown col-md-4">
-									<select id="option_zhuanye" class="form-control">
-									  <option>请选择软件</option>
-									  <option>我要上传</option>
+									<select id="option_softName" class="form-control">
+									  <option>正在加载</option>
 									</select>
 								</div>
+								
 							</div>
 							
 							<div style="display:none;">
