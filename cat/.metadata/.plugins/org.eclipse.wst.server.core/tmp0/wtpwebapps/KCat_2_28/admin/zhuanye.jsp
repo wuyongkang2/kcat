@@ -51,9 +51,9 @@
 				}
 			});
 			
-			$("#option_zhuanye").change(function(){
+			//$("#option_zhuanye").change(function(){
 				
-			});
+			//});
 			
 			$("#option_softName").change(function(){
 				var selected_index = $("#option_softName").get(0).selectedIndex;
@@ -238,14 +238,14 @@
 							
 							<div style="display:none; margin-top:10px;" id="soft_upload">
 								<div class="col-md-10">
-								<input type="text" id="result2" class="form-control" placeholder="请选择要上传的软件" /></div>
+								<input type="text" id="result3" class="form-control" placeholder="请选择要上传的软件" /></div>
 								<div class="col-md-2">
 								<form id="form3">
 							        <input id="js-file3" type="file" style="display:none;"/>
 							    </form>
 							    <div class="row">
-							    	<button id="uploadFile2" type="button" class="btn btn-default">选择软件</button>
-									<button id="uploadFile_submit2" type="button" class="btn btn-default">上传</button>
+							    	<button id="uploadFile3" type="button" class="btn btn-default">选择软件</button>
+									<button id="uploadFile_submit3" type="button" class="btn btn-default">上传</button>
 						    	</div>
 							</div>
 							
