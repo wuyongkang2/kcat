@@ -1,7 +1,10 @@
+var ico_flag = false;
+var time_name1 = "";
 function getTime(){
-			var myDate = new Date();  
-		    var mytime = myDate.getTime()
-		    return mytime;
+	var a = 0;
+			var myDate1 = new Date();  
+		    var mytime1 = myDate1.getTime()
+		    return mytime1;
 		}
 		$(function () {
 
@@ -83,14 +86,23 @@ function getTime(){
                 console.log('request success.');
                 
                 $("#result1").val("上传成功");
-                $('#uploadFile_img1').attr("src", "http://kcat-1251241286.cosgz.myqcloud.com/images/"+time_name);
+                $('#uploadFile_img1').attr("src", "http://kcat-1251241286.cosgz.myqcloud.com/images/"+time_name1);
+                ico_flag = true;
             };
             
             var successCallBack2 = function (result2) {
                 console.log('request success.');
                 
                 $("#result2").val("上传成功");
-                $('#uploadFile_img2').attr("src", "http://kcat-1251241286.cosgz.myqcloud.com/images/"+time_name);
+                $('#uploadFile_img2').attr("src", "http://kcat-1251241286.cosgz.myqcloud.com/images/"+time_name1);
+                jpg_flag = true;
+            };
+            
+            var successCallBack3 = function (result3) {
+                console.log('request success.');
+                
+                $("#result3").val("上传成功");
+                soft_flag = true;
             };
             
             var errorCallBack1 = function (result1) {
@@ -103,6 +115,12 @@ function getTime(){
                 result = result || {};
                 console.log('request error:', result && result.message);
                 $("#result2").val("上传失败");
+            };
+            
+            var errorCallBack3 = function (result3) {
+                result = result || {};
+                console.log('request error:', result && result.message);
+                $("#result3").val("上传失败");
             };
 
             var progressCallBack1 = function (curr, sha1) {
@@ -120,26 +138,33 @@ function getTime(){
                 console.log(msg);
                 $("#result2").val(msg);
             };
+            
+            var progressCallBack3 = function (curr, sha1) {
+                var sha1CheckProgress = ((sha1 * 100).toFixed(2) || 100) + '%';
+                var uploadProgress = ((curr || 0) * 100).toFixed(2) + '%';
+                var msg = '上传进度:' + uploadProgress;
+                console.log(msg);
+                $("#result3").val(msg);
+            };
 
             var lastTaskId;
             var taskReady = function (taskId) {
                 lastTaskId = taskId;
             };
             var file = "";
-            var time_name = "";
+            
             //图标上传
             $('#uploadFile1').on('click', function () {
-            	alert("1111");
             	myFolder = "/images/";
                 $('#js-file1').off('change').on('change', function (e) {
                 	console.log(e);
                     file = e.target.files[0];
-                    time_name = getTime();
+                    time_name1 = getTime();
                     var img_name_last = file.name.substring(file.name.length-4,file.name.length);
-                    time_name += img_name_last;
-                    $('#result1').val(time_name);
+                    time_name1 += img_name_last;
+                    $('#result1').val(time_name1);
                    	$('#uploadFile_submit1').on('click', function () {
-                    	cos.uploadFile(successCallBack1, errorCallBack1, progressCallBack1, bucket, myFolder + time_name, file, 0, taskReady);//insertOnly==0 表示允许覆盖文件 1表示不允许
+                    	cos.uploadFile(successCallBack1, errorCallBack1, progressCallBack1, bucket, myFolder + time_name1, file, 0, taskReady);//insertOnly==0 表示允许覆盖文件 1表示不允许
                     	$('#form1')[0].reset();
                     	return false;
                     });
@@ -152,29 +177,7 @@ function getTime(){
                 return false;
             });
             
-            //大图上传
-            $('#uploadFile2').on('click', function () {
-            	myFolder = "/images/";
-                $('#js-file2').off('change').on('change', function (e) {
-                	console.log(e);
-                    file = e.target.files[0];
-                    time_name = getTime();
-                    var img_name_last = file.name.substring(file.name.length-4,file.name.length);
-                    time_name += img_name_last;
-                    $('#result2').val(time_name);
-                   	$('#uploadFile_submit2').on('click', function () {
-                    	cos.uploadFile(successCallBack2, errorCallBack2, progressCallBack2, bucket, myFolder + time_name, file, 0, taskReady);//insertOnly==0 表示允许覆盖文件 1表示不允许
-                    	$('#form2')[0].reset();
-                    	return false;
-                    });
-                });
-
-                setTimeout(function () {
-                    $('#js-file2').click();
-                }, 0);
-
-                return false;
-            });
+            
             
             //创建文件夹
             $('#createFolder').on('click', function () {

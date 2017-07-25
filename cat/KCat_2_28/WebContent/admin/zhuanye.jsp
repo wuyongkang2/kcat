@@ -14,14 +14,16 @@
 		<link rel="stylesheet" href="css/bootstrap-maizi.css" /> <!-- 覆盖原生样式-->
 		<script src="../dist/crypto.js"></script>
 		<script type="text/javascript" src="../dist/cos-js-sdk-v4.js"></script>
-		<script type="text/javascript" src="../dist/sdk.js"></script>
+		<script type="text/javascript" src="../dist/sdk1.js"></script>
+		<script type="text/javascript" src="../dist/sdk2.js"></script>
+		<script type="text/javascript" src="../dist/sdk3.js"></script>
 		<link rel="stylesheet" href="../dist/main.css">
    		<link rel="stylesheet" href="../dist/highlight.css">
    		
 		
 		<script type="text/javascript">
-
 		$(function init(){
+			
 			var softName = $("#option_softName");
 			softName.empty();
 			softName.append("<option>选择软件</option>");
@@ -62,6 +64,16 @@
 				}else{
 					$("#soft_upload").css("display","none");
 				}
+			});
+			
+			$("#submit").click(function(){
+				var softName = $("#name").val();
+				var softType = $("#option_SoftType").val();
+				var xueyuan = $("#option_xueyuan").val();
+				var zhuanye = $("#option_zhuanye").val();
+				//ico_flag+" "+jpg_flag+" "+soft_flag   这是三个上传的成功状态，用于先判断成功再取值
+				//time_name1  time_name2   time_name3         这是三个上传的名字，分别用时间来命名
+				alert(time_name1);
 			});
 		});
 			
@@ -288,7 +300,7 @@
 			                </div>
 						</div>
 			                
-						<button type="submit" class="btn btn-default col-md-12 mar_t15">提交</button>
+						<button type="button" class="btn btn-default col-md-12 mar_t15" id="submit">提交</button>
 					</form>		
 
 

@@ -2,28 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="User_list" key="selection"/>
+		<item value="time_name3" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="time_name"/>
+			<item value="myDate"/>
+			<item value="mytime"/>
+			<item value="sdk"/>
+			<item value="file3"/>
 			<item value="User_list"/>
 			<item value="uploadFile1"/>
 			<item value="initHighlightingOnLoad"/>
-			<item value="result"/>
-			<item value="uploadFile"/>
-			<item value="js-file"/>
-			<item value="#form"/>
-			<item value="form"/>
 		</list>
 		<list key="replacehistory">
+			<item value="time_name3"/>
+			<item value="time_name2"/>
+			<item value="time_name1"/>
 			<item value=".jsp"/>
 			<item value=""/>
 			<item value="tubiao"/>
 			<item value="id"/>
 			<item value="&quot;"/>
-			<item value="src=&quot;${pageContext.request.contextPath}/"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
