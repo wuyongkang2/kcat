@@ -68,12 +68,13 @@
 			
 			$("#submit").click(function(){
 				var softName = $("#name").val();
-				var softType = $("#option_SoftType").val();
-				var xueyuan = $("#option_xueyuan").val();
-				var zhuanye = $("#option_zhuanye").val();
+				var option_softType = $("#option_SoftType").val();
+				var option_xueyuan = $("#option_xueyuan").val();
+				var option_zhuanye = $("#option_zhuanye").val();
 				//ico_flag+" "+jpg_flag+" "+soft_flag   这是三个上传的成功状态，用于先判断成功再取值
 				//time_name1  time_name2   time_name3         这是三个上传的名字，分别用时间来命名
-				alert(time_name1);
+				var option_softName = $("#option_softName").val();
+				alert(option_softName);
 			});
 		});
 			
