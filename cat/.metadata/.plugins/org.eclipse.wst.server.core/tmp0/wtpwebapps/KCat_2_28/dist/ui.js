@@ -1,5 +1,6 @@
 /*global plupload */
 /*global qiniu */
+var videoName = "";
 function FileProgress(file, targetID) {
     this.fileProgressID = file.id;
     this.file = file;
@@ -200,6 +201,7 @@ FileProgress.prototype.setComplete = function(up, info) {
     } else {
         var domain = up.getOption('domain');
         url = domain + encodeURI(res.key);
+        videoName = encodeURI(res.key);
         var link = domain + res.key;
         str = "<div><strong>Link:</strong><a href=" + url + " target='_blank' > " + link + "</a></div>" +
             "<div class=hash><strong>Hash:</strong>" + res.hash + "</div>";

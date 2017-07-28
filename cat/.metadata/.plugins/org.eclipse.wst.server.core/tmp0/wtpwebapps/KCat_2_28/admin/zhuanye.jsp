@@ -74,7 +74,9 @@
 				//ico_flag+" "+jpg_flag+" "+soft_flag   这是三个上传的成功状态，用于先判断成功再取值
 				//time_name1  time_name2   time_name3         这是三个上传的名字，分别用时间来命名
 				var option_softName = $("#option_softName").val();
-				alert(option_softName);
+				var softcontent = $("#content").val();
+				//var videoName 这个是视频的名字
+				alert(videoName);
 			});
 		});
 			
