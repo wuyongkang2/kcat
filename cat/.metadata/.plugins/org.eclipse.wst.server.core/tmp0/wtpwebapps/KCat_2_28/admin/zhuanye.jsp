@@ -67,6 +67,7 @@
 			});
 			
 			$("#submit").click(function(){
+				var flag = true;
 				var softName = $("#name").val();
 				var option_softType = $("#option_SoftType").val();
 				var option_xueyuan = $("#option_xueyuan").val();
@@ -76,9 +77,59 @@
 				var option_softName = $("#option_softName").val();
 				var softcontent = $("#content").val();
 				//var videoName 这个是视频的名字
-				alert(videoName);
+				check();
 			});
 		});
+		
+		function check(){
+			if( $("#name").val().length == 0){
+				error("name");
+				flag = false;
+			}
+			if($("#option_SoftType").prop('selectedIndex') == 0){
+				error("option_SoftType");
+				flag = false;
+			}
+			if($("#option_xueyuan").prop('selectedIndex') == 0){
+				error("option_xueyuan");
+				flag = false;
+			}
+			if($("#option_zhuanye").prop('selectedIndex') == 0){
+				error("option_zhuanye");
+				flag = false;
+			}
+			if(ico_flag == false){
+				error("result1");
+				flag = false;
+			}
+			if(jpg_flag == false){
+				error("result2");
+				flag = false;
+			}
+			if($("#option_softName").prop('selectedIndex') == 0){
+				error("option_softName");
+				flag = false;
+			}else if($("#option_softName").prop('selectedIndex') == document.getElementById("option_softName").options.length-1){
+				if(soft_flag == false){
+					error("result3");
+					flag = false;
+				}
+			}
+			
+		}
+		
+		function error(elements){
+			$("#"+elements+"").css("outline",0);
+			$("#"+elements+"").css("border","1px solid #f95d5d");
+			$("#"+elements+"").css("box-shadow","0px 0px 10px 0px #f95d5d");
+		};
+		
+		function error_cancel(elements){
+			$("#"+elements+"").css("outline","");
+			$("#"+elements+"").css("border","");
+			$("#"+elements+"").css("box-shadow","");
+		};
+		
 			
 		</script>
 	</head>
