@@ -79,6 +79,57 @@
 				//var videoName 这个是视频的名字
 				check();
 			});
+			
+			$("#name").focus(function(){
+				error_cancel("name");
+			});
+			$("#option_SoftType").change(function(){
+				error_cancel("option_SoftType");
+			});
+			$("#option_xueyuan").change(function(){
+				error_cancel("option_xueyuan");
+			});
+			$("#option_zhuanye").change(function(){
+				error_cancel("option_zhuanye");
+			});
+			input.bind('#result1', function(){
+				alert("12345");
+			}); 
+			$("#result1").bind(function(){
+				if($("#result1").val().length() > 0){
+					alert("222");
+					$("#uploadFile_submit1").removeAttr("disabled");
+				}else{
+					alert("111");
+					$("#uploadFile_submit1").attr('disabled',"true");
+				}
+			});
+			$("#result2").change(function(){
+				if($("#result2").length > 0){
+					alert("222");
+					$("#uploadFile_submit2").removeAttr("disabled");
+				}else{
+					alert("111");
+					$("#uploadFile_submit2").attr('disabled',"true");
+				}
+			});
+			$("#result3").change(function(){
+				if($("#result3").length > 0){
+					$("#uploadFile_submit3").removeAttr("disabled");
+				}else{
+					$("#uploadFile_submit3").attr('disabled',"true");
+				}
+			});
+			$("#uploadFile_submit1").click(function(){
+				error_cancel("result1");
+			});
+			$("#uploadFile_submit2").click(function(){
+				error_cancel("result2");
+			});
+			$("#uploadFile_submit3").click(function(){
+				error_cancel("result3");
+			});
+			
 		});
 		
 		function check(){
@@ -115,6 +166,15 @@
 					flag = false;
 				}
 			}
+			if($("#content").val().length == 0){
+				error("content");
+				flag = false;
+			}
+			if(videoName == ""){
+				error("pickfiles");
+				flag = false;
+			}
+			
 			
 		}
 		
@@ -264,7 +324,7 @@
 						<div class="form-group">
 							<label for="name">图标上传</label>
 							<div class="col-md-12"><img src="#" id="uploadFile_img1" class="img-rounded mar_b15" style="width: 100px; height: 100px;"/></div>
-							<div class="col-md-10"><input type="text" id="result1" class="form-control" placeholder="请选择要上传的图片" /></div>
+							<div class="col-md-10"><input disabled="true" type="text" id="result1" class="form-control" placeholder="请选择要上传的图片" /></div>
 							
 							<div class="col-md-2">
 							<form id="form1">
@@ -272,13 +332,13 @@
 						    </form>
 							<div class="row">
 						    	<button id="uploadFile1" type="button" class="btn btn-default">选择图片</button>
-								<button id="uploadFile_submit1" type="button" class="btn btn-default">上传</button>
+								<button disabled="true" id="uploadFile_submit1" type="button" class="btn btn-default">上传</button>
 						    </div>
 						</div>
 						<div class="form-group">
 							<label for="name">大图上传</label>
 							<div class="col-md-12"><img src="#" id="uploadFile_img2" class="img-rounded mar_b15" style="width: 100px; height: 100px;"/></div>
-							<div class="col-md-10"><input type="text" id="result2" class="form-control" placeholder="请选择要上传的图片" /></div>
+							<div class="col-md-10"><input disabled="true" type="text" id="result2" class="form-control" placeholder="请选择要上传的图片" /></div>
 							
 							<div class="col-md-2">
 							<form id="form2">
@@ -286,7 +346,7 @@
 						    </form>
 						    <div class="row">
 						    	<button id="uploadFile2" type="button" class="btn btn-default">选择图片</button>
-								<button id="uploadFile_submit2" type="button" class="btn btn-default">上传</button>
+								<button disabled="true" id="uploadFile_submit2" type="button" class="btn btn-default">上传</button>
 						    </div>
 						</div>
 						<div class="form-group">
@@ -304,14 +364,14 @@
 							
 							<div style="display:none; margin-top:10px;" id="soft_upload">
 								<div class="col-md-10">
-								<input type="text" id="result3" class="form-control" placeholder="请选择要上传的软件" /></div>
+								<input disabled="true" type="text" id="result3" class="form-control" placeholder="请选择要上传的软件" /></div>
 								<div class="col-md-2">
 								<form id="form3">
 							        <input id="js-file3" type="file" style="display:none;"/>
 							    </form>
 							    <div class="row">
 							    	<button id="uploadFile3" type="button" class="btn btn-default">选择软件</button>
-									<button id="uploadFile_submit3" type="button" class="btn btn-default">上传</button>
+									<button disabled="true" id="uploadFile_submit3" type="button" class="btn btn-default">上传</button>
 						    	</div>
 							</div>
 							

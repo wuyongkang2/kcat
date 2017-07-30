@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="domain" key="selection"/>
+		<item value="result" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="result"/>
+			<item value="favi"/>
 			<item value="domain"/>
 			<item value="success"/>
 			<item value="unique_names"/>
 			<item value="op86rjyxw.bkt.clouddn.com"/>
 			<item value="http://op86rjyxw.bkt.clouddn.com"/>
 			<item value="http://op86rjyxw.bkt.clouddn.com/"/>
-			<item value="time_name"/>
-			<item value="myDate"/>
 		</list>
 		<list key="replacehistory">
 			<item value="time_name3"/>
