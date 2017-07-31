@@ -202,6 +202,7 @@ FileProgress.prototype.setComplete = function(up, info) {
         var domain = up.getOption('domain');
         url = domain + encodeURI(res.key);
         videoName = encodeURI(res.key);
+        error_cancel("pickfiles");
         var link = domain + res.key;
         str = "<div><strong>Link:</strong><a href=" + url + " target='_blank' > " + link + "</a></div>" +
             "<div class=hash><strong>Hash:</strong>" + res.hash + "</div>";

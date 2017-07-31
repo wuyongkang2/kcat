@@ -78,6 +78,7 @@
 				var softcontent = $("#content").val();
 				//var videoName 这个是视频的名字
 				check();
+				alert(videoName);
 			});
 			
 			$("#name").focus(function(){
@@ -92,43 +93,13 @@
 			$("#option_zhuanye").change(function(){
 				error_cancel("option_zhuanye");
 			});
-			input.bind('#result1', function(){
-				alert("12345");
-			}); 
-			$("#result1").bind(function(){
-				if($("#result1").val().length() > 0){
-					alert("222");
-					$("#uploadFile_submit1").removeAttr("disabled");
-				}else{
-					alert("111");
-					$("#uploadFile_submit1").attr('disabled',"true");
-				}
+			$("#option_softName").change(function(){
+				error_cancel("option_softName");
 			});
-			$("#result2").change(function(){
-				if($("#result2").length > 0){
-					alert("222");
-					$("#uploadFile_submit2").removeAttr("disabled");
-				}else{
-					alert("111");
-					$("#uploadFile_submit2").attr('disabled',"true");
-				}
+			$("#content").focus(function(){
+				error_cancel("content");
 			});
-			$("#result3").change(function(){
-				if($("#result3").length > 0){
-					$("#uploadFile_submit3").removeAttr("disabled");
-				}else{
-					$("#uploadFile_submit3").attr('disabled',"true");
-				}
-			});
-			$("#uploadFile_submit1").click(function(){
-				error_cancel("result1");
-			});
-			$("#uploadFile_submit2").click(function(){
-				error_cancel("result2");
-			});
-			$("#uploadFile_submit3").click(function(){
-				error_cancel("result3");
-			});
+			
 			
 		});
 		
@@ -331,8 +302,7 @@
 						        <input id="js-file1" type="file" style="display:none;"/>
 						    </form>
 							<div class="row">
-						    	<button id="uploadFile1" type="button" class="btn btn-default">选择图片</button>
-								<button disabled="true" id="uploadFile_submit1" type="button" class="btn btn-default">上传</button>
+						    	<button id="uploadFile1" type="button" class="btn btn-default">选择图标并上传</button>
 						    </div>
 						</div>
 						<div class="form-group">
@@ -345,8 +315,7 @@
 						        <input id="js-file2" type="file" style="display:none;"/>
 						    </form>
 						    <div class="row">
-						    	<button id="uploadFile2" type="button" class="btn btn-default">选择图片</button>
-								<button disabled="true" id="uploadFile_submit2" type="button" class="btn btn-default">上传</button>
+						    	<button id="uploadFile2" type="button" class="btn btn-default">选择大图并上传</button>
 						    </div>
 						</div>
 						<div class="form-group">
@@ -370,8 +339,7 @@
 							        <input id="js-file3" type="file" style="display:none;"/>
 							    </form>
 							    <div class="row">
-							    	<button id="uploadFile3" type="button" class="btn btn-default">选择软件</button>
-									<button disabled="true" id="uploadFile_submit3" type="button" class="btn btn-default">上传</button>
+							    	<button id="uploadFile3" type="button" class="btn btn-default">选择软件并上传</button>
 						    	</div>
 							</div>
 							

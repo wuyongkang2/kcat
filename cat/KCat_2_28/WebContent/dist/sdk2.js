@@ -163,11 +163,10 @@ function getTime(){
                     var img_name_last = file.name.substring(file.name.length-4,file.name.length);
                     time_name2 += img_name_last;
                     $('#result2').val(time_name2);
-                   	$('#uploadFile_submit2').on('click', function () {
-                    	cos.uploadFile(successCallBack2, errorCallBack2, progressCallBack2, bucket, myFolder + time_name2, file, 0, taskReady);//insertOnly==0 表示允许覆盖文件 1表示不允许
-                    	$('#form2')[0].reset();
-                    	return false;
-                    });
+                    error_cancel("result2");
+                	cos.uploadFile(successCallBack2, errorCallBack2, progressCallBack2, bucket, myFolder + time_name2, file, 0, taskReady);//insertOnly==0 表示允许覆盖文件 1表示不允许
+                	$('#form2')[0].reset();
+                	return false;
                 });
 
                 setTimeout(function () {
