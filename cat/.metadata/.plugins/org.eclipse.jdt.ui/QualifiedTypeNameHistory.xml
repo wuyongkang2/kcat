@@ -29,4 +29,5 @@
 <fullyQualifiedTypeName name="net.sf.json.JSONObject"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="model.First"/>
+<fullyQualifiedTypeName name="model.StudySoft"/>
 </qualifiedTypeNameHistroy>

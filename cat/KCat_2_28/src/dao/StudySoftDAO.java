@@ -62,4 +62,11 @@ public class StudySoftDAO {
 		return studySoftMapper.getAllSoftName();
 	}
 	
+/**
+ * 添加专业软件
+ */
+	public void addStudySoft(StudySoft studySoft){
+		studySoftMapper.addStudySoft(studySoft);
+	}
+	
 }

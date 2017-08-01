@@ -111,4 +111,17 @@ public class StudySoftController {
 		System.out.println(list);
 		return list;
 	}
+	
+/**
+ * 添加专业软件
+ * @param studySoft
+ * @return
+ */
+	@RequestMapping("/addStudySoft.do")
+	@ResponseBody
+	public boolean addStudySoft(StudySoft studySoft){
+		System.out.println("进入StudySoftController:"+studySoft.getId()+":"+studySoft.getSoftName()+":"+studySoft.getSoftType()+":"+studySoft.getSoftImage()+":"+studySoft.getSoft_jianjie()+":"+studySoft.getSoft_jietu()+":"+studySoft.getSoftUrl()+":"+studySoft.getSoft_date()+":"+studySoft.getSoft_version()+":"+studySoft.getSoft_video());
+		studySoftDAO.addStudySoft(studySoft);
+		return true;
+	}
 }

@@ -26,4 +26,8 @@
 	<select id="getAllSoftName" resultType="model.StudySoft">
 		select * from soft
 	</select>
+	
+	<select id="addStudySoft" parameterType="model.StudySoft" resultType="model.StudySoft">
+		insert into 
+	</select>
 </mapper>

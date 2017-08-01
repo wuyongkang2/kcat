@@ -12,4 +12,5 @@ public interface StudySoftMapper {
 	public ArrayList<StudySoft> getStudySoft_All(int id);   //通过id寻找该软件的所有信息
 	public ArrayList<StudySoft> getStudySoft_id(String name);   //通过软件名字查找该软件的信息
 	public ArrayList<StudySoft> getAllSoftName(); //获得所有软件的名字
+	public void addStudySoft(StudySoft studySoft); //添加专业软件
 }
