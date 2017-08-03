@@ -37,7 +37,6 @@ $(function init(){
 	});
 	
 	$("#sub_modify").click(function(){
-		id
 		modifyname = $("#modifyname").val();
 		modifypassword = $("#modifypassword").val();
 		modifyemail = $("#modifyemail").val();

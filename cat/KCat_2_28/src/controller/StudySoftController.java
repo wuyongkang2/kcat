@@ -120,7 +120,7 @@ public class StudySoftController {
 	@RequestMapping("/addStudySoft.do")
 	@ResponseBody
 	public boolean addStudySoft(StudySoft studySoft){
-		System.out.println("进入StudySoftController:"+studySoft.getId()+":"+studySoft.getSoftName()+":"+studySoft.getSoftType()+":"+studySoft.getSoftImage()+":"+studySoft.getSoft_jianjie()+":"+studySoft.getSoft_jietu()+":"+studySoft.getSoftUrl()+":"+studySoft.getSoft_date()+":"+studySoft.getSoft_version()+":"+studySoft.getSoft_video());
+		System.out.println("进入StudySoftController:"+studySoft.getSoftName());
 		studySoftDAO.addStudySoft(studySoft);
 		return true;
 	}

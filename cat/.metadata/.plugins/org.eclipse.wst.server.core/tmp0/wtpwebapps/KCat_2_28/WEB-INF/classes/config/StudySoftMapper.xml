@@ -26,4 +26,8 @@
 	<select id="getAllSoftName" resultType="model.StudySoft">
 		select * from soft
 	</select>
+	
+	<select id="addStudySoft" parameterType="model.StudySoft" resultType="model.StudySoft">
+		insert into zysoftware ( softName, softType, soft_to_titleS, softImage, soft_jietu, softUrl, soft_jianjie, soft_video, soft_date, soft_version) VALUES (#{softName},#{softType},#{soft_to_titleS},#{softImage},#{soft_jietu},#{softUrl},#{soft_jianjie},#{soft_video},#{soft_date},#{soft_version}
+	</select>
 </mapper>
