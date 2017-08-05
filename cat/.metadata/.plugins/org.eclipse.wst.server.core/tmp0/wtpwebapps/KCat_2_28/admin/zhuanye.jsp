@@ -74,9 +74,9 @@
 			
 			$("#submit").click(function(){
 				var flag = true;
+				var softUrl = "";
 				var softName = $("#name").val();
 				var option_softType = $("#option_SoftType").val();
-				var option_xueyuan = $("#option_xueyuan").val();
 				//option_zhuanye
 				//ico_flag+" "+jpg_flag+" "+soft_flag   这是三个上传的成功状态，用于先判断成功再取值
 				//time_name1  time_name2   time_name3         这是三个上传的名字，分别用时间来命名
@@ -85,14 +85,12 @@
 				//var videoName 这个是视频的名字
 				check();
 				if(flag){
-					$.post("${pageContext.request.contextPath}/addStudySoft.do",{id:id,softName:softName,softType:option_softType,soft_to_titleS, softImage, soft_jietu, softUrl, soft_jianjie, soft_video, soft_date, soft_version},function(data){
+					$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:softName,softType:option_softType,soft_to_titleS:option_zhuanye,softImage:time_name1,soft_jietu:time_name2,softUrl:time_name3, soft_jianjie, soft_video, soft_date, soft_version},function(data){
 						if(data){
 							layer.msg('修改成功', {icon: 1});
 						}else{
 							layer.msg('修改失败', {icon: 2});
 						}
-						$(".User_list tr").remove();
-						init();
 					});
 				}
 			});

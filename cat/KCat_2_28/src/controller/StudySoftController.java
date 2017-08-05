@@ -113,6 +113,19 @@ public class StudySoftController {
 	}
 	
 /**
+ * 填写软件名字
+ * @param studySoft
+ * @return
+ */
+	@RequestMapping("/addSoftName.do")
+	@ResponseBody
+	public ArrayList<StudySoft> addSoftName(){
+		ArrayList<StudySoft> list = studySoftDAO.getAllSoftName();
+		System.out.println(list);
+		return list;
+	}
+	
+/**
  * 添加专业软件
  * @param studySoft
  * @return

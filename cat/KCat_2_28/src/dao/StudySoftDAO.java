@@ -61,6 +61,12 @@ public class StudySoftDAO {
 	public  ArrayList<StudySoft> getAllSoftName(){
 		return studySoftMapper.getAllSoftName();
 	}
+/**
+ * 添加软件名字
+ */	
+	public void addSoftName(String softName){
+		studySoftMapper.addSoftName(softName);
+	}
 	
 /**
  * 添加专业软件
