@@ -113,16 +113,16 @@ public class StudySoftController {
 	}
 	
 /**
- * 填写软件名字
+ * 添加软件名字
  * @param studySoft
  * @return
  */
 	@RequestMapping("/addSoftName.do")
 	@ResponseBody
-	public ArrayList<StudySoft> addSoftName(){
-		ArrayList<StudySoft> list = studySoftDAO.getAllSoftName();
-		System.out.println(list);
-		return list;
+	public boolean addSoftName(String softName){
+		System.out.println("进入StudySoftController:softName:"+softName);
+		studySoftDAO.addSoftName(softName);
+		return true;
 	}
 	
 /**
