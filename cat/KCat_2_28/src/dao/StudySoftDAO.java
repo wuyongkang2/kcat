@@ -69,6 +69,13 @@ public class StudySoftDAO {
 	}
 	
 /**
+ * 获得软件名字的序号
+ */		
+	public int getSoftName_id(String softName){
+		return studySoftMapper.getSoftName_id(softName);
+	}
+	
+/**
  * 添加专业软件
  */
 	public void addStudySoft(StudySoft studySoft){

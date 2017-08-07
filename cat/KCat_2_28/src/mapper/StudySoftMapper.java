@@ -14,4 +14,5 @@ public interface StudySoftMapper {
 	public ArrayList<StudySoft> getAllSoftName(); //获得所有软件的名字
 	public void addSoftName(String softName); //添加软件的名字
 	public void addStudySoft(StudySoft studySoft); //添加专业软件
+	public int getSoftName_id(String softName); //获得软件名字对应的序号
 }

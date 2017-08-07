@@ -58,7 +58,6 @@ INDEX VERSION 1.127+N:\Github\kcat\cat\.metadata\.plugins\org.eclipse.jdt.core
 135660151.index
 4151662352.index
 3410036490.index
-3780411808.index
 468681287.index
 1423536152.index
 399018764.index

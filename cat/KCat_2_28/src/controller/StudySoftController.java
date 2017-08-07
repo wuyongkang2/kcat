@@ -137,4 +137,16 @@ public class StudySoftController {
 		studySoftDAO.addStudySoft(studySoft);
 		return true;
 	}
+	
+/**
+ * 获得软件名字对应的序号
+ * @param studySoft
+ * @return
+ */	
+	@RequestMapping("/getSoftName_id.do")
+	@ResponseBody
+	public int getSoftName_id(String softName){
+		return studySoftDAO.getSoftName_id(softName);
+	}
+	
 }
