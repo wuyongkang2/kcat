@@ -31,7 +31,7 @@
 		insert into soft (softName) VALUES (#{softName})
 	</select>
 	
-	<select id="getSoftName_id" parameterType="String" resultType="model.StudySoft">
+	<select id="getSoftName_id" parameterType="String" resultType="int">
 		select id from soft where softName=#{softName}
 	</select>
 	

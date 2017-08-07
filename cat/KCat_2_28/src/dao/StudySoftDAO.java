@@ -72,6 +72,7 @@ public class StudySoftDAO {
  * 获得软件名字的序号
  */		
 	public int getSoftName_id(String softName){
+		System.out.println(softName);
 		return studySoftMapper.getSoftName_id(softName);
 	}
 	

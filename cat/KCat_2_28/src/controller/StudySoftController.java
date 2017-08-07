@@ -146,6 +146,7 @@ public class StudySoftController {
 	@RequestMapping("/getSoftName_id.do")
 	@ResponseBody
 	public int getSoftName_id(String softName){
+		System.out.println("Ω¯»ÎStudySoftController:softName:"+softName);
 		return studySoftDAO.getSoftName_id(softName);
 	}
 	
