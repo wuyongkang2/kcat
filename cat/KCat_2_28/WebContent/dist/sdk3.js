@@ -159,7 +159,10 @@ function getTime(){
                 $('#js-file3').off('change').on('change', function (e) {
                 	console.log(e);
                     file = e.target.files[0];
-                    time_name3 = getTime();
+                    $.post("${pageContext.request.contextPath}/getSoftName_id",{softName:softName},function(data){
+                    	
+                    });
+                    time_name3 = 1;
                     var img_name_last = file.name.substring(file.name.length-4,file.name.length);
                     time_name3 += img_name_last;
                     $('#result3').val(time_name3);

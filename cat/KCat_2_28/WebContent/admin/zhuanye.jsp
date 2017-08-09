@@ -241,13 +241,22 @@
 			<div class="row">
 <!--用户列表小导航s-->
 				<div class="col-md-2">
-					<div class="list-group">
-						<a href="zhuanye.jsp" class="list-group-item active">专业软件</a>
-						<a href="bang.jsp" class="list-group-item">帮帮帮</a>
-						<a href="school_phone.jsp" class="list-group-item">校园电话</a>
-						<a href="aboutMe.jsp" class="list-group-item">关于我们</a>
-
+					<div class="sidebar-menu">
+					    <a href="#userMeun" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="icon-user-md icon-large"></i> 用户管理</a>
+					    <ul id="userMeun" class="nav nav-list collapse menu-second">
+					        <li><a href="#"><i class="icon-user"></i> 增加用户</a></li>
+					        <li><a href="#"><i class="icon-edit"></i> 修改用户</a></li>
+					        <li><a href="#"><i class="icon-trash"></i> 删除用户</a></li>
+					        <li><a href="#"><i class="icon-list"></i> 用户列表</a></li>
+					 
+					    </ul>
+					    <a href="#articleMenu" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="icon-book icon-large"></i> 文章管理</a>
+					    <ul id="articleMenu" class="nav nav-list collapse menu-second">
+					        <li><a href="#"><i class="icon-pencil"></i> 添加文章</a></li>
+					        <li><a href="#"><i class="icon-list-alt"></i> 文章列表</a></li>
+					    </ul>
 					</div>
+					
 				</div>
 <!--用户列表小导航e-->
 
@@ -256,20 +265,6 @@
 					<div class="page-header">
 						<h1>专业软件</h1>
 					</div>
-					<ul class="nav nav-tabs">
-						<li class="active">
-							<a href="zhuanye.jspl">专业软件</a>
-						</li>
-						<li>
-							<a href="bang.jsp">帮帮帮</a>
-						</li>
-						<li>
-							<a href="school_phone.jsp">校园电话</a>
-						</li>
-						<li>
-							<a href="aboutMe.jsp">关于我们</a>
-						</li>
-					</ul>
 <!--上传专业软件内容s-->			
 					<form action="#" class="user_search" style="height: 1100px;">
 						<div class="form-group">
@@ -347,6 +342,7 @@
 							
 							<div style="display:none; margin-top:10px;" id="soft_upload">
 								<div class="col-md-10">
+								<input disabled="true" type="text" id="softName" class="form-control" placeholder="请输入软件名字" />
 								<input disabled="true" type="text" id="result3" class="form-control" placeholder="请选择要上传的软件" /></div>
 								<div class="col-md-2">
 								<form id="form3">
