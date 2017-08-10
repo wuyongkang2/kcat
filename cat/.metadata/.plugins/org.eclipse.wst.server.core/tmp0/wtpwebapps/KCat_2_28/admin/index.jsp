@@ -1,190 +1,237 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html lang="zh-CN">   <!--中文语言-->
-	<head>
-		<meta charset="UTF-8">   
-		<meta http-equiv="x-ua-compatible" content="IE=Edge"> <!--IE8标准渲染模式-->
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<title>K-Cat后台管理</title>	
-<!-- 包括所有已编译的插件 -->
-		<script type="text/javascript" src="../dist/jquery.min.js"></script>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="css/bootstrap-maizi.css" /> <!-- 覆盖原生样式-->
-		<script src="js/Chart.js"></script>
-		<script src="js/script.js"></script>
-		
-	</head>
-	
-	<body>
-<!--导航s-->
-		<nav class="navbar navbar-default navbar-fixed-top">
-		    <div class="container">
-		    <div class="navbar-header">
-	<!--小屏幕按钮-->
-		        <button class="navbar-toggle" data-toggle="collapse"
-		                data-target=".navbar-collapse">
-		            <span class="sr-only">切换导航</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		        </button>
-	<!--logo-->
-		        <a class="navbar-brand" href="index.jsp">K-Cat Admin</a>
-		    </div>
-		    
-	<!-- 导航内容-->
-		    <div class="collapse navbar-collapse">
-		        <ul class="nav navbar-nav">
-		            <li class="active"><a href="index.jsp"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
-		            <li><a href="user_list.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
-		            <li><a href="zhuanye.jsp"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;内容管理</a></li>
-		        </ul>
-		        <ul class="nav navbar-nav navbar-right">
-		            
-					<li class="dropdown">  <!--修改div为li-->
-						<a type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    admin
-					    		<span class="caret"></span>
-					    </a>  <!-- 修改button为a -->
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li>
-								<a href="index.jsp"><span class="glyphicon glyphicon-screenshot"></span>&nbsp;&nbsp;前台首页</a>
-							</li>
-							<li>
-								<a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;个人主页</a>
-							</li>
-							<li>
-								<a href="#"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;个人设置</a>
-							</li>
-							<li>
-								<a href="#"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;账户中心</a>
-							</li>
-							<li>
-								<a href="#"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;我的收藏</a>
-							</li>
-						</ul>
-					</li>
-		            
-		            <li><a href="#bbs"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;退出</a></li>
-		        </ul>
-		    </div>
-		    </div>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/green/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>KCat-Admin</title>
+</head>
+<body>
+<header class="navbar-wrapper">
+	<div class="navbar navbar-fixed-top">
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">KCat-Admin</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">KCat-Admin</a> 
+			<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+			<nav class="nav navbar-nav">
+				<ul class="cl">
+					<li class="navbar-levelone current"><a href="javascript:;">主页</a></li>
+					<li class="navbar-levelone"><a href="javascript:;">用户管理</a></li>
+					<li class="navbar-levelone"><a href="javascript:;">内容管理</a></li>
+				</li>
+			</ul>
 		</nav>
-<!--导航e-->
-
-		<div class="container">			<!--警告框放在栅格系统中-->
-			<div class="row">
-
-
-<!--留言板s-->
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<!--添加一个面板-->
-						<div class="panel-heading">团队留言板</div>
-						<div class="panel-body">
-							<div class="col-md-7">
-								<div class="media well"> <!-- well为边框-->
-									<div class="media-left">
-										<a href="#">
-											<img class="media-object ph64" src="images/a.png" alt="卓大哥">
-										</a>
-									</div>
-									<div class="media-body">
-										<h4 class="media-heading">卓大哥</h4>
-										技术大哥，今晚请把网站程序升级一下哈，现在的系统有漏洞，安全起见！
-									</div>
-								</div>
-							
-								<div class="media well">  <!--well为边框-->
-									<div class="media-body text-right">
-										<h4 class="media-heading">技术王</h4>
-										收到，今晚凌晨2点准时升级！	
-									</div>
-									<div class="media-right">
-										<a href="#">
-											<img class="media-object ph64" src="images/i.png" alt="卓大哥">
-										</a>
-									</div>
-								</div>
-							
-								<div class="media well">
-									<div class="media-body text-right">
-										<h4 class="media-heading">技术王</h4>
-										你先在站点发布一下通知哈！	
-									</div>
-									<div class="media-right">
-										<a href="#">
-											<img class="media-object ph64" src="images/i.png" alt="卓大哥">
-										</a>
-									</div>
-								</div>
-							
-								<div class="media well">
-									<div class="media-left">
-										<a href="#">
-											<img class="media-object ph64" src="images/a.png" alt="卓大哥">
-										</a>
-									</div>
-									<div class="media-body">
-										<h4 class="media-heading">卓大哥</h4>
-										好嘞。
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-5">
-								<form action="#">
-									<div class="form-group">
-										<label for="text1">输入留言内容</label>
-										<textarea class="form-control" id="text1" rows="5" cols="10" placeholder="请输入留言内容"></textarea>
-										<button type="submit" class="btn btn-default mar_t15">留言</button>
-									</div>
-								</form>
-								<div class="panel panel-default">
-									<!--添加一个面板-->
-									<div class="panel-heading">团队联系手册</div>
-									<div class="panel-body">
-										<ul class="list-group">
-											<li class="list-group-item">站长(李小龙)：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13134848615</li>
-											<li class="list-group-item">技术(大牛哥)：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13456127694</li>
-											<li class="list-group-item">推广(张二哥)：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13457815482</li>
-											<li class="list-group-item">客服(王女士)：<span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;13134567782&nbsp;&nbsp;<span class="glyphicon glyphicon-phone-alt"></span>&nbsp;&nbsp;028-888888</li>
-
-										</ul>	
-									</div>
-								</div>
-							</div>
-						</div>	
-					</div>		
-				</div>
-<!--留言板e-->
-
-			</div>
-		</div>
-
-
-
-
-
-
-<!--脚部s-->
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<p>
-					网站仅供学习交流&nbsp;&nbsp;Copyright&nbsp;&nbsp;©&nbsp;&nbsp;2017&nbsp;K-Cat科猫网&nbsp;inc.
-				</p>
-			</div>
-		</div>		
+		<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+			<ul class="cl">
+				<li>超级管理员</li>
+				<li class="dropDown dropDown_hover">
+					<a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<ul class="dropDown-menu menu radius box-shadow">
+						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
+						<li><a href="#">切换账户</a></li>
+						<li><a href="#">退出</a></li>
+				</ul>
+			</li>
+				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+				<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
+					<ul class="dropDown-menu menu radius box-shadow">
+						<li><a href="javascript:;" data-val="default" title="默认（蓝色）">默认（蓝色）</a></li>
+						<li><a href="javascript:;" data-val="black" title="黑色">黑色</a></li>
+						<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
+						<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
+						<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
+						<li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
 	</div>
-</footer>
-<!--脚部e-->
+</div>
+</header>
+<aside class="Hui-aside">
+	<div class="menu_dropdown bk_2">
+		<dl id="menu-article">
+			<dt><i class="Hui-iconfont">&#xe616;</i> 团队管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="product-brand.html" data-title="团队留言" href="javascript:void(0)">团队留言</a></li>
+					<li><a data-href="article-list.html" data-title="成员管理" href="javascript:void(0)">成员管理</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+
+	<div class="menu_dropdown bk_2" style="display:none">
+		<dl id="menu-aaaaa">
+			<dt><i class="Hui-iconfont">&#xe616;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="user_list.jsp" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+
+	<div class="menu_dropdown bk_2" style="display:none">
+		<dl id="menu-bbbbb">
+			<dt><i class="Hui-iconfont">&#xe616;</i> 内容管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="article-list.html" data-title="专业软件" href="javascript:void(0)">专业软件</a></li>
+					<li><a data-href="article-list.html" data-title="娱乐软件" href="javascript:void(0)">娱乐软件</a></li>
+					<li><a data-href="article-list.html" data-title="作业辅助" href="javascript:void(0)">作业辅助</a></li>
+					<li><a data-href="article-list.html" data-title="帮帮帮" href="javascript:void(0)">帮帮帮</a></li>
+					<li><a data-href="article-list.html" data-title="校园电话" href="javascript:void(0)">校园电话</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+
+	<div class="menu_dropdown bk_2" style="display:none">
+		<dl id="menu-ccccc">
+			<dt><i class="Hui-iconfont">&#xe616;</i> 二级导航3<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="article-list.html" data-title="资讯管理" href="javascript:void(0)">三级导航</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
 	
-	</body>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<section class="Hui-article-box">
+	<div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
+		<div class="Hui-tabNav-wp">
+			<ul id="min_title_list" class="acrossTab cl">
+				<li class="active">
+					<span title="我的桌面" data-href="welcome.html">我的桌面</span>
+					<em></em></li>
+		</ul>
+	</div>
+		<div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
+</div>
+	<div id="iframe_box" class="Hui-article">
+		<div class="show_iframe">
+			<div style="display:none" class="loading"></div>
+			<iframe scrolling="yes" frameborder="0" src="welcome.html"></iframe>
+	</div>
+</div>
+</section>
+
+<div class="contextMenu" id="Huiadminmenu">
+	<ul>
+		<li id="closethis">关闭当前 </li>
+		<li id="closeall">关闭全部 </li>
+</ul>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script type="text/javascript">
+$(function(){
+	/*$("#min_title_list li").contextMenu('Huiadminmenu', {
+		bindings: {
+			'closethis': function(t) {
+				console.log(t);
+				if(t.find("i")){
+					t.find("i").trigger("click");
+				}		
+			},
+			'closeall': function(t) {
+				alert('Trigger was '+t.id+'\nAction was Email');
+			},
+		}
+	});*/
+
+
+	$("body").Huitab({
+		tabBar:".navbar-wrapper .navbar-levelone",
+		tabCon:".Hui-aside .menu_dropdown",
+		className:"current",
+		index:0,
+	});
+});
+/*个人信息*/
+function myselfinfo(){
+	layer.open({
+		type: 1,
+		area: ['300px','200px'],
+		fix: false, //不固定
+		maxmin: true,
+		shade:0.4,
+		title: '查看信息',
+		content: '<div>管理员信息</div>'
+	});
+}
+
+/*资讯-添加*/
+function article_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*图片-添加*/
+function picture_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*产品-添加*/
+function product_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*用户-添加*/
+function member_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+
+
+</script> 
+
+<!--此乃百度统计代码，请自行删除-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!--/此乃百度统计代码，请自行删除-->
+</body>
 </html>
-
-
-
-

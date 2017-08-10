@@ -1,184 +1,164 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">   <!--中文语言-->
-	<head>
-		<meta charset="UTF-8">   
-		<meta http-equiv="x-ua-compatible" content="IE=Edge"> <!--IE8标准渲染模式-->
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<title>K-Cat后台管理</title>
-<!-- 引入 Bootstrap -->
-		<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
-		<script src="https://code.jquery.com/jquery.js"></script>
-<!-- 包括所有已编译的插件 -->
-		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		
-		<link rel="stylesheet" href="css/bootstrap-maizi.css" /> <!-- 覆盖原生样式-->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/jquery.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/layer/layer.js"></script>
-	</head>
-	
-	<body>
-<!--导航s-->
-		<nav class="navbar navbar-default navbar-fixed-top">
-		    <div class="container">
-		    <div class="navbar-header">
-	<!--小屏幕按钮-->
-		        <button class="navbar-toggle" data-toggle="collapse"
-		                data-target=".navbar-collapse">
-		            <span class="sr-only">切换导航</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		        </button>
-	<!--logo-->
-		        <a class="navbar-brand" href="index.jsp">K-Cat Admin</a>
-		    </div>
-		    
-	<!-- 导航内容-->
-		    <div class="collapse navbar-collapse">
-		        <ul class="nav navbar-nav">
-		            <li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
-		            <li class="active"><a href="user_list.jsp"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;用户管理</a></li>
-		            <li><a href="zhuanye.jsp"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;内容管理</a></li>
-		        </ul>
-		        <ul class="nav navbar-nav navbar-right">
-		            
-					<li class="dropdown">  <!--修改div为li-->
-						<a type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    admin
-					    		<span class="caret"></span>
-					    </a>  <!-- 修改button为a -->
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li>
-								<a href="index.jsp"><span class="glyphicon glyphicon-screenshot"></span>&nbsp;&nbsp;前台首页</a>
-							</li>
-							<li>
-								<a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;个人主页</a>
-							</li>
-							<li>
-								<a href="#"><span class="glyphicon glyphicon-asterisk"></span>&nbsp;&nbsp;个人设置</a>
-							</li>
-							<li>
-								<a href="#"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;&nbsp;账户中心</a>
-							</li>
-							<li>
-								<a href="#"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;我的收藏</a>
-							</li>
-						</ul>
-					</li>
-		            
-		            <li><a href="#bbs"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;退出</a></li>
-		        </ul>
-		    </div>
-		    </div>
-		</nav>
-<!--导航e-->
-
-
-	<div class="container">
-			<div class="row">
-<!--用户列表小导航s-->
-				<div class="col-md-2">
-					<div class="list-group">
-						<a href="user_list.jsp" class="list-group-item active">用户管理</a>
-						<a href="user_search.jsp" class="list-group-item">用户搜索</a>
-						<a role="button" href="" class="list-group-item" data-toggle="modal" data-target="#myModal">添加用户</a>
-
-					</div>
-				</div>
-<!--用户列表小导航e-->
-
-<!--用户列表内容s-->
-				<div class="col-md-10">
-					<div class="page-header">
-						<h1>用户管理</h1>
-					</div>
-					<ul class="nav nav-tabs">
-						<li class="active">
-							<a href="user_list.jsp">用户列表</a>
-						</li>
-						<li>
-							<a href="user_search.jsp">用户搜索</a>
-						</li>
-						<li>
-							<a href="" data-toggle="modal" data-target="#myModal">添加用户</a>
-						</li>
-					</ul>
-					<table class="table">
-						<thead>
-							<tr>
-								<th id="id_width">ID</th>
-								<th id="name_width">用户名</th>
-								<th id="email_width">邮箱</th>
-								<th id="password_width">密码</th>
-								<th id="sex_width">性别</th>
-								<th>操作</th>
-							</tr>
-						</thead>
-						<tbody class="User_list">
-							
-						</tbody>
-					</table>
-					<!--导航内容-->
-					<nav aria-label="Page navigation" class="pull-right">
-						<ul class="pagination">
-							<li>
-								<a href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">1</a>
-							</li>
-							<li>
-								<a href="#">2</a>
-							</li>
-							<li>
-								<a href="#">3</a>
-							</li>
-							<li>
-								<a href="#">4</a>
-							</li>
-							<li>
-								<a href="#">5</a>
-							</li>
-							<li>
-								<a href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-					
-				</div>
-<!--用户列表内容e-->
-
-			</div>
- 		</div>
-
-<%@ include file="../admin/user_add_popup.jsp" %>
-
-
-
-<!--脚部s-->
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<p>
-					网站仅供学习交流&nbsp;&nbsp;Copyright&nbsp;&nbsp;©&nbsp;&nbsp;2017&nbsp;K-Cat科猫网&nbsp;inc.
-				</p>
-			</div>
-		</div>		
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>用户管理</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 用户列表 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="text-c">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name="">
+		<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
 	</div>
-</footer>
-<!--脚部e-->
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="member_add('添加用户','user_add.jsp','500','360')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span> <span class="r">共有数据：<strong id="user_count">加载中...</strong> 条</span> </div>
+	<div class="mt-20">
+	<table class="table table-border table-bordered table-hover table-bg table-sort">
+		<thead>
+			<tr class="text-c">
+				<th width="25"><input type="checkbox" name="" value=""></th>
+				<th width="80">ID</th>
+				<th width="100">用户名</th>
+				<th width="40">性别</th>
+				<th width="150">邮箱</th>
+				<th width="100">操作</th>
+			</tr>
+		</thead>
+		<tbody class="User_list">
+		
+		</tbody>
+	</table>
+	</div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+$(function(){
 	
-	</body>
+	var html="";
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getAllUser.do",function(data){
+ 		$("#user_count").text(data.length);
+		$.each(data,function(i,e){
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td><u style='cursor:pointer' class='text-primary' onclick='member_show("+data[i].userName+",'member-show.html','10001','360','400')'>"+data[i].userName+"</u></td><td>"+data[i].sex+"</td><td>"+data[i].email+"</td><td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit()' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='change_password('修改密码','change-password.html','10001','600','270')' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='member_del(this,'1')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+		});
+ 	});
+ 	$(".User_list").append(html);
+	
+	$('.table-sort').dataTable({
+		"aaSorting": [[ 1, "asc" ]],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		  {"orderable":false,"aTargets":[0,4,5]}// 制定列不参与排序
+		]
+	});
+	
+	
+});
+/*用户-编辑*/
+function user_edit(){
+	member_edit('编辑','member-add.html','4','','510');
+}
+/*用户-添加*/
+function member_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-查看*/
+function member_show(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-停用*/
+function member_stop(obj,id){
+	layer.confirm('确认要停用吗？',function(index){
+		$.ajax({
+			type: 'POST',
+			url: '',
+			dataType: 'json',
+			success: function(data){
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
+				$(obj).remove();
+				layer.msg('已停用!',{icon: 5,time:1000});
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+
+/*用户-启用*/
+function member_start(obj,id){
+	layer.confirm('确认要启用吗？',function(index){
+		$.ajax({
+			type: 'POST',
+			url: '',
+			dataType: 'json',
+			success: function(data){
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+				$(obj).remove();
+				layer.msg('已启用!',{icon: 6,time:1000});
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});
+	});
+}
+/*用户-编辑*/
+function member_edit(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*密码-修改*/
+function change_password(title,url,id,w,h){
+	layer_show(title,url,w,h);	
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type: 'POST',
+			url: '',
+			dataType: 'json',
+			success: function(data){
+				$(obj).parents("tr").remove();
+				layer.msg('已删除!',{icon:1,time:1000});
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+</script> 
+</body>
 </html>
-
-
-
-
