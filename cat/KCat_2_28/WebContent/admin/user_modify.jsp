@@ -37,18 +37,6 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="password" class="input-text" value="" placeholder="" id="addpassword" name="addpassword">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="password" class="input-text" value="" placeholder="" id="addpassword1" name="addpassword1">
-			</div>
-		</div>
-		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 				<div class="radio-box">
@@ -88,63 +76,9 @@
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('.skin-minimal input').iCheck({
-		checkboxClass: 'icheckbox-blue',
-		radioClass: 'iradio-blue',
-		increaseArea: '20%'
-	});
-	
-	$("#form-member-add").validate({
-		rules:{
-			addname:{
-				required:true,
-				minlength:2,
-				maxlength:16
-			},
-			addpassword:{
-				required:true,
-				minlength:6,
-				maxlength:12
-			},
-			addpassword1:{
-				required:true,
-				minlength:6,
-				maxlength:12,
-				equalTo:addpassword,
-			},
-			sex:{
-				required:true,
-			},
-			addemail:{
-				required:true,
-				email:true,
-			},	
-		},
-		onkeyup:false,
-		focusCleanup:true,
-		success:"valid",
-		submitHandler:function(form){
-			$.post("${pageContext.request.contextPath}/addUser.do",{userName:$("#addname").val(),userPwd:$("#addpassword").val(),email:$("#addemail").val(),sex:$("input[name='sex']:checked").val()},function(data){
-				
-				if(data){
-					parent.layer.msg(
-							'添加成功',{time: 500, icon: 1},function(){
-						window.parent.location="${pageContext.request.contextPath}/admin/user_list.jsp";
-						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-	                    parent.layer.close(index);
-					});
-					
-                    
-				}else{
-					parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
-						window.parent.location="${pageContext.request.contextPath}/admin/user_list.jsp";
-						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-	                    parent.layer.close(index);
-					});
-				}
-			});
-		}
-	});
+	//获取list页面传来当前的id
+	var id = "<%=request.getParameter("id")%>";
+	alert(id);
 });
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->

@@ -37,7 +37,7 @@
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
 				<th width="80">ID</th>
-				<th width="100">用户名</th>
+				<th width="100">账号</th>
 				<th width="40">性别</th>
 				<th width="150">邮箱</th>
 				<th width="100">操作</th>
@@ -67,13 +67,13 @@ $(function(){
  	$.post("${pageContext.request.contextPath}/getAllUser.do",function(data){
  		$("#user_count").text(data.length);
 		$.each(data,function(i,e){
-			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td><u style='cursor:pointer' class='text-primary' onclick='member_show("+data[i].userName+",'member-show.html','10001','360','400')'>"+data[i].userName+"</u></td><td>"+data[i].sex+"</td><td>"+data[i].email+"</td><td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit()' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='change_password('修改密码','change-password.html','10001','600','270')' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='member_del(this,'1')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].userName+"</u></td><td>"+data[i].sex+"</td><td>"+data[i].email+"</td><td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='change_password('修改密码','change-password.html','10001','600','270')' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='member_del(this,'1')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 		});
  	});
  	$(".User_list").append(html);
 	
 	$('.table-sort').dataTable({
-		"aaSorting": [[ 1, "asc" ]],//默认第几个排序
+		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 		"bStateSave": true,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
@@ -84,8 +84,12 @@ $(function(){
 	
 });
 /*用户-编辑*/
-function user_edit(){
-	member_edit('编辑','member-add.html','4','','510');
+function user_edit(object){
+	
+	var path = object.parent().parent().children();
+	console.log(path);
+	var id = path.eq(1).text();
+	member_edit('编辑用户','user_modify.jsp?id='+id+'','360','260');
 }
 /*用户-添加*/
 function member_add(title,url,w,h){
@@ -135,7 +139,7 @@ function member_start(obj,id){
 	});
 }
 /*用户-编辑*/
-function member_edit(title,url,id,w,h){
+function member_edit(title,url,w,h){
 	layer_show(title,url,w,h);
 }
 /*密码-修改*/
