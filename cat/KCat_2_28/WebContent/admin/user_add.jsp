@@ -94,12 +94,44 @@ $(function(){
 		increaseArea: '20%'
 	});
 	
+	//向jQuery Validator中添加自己的规则
+	$.validator.addMethod("checkRepeat",function(value,element,params){
+		return checkLoginName(value);
+	},"账号已存在");
+	
+	//检测用户名是否重复方法  
+	function checkLoginName(userName){  
+        var flagTemp = false;
+        $.ajax({  
+	        type : "post",  
+	        dataType : "json",  
+	        data : {  
+	        	userName : userName
+	        },  
+	        async : false, 
+	        cache : false, 
+	        url : "${pageContext.request.contextPath}/checkUser.do",  
+	        success : function(data) {  
+	            if(data){  
+	                flagTemp = true;  
+	            }else{  
+	                flagTemp = false;  
+	            }  
+	        },  
+	        error : function() {  
+	            alertMsg("服务器出错");  
+	        }  
+	    });  
+	    return flagTemp;  
+    }
+	
 	$("#form-member-add").validate({
 		rules:{
 			addname:{
 				required:true,
 				minlength:2,
-				maxlength:16
+				maxlength:16,
+				checkRepeat:true
 			},
 			addpassword:{
 				required:true,

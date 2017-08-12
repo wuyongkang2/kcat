@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="ml-5" key="selection"/>
+		<item value="email" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="email"/>
+			<item value="required"/>
 			<item value="ml-5"/>
 			<item value="a.ml"/>
 			<item value="操作"/>
 			<item value="修改"/>
 			<item value="btn-refresh"/>
 			<item value="刷新"/>
-			<item value="refresh"/>
-			<item value="add"/>
 		</list>
 		<list key="replacehistory">
 			<item value="time_name3"/>
@@ -32,7 +32,7 @@
 		<item value="489" key="DIALOG_WIDTH"/>
 		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
 		<item value="244" key="DIALOG_HEIGHT"/>
-		<item value="20" key="DIALOG_X_ORIGIN"/>
-		<item value="492" key="DIALOG_Y_ORIGIN"/>
+		<item value="238" key="DIALOG_X_ORIGIN"/>
+		<item value="396" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

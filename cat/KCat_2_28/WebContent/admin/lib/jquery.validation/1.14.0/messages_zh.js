@@ -12,6 +12,7 @@
  */
 $.extend($.validator.messages, {
 	required: "这是必填字段",
+	check_user: "用户名已存在",
 	remote: "请修正此字段",
 	email: "请输入有效的电子邮件地址",
 	url: "请输入有效的网址",
