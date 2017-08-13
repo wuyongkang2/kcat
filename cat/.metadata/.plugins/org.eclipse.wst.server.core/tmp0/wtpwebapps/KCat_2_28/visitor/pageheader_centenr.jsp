@@ -7,5 +7,5 @@
       <li><a class="juli_3" href="${pageContext.request.contextPath}/getHomework.do">作业辅助</a></li>
       <li><a class="juli_4" href="${pageContext.request.contextPath}/bang.do">帮帮帮</a></li>
       <li><a class="juli_5" href="${pageContext.request.contextPath}/getTel.do">校园电话</a></li>
-      <li><a class="juli_6" href="${pageContext.request.contextPath}/visitor/about.jsp">关于我们</a></li>
+      <!-- <li><a class="juli_6" href="${pageContext.request.contextPath}/visitor/about.jsp">关于我们</a></li> -->
     </ul>

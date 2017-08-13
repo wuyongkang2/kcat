@@ -8,6 +8,7 @@ public class First {
 	private String sex;
 	private String birthday;
 	private String date;
+	private String groupName;
 	public int getId() {
 		return id;
 	}
@@ -50,6 +51,13 @@ public class First {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	public String getGroupName() {
+		return groupName;
+	}
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+	
 	
 
 }

@@ -83,7 +83,7 @@ public class FirstController {
 		@RequestMapping("/modifyUser.do")
 		@ResponseBody
 		public boolean modifyUser(First first){
-			System.out.println("进入controller_modify:"+first.getUserName()+":"+first.getUserPwd()+":"+first.getSex()+":"+first.getEmail());
+			System.out.println("进入controller_modify:"+first.getId()+":"+first.getUserName()+":"+first.getSex()+":"+first.getEmail());
 			
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");    //设置日期格式
 			System.out.println(df.format(new Date()));    //new Date()为获取当前系统时间
@@ -108,4 +108,31 @@ public class FirstController {
 			return true;
 		}
 		
+/*
+ * 修改用户密码
+ * 	
+ */
+		@RequestMapping("/modifyPwd.do")
+		@ResponseBody
+		public boolean modifyPwd(First first){
+			System.out.println("进入controller_modify_pwd:"+first.getId()+":"+first.getUserPwd());
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");    //设置日期格式
+			System.out.println(df.format(new Date()));    //new Date()为获取当前系统时间
+			firstDAO.modifyPwd(first);
+			return true;
+		}
+/*
+ * 管理员登录
+ */
+	@RequestMapping("/admin_login.do")
+	@ResponseBody
+	public boolean admin_login(HttpSession session,First first){
+		System.out.println("进入admin_login"+first.getUserName()+":"+first.getUserPwd()+":"+first.getGroupName());
+		ArrayList<First> list=firstDAO.admin_login(first);
+		if(list.size()>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

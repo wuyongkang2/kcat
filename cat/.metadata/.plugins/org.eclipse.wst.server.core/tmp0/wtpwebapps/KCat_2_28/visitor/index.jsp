@@ -43,7 +43,7 @@
       <li><a href="#section-4">作业辅助</a></li>
       <li><a href="#section-5">帮帮帮</a></li>
       <li><a href="#section-6">校园电话</a></li>
-	  <li><a href="${pageContext.request.contextPath}/visitor/about.jsp">关于我们</a></li>
+	  <!-- <li><a href="${pageContext.request.contextPath}/visitor/about.jsp">关于我们</a></li> -->
     </ul>
     
 <%@ include file="../visitor/pageheader_bottom.jsp" %>

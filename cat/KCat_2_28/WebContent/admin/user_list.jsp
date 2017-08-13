@@ -21,15 +21,12 @@
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>用户管理</title>
+<title>KCat-Admin</title>
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 用户管理 <span class="c-gray en">&gt;</span> 用户列表 <a class="btn btn-success radius r btn-refresh" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name="">
-		<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
-	</div>
+	
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="member_add('添加用户','user_add.jsp','500','360')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span> <span class="r">共有数据：<strong id="user_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
@@ -40,6 +37,7 @@
 				<th width="100">账号</th>
 				<th width="40">性别</th>
 				<th width="150">邮箱</th>
+				<th width="80">用户组</th>
 				<th width="100">操作</th>
 			</tr>
 		</thead>
@@ -61,17 +59,15 @@
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
 $(function(){
-	
 	var html="";
 	$.ajaxSetup({async:false});
  	$.post("${pageContext.request.contextPath}/getAllUser.do",function(data){
  		$("#user_count").text(data.length);
 		$.each(data,function(i,e){
-			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].userName+"</u></td><td>"+data[i].sex+"</td><td>"+data[i].email+"</td><td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='change_password('修改密码','change-password.html','10001','600','270')' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='member_del(this,'1')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].userName+"</u></td><td>"+data[i].sex+"</td><td>"+data[i].email+"</td><td>"+data[i].groupName+"</td><td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='userPwd_edit("+"$(this)"+")' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='user_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 		});
  	});
  	$(".User_list").append(html);
-	
 	$('.table-sort').dataTable({
 		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 		"bStateSave": true,//状态保存
@@ -80,16 +76,28 @@ $(function(){
 		  {"orderable":false,"aTargets":[0,4,5]}// 制定列不参与排序
 		]
 	});
-	
-	
 });
 /*用户-编辑*/
 function user_edit(object){
 	
 	var path = object.parent().parent().children();
-	console.log(path);
 	var id = path.eq(1).text();
-	member_edit('编辑用户','user_modify.jsp?id='+id+'','360','260');
+	var userName = path.eq(2).text();
+	var sex = path.eq(3).text();
+	var email = path.eq(4).text();
+	member_edit('编辑用户','user_modify.jsp?id='+id+'&userName='+userName+'&sex='+sex+'&email='+email+'','360','260');
+}
+/*用户密码-编辑*/
+function userPwd_edit(object){
+	var path = object.parent().parent().children();
+	var id = path.eq(1).text();
+	change_password('修改密码','pwd_modify.jsp?id='+id+'','400','220');
+}
+/*用户-删除*/
+function user_del(object){
+	var path = object.parent().parent().children();
+	var id = path.eq(1).text();
+	member_del(id);
 }
 /*用户-添加*/
 function member_add(title,url,w,h){
@@ -143,24 +151,63 @@ function member_edit(title,url,w,h){
 	layer_show(title,url,w,h);
 }
 /*密码-修改*/
-function change_password(title,url,id,w,h){
+function change_password(title,url,w,h){
 	layer_show(title,url,w,h);	
 }
 /*用户-删除*/
-function member_del(obj,id){
+function member_del(id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
+			type : "post",  
+	        dataType : "json",  
+	        data : {  
+	        	id : id
+	        },  
+	        async : false, 
+	        cache : false, 
+	        url : "${pageContext.request.contextPath}/deleteUser.do",  
 			success: function(data){
-				$(obj).parents("tr").remove();
 				layer.msg('已删除!',{icon:1,time:1000});
+				location.replace(location.href);
 			},
 			error:function(data) {
 				console.log(data.msg);
 			},
 		});		
+	});
+}
+/*批量删除*/
+function datadel(){
+	
+	var user_checked = $(":checked").parent().parent();
+	var num = 0; //选中的人数
+	for(var i = 0; i < user_checked.length; i++){
+		if(user_checked[i].getElementsByTagName("td")[1] !=undefined){
+			num++;
+		}
+	}
+	layer.confirm('您当前选中了'+num+'个用户，确认要全部删除吗？',function(index){
+		for(var i = 0; i < user_checked.length; i++){
+			if(user_checked[i].getElementsByTagName("td")[1] !=undefined){
+				$.ajax({
+					type : "post",  
+			        dataType : "json",  
+			        data : {  
+			        	id : user_checked[i].getElementsByTagName("td")[1].innerText
+			        },  
+			        async : false, 
+			        cache : false, 
+			        url : "${pageContext.request.contextPath}/deleteUser.do",  
+					success: function(data){
+						layer.msg('已删除!',{icon:1,time:1000});
+						location.replace(location.href);
+					},
+					error:function(data) {
+						console.log(data.msg);
+					},
+				});
+			}
+		}
 	});
 }
 </script> 
