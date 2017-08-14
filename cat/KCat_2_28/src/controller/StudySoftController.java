@@ -150,4 +150,18 @@ public class StudySoftController {
 		return studySoftDAO.getSoftName_id(softName);
 	}
 	
+	
+/**
+ * 获取所有软件
+ * @param studySoft
+ * @return
+ */
+	@RequestMapping("/getAllSoft.do")
+	@ResponseBody
+	public ArrayList<StudySoft> getAllSoft(){
+		ArrayList<StudySoft> list = studySoftDAO.getAllSoft();
+		System.out.println(list);
+		return list;
+	}
+	
 }

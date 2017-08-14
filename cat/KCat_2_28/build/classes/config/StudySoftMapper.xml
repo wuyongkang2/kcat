@@ -39,5 +39,8 @@
 		insert into zysoftware ( softName, softType, soft_to_titleS, softImage, soft_jietu, softUrl, soft_jianjie, soft_video, soft_date, soft_version) VALUES (#{softName},#{softType},#{soft_to_titleS},#{softImage},#{soft_jietu},#{softUrl},#{soft_jianjie},#{soft_video},#{soft_date},#{soft_version}
 	</select>
 	
+	<select id="getAllSoft" resultType="model.StudySoft">
+		select * from zysoftware
+	</select>
 	
 </mapper>

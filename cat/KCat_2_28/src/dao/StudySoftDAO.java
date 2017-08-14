@@ -82,5 +82,11 @@ public class StudySoftDAO {
 	public void addStudySoft(StudySoft studySoft){
 		studySoftMapper.addStudySoft(studySoft);
 	}
+/**
+ * 获取所有的软件信息
+ */	
+	public ArrayList<StudySoft> getAllSoft(){
+		return studySoftMapper.getAllSoft();
+	}
 	
 }

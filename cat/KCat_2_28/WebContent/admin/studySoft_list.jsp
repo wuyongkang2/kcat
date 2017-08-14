@@ -26,34 +26,26 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 专业软件 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="picture_add('添加图片','studySoft_add.jsp')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="picture_add('添加图片','studySoft_add.jsp')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a></span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
 				<tr class="text-c">
 					<th width="40"><input name="" type="checkbox" value=""></th>
 					<th width="80">ID</th>
-					<th width="100">分类</th>
-					<th width="100">封面</th>
-					<th>图片名称</th>
-					<th width="150">Tags</th>
-					<th width="150">更新时间</th>
-					<th width="60">发布状态</th>
+					<th width="100">名字</th>
+					<th width="100">类型</th>
+					<th width="100">图标</th>
+					<th width="100">学院专业</th>
+					<th width="150">软件简介</th>
+					<th width="150">大图</th>
+					<th width="60">软件</th>
+					<th width="100">安装教程</th>
 					<th width="100">操作</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr class="text-c">
-					<td><input name="" type="checkbox" value=""></td>
-					<td>001</td>
-					<td>分类名称</td>
-					<td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="210" class="picture-thumb" src="temp/200x150.jpg"></a></td>
-					<td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">现代简约 白色 餐厅</a></td>
-					<td class="text-c">标签</td>
-					<td>2014-6-11 11:11:42</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
+			<tbody class="Soft_list">
+		
 			</tbody>
 		</table>
 	</div>
@@ -70,13 +62,26 @@
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
-$('.table-sort').dataTable({
-	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-	"bStateSave": true,//状态保存
-	"aoColumnDefs": [
-	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,8]}// 制定列不参与排序
-	]
+$(function(){
+	var html="";
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getAllSoft.do",function(data){
+ 		$("#soft_count").text(data.length);
+		$.each(data,function(i,e){
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].softName+"</u></td><td>"+data[i].softType+"</td><td>"+data[i].softImage+"</td><td>"+data[i].soft_to_titleS+"</td><td>"+data[i].soft_jianjie+"</td><td>"+data[i].soft_jietu+"</td><td>"+data[i].softUrl+"</td><td>"+data[i].soft_video+"</td>"
+			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='user_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+			
+		});
+ 	});
+ 	$(".Soft_list").append(html);
+	$('.table-sort').dataTable({
+		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		  {"orderable":false,"aTargets":[0,4,5]}// 制定列不参与排序
+		]
+	});
 });
 
 /*图片-添加*/
