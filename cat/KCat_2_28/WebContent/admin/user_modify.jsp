@@ -25,7 +25,7 @@
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>添加用户</title>
+<title>KCat-Admin</title>
 </head>
 <body>
 <article class="page-container">
@@ -78,7 +78,99 @@
 $(function(){
 	//获取list页面传来当前的id
 	var id = "<%=request.getParameter("id")%>";
-	alert(id);
+	var userName = "<%=request.getParameter("userName")%>";
+	var userName_df = "<%=request.getParameter("userName")%>";
+	var sex = "<%=request.getParameter("sex")%>";
+	var email = "<%=request.getParameter("email")%>";
+	$("#addname").val(userName);
+	if(sex == "男"){
+		$("#sex-1").attr('checked','true');
+	}else if(sex == "女"){
+		$("#sex-2").attr('checked','true');
+	}
+	$("#addemail").val(email);
+	
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	//向jQuery Validator中添加自己的规则
+	$.validator.addMethod("checkRepeat",function(value,element,params){
+		return checkLoginName(value);
+	},"账号已存在");
+	
+	//检测用户名是否重复方法  
+	function checkLoginName(name){  
+        var flagTemp = false;
+        $.ajax({  
+	        type : "post",  
+	        dataType : "json",  
+	        data : {  
+	        	userName : name
+	        },  
+	        async : false, 
+	        cache : false, 
+	        url : "${pageContext.request.contextPath}/checkUser.do",  
+	        success : function(data) {
+	        	if(name == userName_df){
+	        		flagTemp = true;
+	        	}else{
+	        		if(data){  
+		                flagTemp = true;  
+		            }else{  
+		                flagTemp = false;  
+		            } 
+	        	}
+	        },  
+	        error : function() {  
+	            alertMsg("服务器出错");  
+	        }  
+	    });  
+	    return flagTemp;  
+    }
+	
+	$("#form-member-add").validate({
+		rules:{
+			addname:{
+				required:true,
+				minlength:2,
+				maxlength:16,
+				checkRepeat:true
+			},
+			sex:{
+				required:true,
+			},
+			addemail:{
+				required:true,
+				email:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$.post("${pageContext.request.contextPath}/modifyUser.do",{id:id,userName:$("#addname").val(),email:$("#addemail").val(),sex:$("input[name='sex']:checked").val()},function(data){
+				if(data){
+					parent.layer.msg(
+							'信息修改成功',{time: 500, icon: 1},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/user_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+					
+                    
+				}else{
+					parent.layer.msg('信息修改失败',{time: 300}, {icon: 2},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/user_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+				}
+			});
+		}
+	});
 });
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->

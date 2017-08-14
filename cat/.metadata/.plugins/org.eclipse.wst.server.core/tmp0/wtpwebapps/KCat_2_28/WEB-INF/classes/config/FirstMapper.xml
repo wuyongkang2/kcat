@@ -27,11 +27,23 @@
 	</delete>
 	
 	<update id="modifyUser" parameterType="model.First">
-		update user set userName=#{userName},userPwd=#{userPwd},email=#{email},sex=#{sex},birthday=#{birthday},date=#{date} where id=#{id}
+		update user set userName=#{userName},email=#{email},sex=#{sex},birthday=#{birthday},date=#{date} where id=#{id}
+	</update>
+	
+	<update id="modifyPwd" parameterType="model.First">
+		update user set userPwd=#{userPwd} where id=#{id}
 	</update>
 	
 	<select id="getAllUser" resultType="model.First">
 		SELECT * FROM user
 	</select>
+	
+	<select id="admin_login" parameterType="model.First" resultType="model.First">
+		SELECT * FROM user WHERE userName = #{userName} AND userPwd = #{userPwd} AND (groupName = '超级管理员' OR groupName = '管理员')
+	</select>
+	
+	<update id="modifyGroupName" parameterType="model.First">
+		update user set groupName=#{groupName} where id=#{id}
+	</update>
 	
 </mapper>

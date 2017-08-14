@@ -58,4 +58,18 @@ public class FirstDAO {
 		return firstMapper.getAllUser();
 	}
 	
+	//修改用户密码
+	public void modifyPwd(First first){
+		firstMapper.modifyPwd(first);
+	}
+	//管理员登录
+	public ArrayList<First> admin_login(First first){
+		ArrayList<First> list=firstMapper.admin_login(first);
+		return list;
+	}
+	//修改用户组
+	public void modifyGroupName(First first){
+		firstMapper.modifyGroupName(first);
+	}
+	
 }

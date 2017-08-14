@@ -71,8 +71,7 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 团队管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="product-brand.html" data-title="团队留言" href="javascript:void(0)">团队留言</a></li>
-					<li><a data-href="article-list.html" data-title="成员管理" href="javascript:void(0)">成员管理</a></li>
+					<li><a data-href="admin_list.jsp" data-title="成员管理" href="javascript:void(0)">成员管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -94,27 +93,15 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 内容管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="article-list.html" data-title="专业软件" href="javascript:void(0)">专业软件</a></li>
-					<li><a data-href="article-list.html" data-title="娱乐软件" href="javascript:void(0)">娱乐软件</a></li>
-					<li><a data-href="article-list.html" data-title="作业辅助" href="javascript:void(0)">作业辅助</a></li>
-					<li><a data-href="article-list.html" data-title="帮帮帮" href="javascript:void(0)">帮帮帮</a></li>
-					<li><a data-href="article-list.html" data-title="校园电话" href="javascript:void(0)">校园电话</a></li>
+					<li><a data-href="studySoft_list.jsp" data-title="专业软件" href="javascript:void(0)">专业软件</a></li>
+					<li><a data-href="playSoft_list.jsp" data-title="娱乐软件" href="javascript:void(0)">娱乐软件</a></li>
+					<li><a data-href="homework_list.jsp" data-title="作业辅助" href="javascript:void(0)">作业辅助</a></li>
+					<li><a data-href="bangbangbang_list.jsp" data-title="帮帮帮" href="javascript:void(0)">帮帮帮</a></li>
+					<li><a data-href="tel_list.jsp" data-title="校园电话" href="javascript:void(0)">校园电话</a></li>
 				</ul>
 			</dd>
 		</dl>
-	</div>
-
-	<div class="menu_dropdown bk_2" style="display:none">
-		<dl id="menu-ccccc">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 二级导航3<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="article-list.html" data-title="资讯管理" href="javascript:void(0)">三级导航</a></li>
-				</ul>
-			</dd>
-		</dl>
-	</div>
-	
+	</div>	
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
 <section class="Hui-article-box">
@@ -122,7 +109,7 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="我的桌面" data-href="welcome.html">我的桌面</span>
+					<span title="主页" data-href="${pageContext.request.contextPath}/visitor/index.jsp">主页</span>
 					<em></em></li>
 		</ul>
 	</div>
@@ -131,7 +118,7 @@
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-			<iframe scrolling="yes" frameborder="0" src="welcome.html"></iframe>
+			<iframe scrolling="yes" frameborder="0" src="${pageContext.request.contextPath}/visitor/index.jsp"></iframe>
 	</div>
 </div>
 </section>
@@ -218,20 +205,6 @@ function product_add(title,url){
 function member_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-
-
 </script> 
-
-<!--此乃百度统计代码，请自行删除-->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!--/此乃百度统计代码，请自行删除-->
 </body>
 </html>
