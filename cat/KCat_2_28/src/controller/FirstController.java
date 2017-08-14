@@ -124,15 +124,25 @@ public class FirstController {
 /*
  * 管理员登录
  */
-	@RequestMapping("/admin_login.do")
-	@ResponseBody
-	public boolean admin_login(HttpSession session,First first){
-		System.out.println("进入admin_login"+first.getUserName()+":"+first.getUserPwd()+":"+first.getGroupName());
-		ArrayList<First> list=firstDAO.admin_login(first);
-		if(list.size()>0){
-			return true;
-		}else{
-			return false;
+		@RequestMapping("/admin_login.do")
+		@ResponseBody
+		public boolean admin_login(HttpSession session,First first){
+			System.out.println("进入admin_login"+first.getUserName()+":"+first.getUserPwd()+":"+first.getGroupName());
+			ArrayList<First> list=firstDAO.admin_login(first);
+			if(list.size()>0){
+				return true;
+			}else{
+				return false;
+			}
 		}
-	}
+/*
+ * 修改用户组
+ */
+		@RequestMapping("/modifyGroupName.do")
+		@ResponseBody
+		public boolean modifyGroupName(First first){
+			System.out.println("进入controller_modifyGroupName:"+first.getId()+":"+first.getGroupName());
+			firstDAO.modifyGroupName(first);
+			return true;
+		}
 }

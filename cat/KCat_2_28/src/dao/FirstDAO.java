@@ -67,5 +67,9 @@ public class FirstDAO {
 		ArrayList<First> list=firstMapper.admin_login(first);
 		return list;
 	}
+	//修改用户组
+	public void modifyGroupName(First first){
+		firstMapper.modifyGroupName(first);
+	}
 	
 }

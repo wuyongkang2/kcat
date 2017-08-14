@@ -16,5 +16,6 @@ public interface FirstMapper {
 	public ArrayList<First> getAllUser(); //获取所有用户信息
 	public void modifyPwd(First first); //修改用户密码
 	public ArrayList<First> admin_login(First first);//管理员登录
+	public void modifyGroupName(First first); //修改用户密码
 	
 }

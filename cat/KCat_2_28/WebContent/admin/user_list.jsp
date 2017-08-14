@@ -64,7 +64,16 @@ $(function(){
  	$.post("${pageContext.request.contextPath}/getAllUser.do",function(data){
  		$("#user_count").text(data.length);
 		$.each(data,function(i,e){
-			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].userName+"</u></td><td>"+data[i].sex+"</td><td>"+data[i].email+"</td><td>"+data[i].groupName+"</td><td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='userPwd_edit("+"$(this)"+")' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='user_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].userName+"</u></td><td>"+data[i].sex+"</td><td>"+data[i].email+"</td><td>"+data[i].groupName+"</td><td class='td-manage'>"
+			if(data[i].groupName == "普通用户"){
+				html+="<a title='提升为管理员' href='javascript:;' onclick='group_edit("+"$(this),1"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe60d;</i></a>"
+			}else if(data[i].groupName == "管理员"){
+				html+="<a title='降为普通用户' href='javascript:;' onclick='group_edit("+"$(this),0"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe62d;</i></a>"
+			}else if(data[i].groupName == "超级管理员"){
+				html+="<a title='我是超级管理员' href='javascript:;' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe653;</i></a>"
+			}
+			html+="<a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='userPwd_edit("+"$(this)"+")' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='user_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+			
 		});
  	});
  	$(".User_list").append(html);
@@ -86,6 +95,55 @@ function user_edit(object){
 	var sex = path.eq(3).text();
 	var email = path.eq(4).text();
 	member_edit('编辑用户','user_modify.jsp?id='+id+'&userName='+userName+'&sex='+sex+'&email='+email+'','360','260');
+}
+/*用户组-修改*/
+function group_edit(object,oper){
+	var path = object.parent().parent().children();
+	var id = path.eq(1).text();
+	if(oper == "1"){
+		layer.confirm('确认要提升为管理员吗？',function(index){
+			$.ajax({
+				type : "post",  
+		        dataType : "json",  
+		        data : {  
+		        	id : id,
+		        	groupName : '管理员' 
+		        },  
+		        async : false, 
+		        cache : false, 
+		        url : "${pageContext.request.contextPath}/modifyGroupName.do",  
+				success: function(data){
+					layer.msg('修改用户组成功',{icon:1,time:1000});
+					location.replace(location.href);
+				},
+				error:function(data) {
+					console.log(data.msg);
+				},
+			});		
+		});
+	}else if(oper == "0"){
+		layer.confirm('确认要降为普通用户吗？',function(index){
+			$.ajax({
+				type : "post",  
+		        dataType : "json",  
+		        data : {  
+		        	id : id,
+		        	groupName : '普通用户'
+		        },  
+		        async : false, 
+		        cache : false, 
+		        url : "${pageContext.request.contextPath}/modifyGroupName.do",  
+				success: function(data){
+					layer.msg('修改用户组成功',{icon:1,time:1000});
+					location.replace(location.href);
+				},
+				error:function(data) {
+					console.log(data.msg);
+				},
+			});		
+		});
+	}
+	
 }
 /*用户密码-编辑*/
 function userPwd_edit(object){
