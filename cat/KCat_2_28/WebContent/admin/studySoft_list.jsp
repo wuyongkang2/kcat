@@ -28,9 +28,6 @@
 <div class="page-container">
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="picture_add('添加图片','studySoft_add.jsp')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a></span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
-		<div id="layer-photos-demo" class="layer-photos-demo">
-		  <a onclick="ff()"><img style="width:80px;height:80px;" layer-src="http://kcat-1251241286.cosgz.myqcloud.com/images/Byunjisuan/Byjs8.jpg" src="http://kcat-1251241286.cosgz.myqcloud.com/images/Byunjisuan/Byjs8.jpg"></a>
-		</div>
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
 				<tr class="text-c">
@@ -71,7 +68,17 @@ $(function(){
  	$.post("${pageContext.request.contextPath}/getAllSoft.do",function(data){
  		$("#soft_count").text(data.length);
 		$.each(data,function(i,e){
-			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].softName+"</u></td><td>"+data[i].softType+"</td><td><img style='width:60px;height:60px;border-radius:100px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].softImage+"'</td><td>"+data[i].soft_to_titleS+"</td><td>"+data[i].soft_jianjie+"</td><td><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</td><td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td>"+data[i].soft_video+"</td>"
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].softName+"</u></td>"
+			html+="<td>"+data[i].softType+"</td><td><img style='width:60px;height:60px;border-radius:100px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].softImage+"'</td>"
+			
+			html+="<td>"+data[i].soft_to_titleS+"</td>"
+			
+			var jianjie = data[i].soft_jianjie.substring(0,30)+"...";
+			data[i].soft_jianjie = data[i].soft_jianjie.replace(" ","_");
+			var datu_new = "'"+data[i].soft_jietu+"'";
+			html+="<td><a title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
+
+			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a style='text-decoration:none;' href='http://op86rjyxw.bkt.clouddn.com/video/"+data[i].soft_video+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
 			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='user_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
@@ -86,18 +93,6 @@ $(function(){
 		]
 	});
 });
-function ff(){
-	//iframe层-多媒体
-	layer.open({
-	  type: 2,
-	  title: false,
-	  area: ['621px', '380px'],
-	  shade: 0.8,
-	  closeBtn: 0,
-	  shadeClose: true,
-	  content: 'datu.jsp'
-	});
-}
 /*图片-添加*/
 function picture_add(title,url){
 	var index = layer.open({

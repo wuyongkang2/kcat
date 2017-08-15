@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="shipin" key="selection"/>
+		<item value="datu" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="datu"/>
 			<item value="shipin"/>
 			<item value="screen"/>
 			<item value="User_list"/>
@@ -15,7 +16,6 @@
 			<item value="val"/>
 			<item value="添加"/>
 			<item value="png"/>
-			<item value="jpg"/>
 		</list>
 		<list key="replacehistory">
 			<item value="time_name3"/>
