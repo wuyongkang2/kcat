@@ -55,7 +55,8 @@
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="lib/base64/base64.js"></script> <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script> 
@@ -76,7 +77,7 @@ $(function(){
 			var jianjie = data[i].soft_jianjie.substring(0,30)+"...";
 			data[i].soft_jianjie = data[i].soft_jianjie.replace(" ","_");
 			var datu_new = "'"+data[i].soft_jietu+"'";
-			html+="<td><a title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
+			html+="<td><a title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
 
 			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a style='text-decoration:none;' href='http://op86rjyxw.bkt.clouddn.com/video/"+data[i].soft_video+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
 			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='user_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
@@ -93,6 +94,22 @@ $(function(){
 		]
 	});
 });
+/*大图放大显示*/
+function datu(object){
+	var datu_src = object[0].getElementsByTagName('img')[0].src;
+	var path = "datu.jsp";
+	//iframe层-多媒体
+	layer.open({
+	  type: 2,
+	  title: false,
+	  area: ['621px', '376px'],
+	  shade: 0.8,
+	  closeBtn: 0,
+	  shadeClose: true,
+	  content: path
+	});
+	
+}
 /*图片-添加*/
 function picture_add(title,url){
 	var index = layer.open({

@@ -4,8 +4,14 @@
 <html lang="zh-CN">   <!--中文语言-->
 <head>
 <meta charset="UTF-8"/>
+<script type="text/javascript" src="lib/base64/base64.js"></script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 </head>
 <body>
-<img style="width:100%;" src="http://kcat-1251241286.cosgz.myqcloud.com/images/Byunjisuan/Byjs8.jpg"></img>
+<img id="datu" style="width:100%;" src=""></img>
+<script type="text/javascript">
+	var src = "<%=request.getParameter("src")%>";
+	$("#datu").attr('src',datu_src);
+</script>
 </body>
 </html>
