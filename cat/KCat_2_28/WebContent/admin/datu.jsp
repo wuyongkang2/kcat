@@ -11,7 +11,7 @@
 <img id="datu" style="width:100%;" src=""></img>
 <script type="text/javascript">
 	var src = "<%=request.getParameter("src")%>";
-	$("#datu").attr('src',datu_src);
+	$("#datu").attr('src',src);
 </script>
 </body>
 </html>

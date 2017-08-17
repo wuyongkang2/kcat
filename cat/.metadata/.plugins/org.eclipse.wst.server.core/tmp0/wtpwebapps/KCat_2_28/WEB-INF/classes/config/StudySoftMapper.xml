@@ -40,7 +40,7 @@
 	</select>
 	
 	<select id="getAllSoft" resultType="model.StudySoft">
-		select * from zysoftware
+		SELECT a.id,a.softName,a.softType,a.softImage,a.soft_jianjie,a.soft_jietu,a.softUrl,a.soft_date,a.soft_version,a.soft_pw,a.soft_video,b.titleSName,c.titleBName FROM zysoftware AS a INNER JOIN zysoftware_titles AS b ON a.soft_to_titleS = b.id INNER JOIN zysoftware_titleb AS c ON b.titleS_to_titleB = c.id
 	</select>
 	
 </mapper>

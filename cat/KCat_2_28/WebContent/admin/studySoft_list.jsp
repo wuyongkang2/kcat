@@ -32,11 +32,12 @@
 			<thead>
 				<tr class="text-c">
 					<th width="40"><input name="" type="checkbox" value=""></th>
-					<th width="80">ID</th>
-					<th width="100">名字</th>
-					<th width="100">类型</th>
+					<th width="50">ID</th>
+					<th width="150">名字</th>
+					<th width="30">类型</th>
 					<th width="100">图标</th>
-					<th width="100">学院专业</th>
+					<th width="100">学院</th>
+					<th width="100">专业</th>
 					<th width="150">软件简介</th>
 					<th width="150">大图</th>
 					<th width="60">软件</th>
@@ -72,14 +73,14 @@ $(function(){
 			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].softName+"</u></td>"
 			html+="<td>"+data[i].softType+"</td><td><img style='width:60px;height:60px;border-radius:100px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].softImage+"'</td>"
 			
-			html+="<td>"+data[i].soft_to_titleS+"</td>"
-			
+			html+="<td>"+data[i].titleBName+"</td>";
+			html+="<td>"+data[i].titleSName+"</td>";
 			var jianjie = data[i].soft_jianjie.substring(0,30)+"...";
 			data[i].soft_jianjie = data[i].soft_jianjie.replace(" ","_");
 			var datu_new = "'"+data[i].soft_jietu+"'";
-			html+="<td><a title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
+			html+="<td><a onclick='soft_jianjie("+"$(this)"+")' title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
 
-			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a style='text-decoration:none;' href='http://op86rjyxw.bkt.clouddn.com/video/"+data[i].soft_video+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
+			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a onclick='soft_video("+"$(this)"+")' title='http://op86rjyxw.bkt.clouddn.com/video/"+data[i].soft_video+"' style='text-decoration:none;'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
 			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='user_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
@@ -96,114 +97,46 @@ $(function(){
 });
 /*大图放大显示*/
 function datu(object){
-	var datu_src = object[0].getElementsByTagName('img')[0].src;
-	var path = "datu.jsp";
+	var datu_src = "datu.jsp?src="+object[0].getElementsByTagName('img')[0].src;
+	var path = "datu.jsp?src=";
 	//iframe层-多媒体
 	layer.open({
 	  type: 2,
 	  title: false,
-	  area: ['621px', '376px'],
+	  area: ['621px', '390px'],
 	  shade: 0.8,
 	  closeBtn: 0,
 	  shadeClose: true,
-	  content: path
+	  content: datu_src
 	});
 	
 }
-/*图片-添加*/
-function picture_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
+/*软件简介详细显示*/
+function soft_jianjie(object){
+	layer.open({
+		type: 1,
+		area: ['300px','200px'],
+		fix: false, //不固定
+		maxmin: true,
+		shade:0.4,
+		title: '软件简介',
+		content: object[0].title
 	});
-	layer.full(index);
 }
-
-/*图片-查看*/
-function picture_show(title,url,id){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-
-/*图片-审核*/
-function picture_shenhe(obj,id){
-	layer.confirm('审核文章？', {
-		btn: ['通过','不通过'], 
-		shade: false
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="picture_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布', {icon:6,time:1000});
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="picture_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-		$(obj).remove();
-    	layer.msg('未通过', {icon:5,time:1000});
-	});	
-}
-
-/*图片-下架*/
-function picture_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
+/*视频播放*/
+function soft_video(object){
+	//iframe层-多媒体
+	layer.open({
+	  type: 2,
+	  title: false,
+	  area: ['900px', '550px'],
+	  shade: 0.8,
+	  closeBtn: 0,
+	  shadeClose: true,
+	  content: object[0].title
 	});
 }
 
-/*图片-发布*/
-function picture_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布!',{icon: 6,time:1000});
-	});
-}
-
-/*图片-申请上线*/
-function picture_shenqing(obj,id){
-	$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-	$(obj).parents("tr").find(".td-manage").html("");
-	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
-}
-
-/*图片-编辑*/
-function picture_edit(title,url,id){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-
-/*图片-删除*/
-function picture_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-	});
-}
 </script>
 </body>
 </html>

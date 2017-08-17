@@ -13,6 +13,8 @@ public class StudySoft {
 	  private String soft_version;
 	  private String soft_pw;
 	  private String soft_video;
+	  private String titleSName;
+	  private String titleBName;
 	public int getId() {
 		return id;
 	}
@@ -85,13 +87,27 @@ public class StudySoft {
 	public void setSoft_video(String soft_video) {
 		this.soft_video = soft_video;
 	}
+	public String getTitleSName() {
+		return titleSName;
+	}
+	public void setTitleSName(String titleSName) {
+		this.titleSName = titleSName;
+	}
+	public String getTitleBName() {
+		return titleBName;
+	}
+	public void setTitleBName(String titleBName) {
+		this.titleBName = titleBName;
+	}
 	@Override
 	public String toString() {
 		return "StudySoft [id=" + id + ", softName=" + softName + ", softType=" + softType + ", softImage=" + softImage
 				+ ", soft_to_titleS=" + soft_to_titleS + ", soft_jianjie=" + soft_jianjie + ", soft_jietu=" + soft_jietu
 				+ ", softUrl=" + softUrl + ", soft_date=" + soft_date + ", soft_version=" + soft_version + ", soft_pw="
-				+ soft_pw + ", soft_video=" + soft_video + "]";
+				+ soft_pw + ", soft_video=" + soft_video + ", titleSName=" + titleSName + ", titleBName=" + titleBName
+				+ "]";
 	}
+	
 	
 	  
 	
