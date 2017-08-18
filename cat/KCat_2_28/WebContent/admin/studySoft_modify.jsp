@@ -27,38 +27,15 @@
 <article class="page-container">
 	<form class="form form-horizontal" id="form-admin-add">
 	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>软件名字：</label>
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="" placeholder="" id="softName" name="softName">
+			<input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
 		</div>
 	</div>
 	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>软件类型</label>
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softType" name="softType" size="1">
-				<option value="0">请选择软件类型</option>
-				<option value="1">办公</option>
-				<option value="2">工具</option>
-				<option value="3">图形</option>
-				<option value="4">开发</option>
-			</select>
-		</div>
-	</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学院</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softCollege" name="softType" size="1">
-				<option value="0">请选择学院</option>
-				<option value="0">加载中...</option>
-			</select>
-		</div>
-	</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softMajor" name="softType" size="1">
-				<option value="0">请选择专业</option>
-			</select>
+			<input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="password">
 		</div>
 	</div>
 	<div class="row cl">
@@ -130,7 +107,6 @@
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script> 
 <script type="text/javascript">
 $(function(){
-	college();
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
@@ -185,31 +161,6 @@ $(function(){
 			parent.layer.close(index);
 		}
 	});
-});
-//绑定学院
-function college(){
-	var selDom = $("#softCollege");
-	selDom.empty();
-	selDom.append("<option value='0'>请选择学院</option>");
-	$.ajaxSetup({async:false});
- 	$.post("${pageContext.request.contextPath}/getStudySoftB.do",function(data){
- 		$.each(data,function(i,e){
- 			selDom.append("<option value="+data[i].id+">"+data[i].titleBName+"</option>");
- 		});
- 	});
-}
-//绑定专业
-$("#softCollege").change(function(){
-	var college_selected_index = $("#softCollege").find("option:selected").val();
-	var selDom = $("#softMajor");
-	selDom.empty();
-	selDom.append("<option value='0'>请选择专业</option>");
-	$.ajaxSetup({async:false});
- 	$.post("${pageContext.request.contextPath}/getStudySoftS.do",{titleS_to_titleB:college_selected_index},function(data){
- 		$.each(data,function(i,e){
- 			selDom.append("<option value="+data[i].id+">"+data[i].titleSName+"</option>");
- 		});
- 	});
 });
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->

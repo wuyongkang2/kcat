@@ -26,7 +26,7 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 专业软件 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="picture_add('添加图片','studySoft_add.jsp')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a></span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="soft_add('添加软件','studySoft_add.jsp','500','360')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a></span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
@@ -34,15 +34,15 @@
 					<th width="40"><input name="" type="checkbox" value=""></th>
 					<th width="50">ID</th>
 					<th width="150">名字</th>
-					<th width="30">类型</th>
+					<th width="50">类型</th>
 					<th width="100">图标</th>
 					<th width="100">学院</th>
-					<th width="100">专业</th>
+					<th width="120">专业</th>
 					<th width="150">软件简介</th>
 					<th width="150">大图</th>
-					<th width="60">软件</th>
-					<th width="100">安装教程</th>
-					<th width="100">操作</th>
+					<th width="40">软件</th>
+					<th width="70">安装教程</th>
+					<th width="80">操作</th>
 				</tr>
 			</thead>
 			<tbody class="Soft_list">
@@ -76,7 +76,7 @@ $(function(){
 			html+="<td>"+data[i].titleBName+"</td>";
 			html+="<td>"+data[i].titleSName+"</td>";
 			var jianjie = data[i].soft_jianjie.substring(0,30)+"...";
-			data[i].soft_jianjie = data[i].soft_jianjie.replace(" ","_");
+			data[i].soft_jianjie = data[i].soft_jianjie.replace(/ /g,'_');
 			var datu_new = "'"+data[i].soft_jietu+"'";
 			html+="<td><a onclick='soft_jianjie("+"$(this)"+")' title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
 
@@ -91,7 +91,7 @@ $(function(){
 		"bStateSave": true,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,4,5]}// 制定列不参与排序
+		  {"orderable":false,"aTargets":[0,4,5,6,7,8,9,10,11]}// 制定列不参与排序
 		]
 	});
 });
@@ -135,6 +135,10 @@ function soft_video(object){
 	  shadeClose: true,
 	  content: object[0].title
 	});
+}
+/*软件-添加*/
+function soft_add(title,url,w,h){
+	layer_show(title,url,w,h);
 }
 
 </script>

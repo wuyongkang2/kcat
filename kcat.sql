@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2017-08-13 20:59:40
+Date: 2017-08-18 23:20:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -242,13 +242,12 @@ CREATE TABLE `user` (
   `date` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
   `groupName` varchar(255) CHARACTER SET utf8mb4 DEFAULT '普通用户',
   PRIMARY KEY (`id`,`userName`)
-) ENGINE=InnoDB AUTO_INCREMENT=1003 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1002 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '6828B9D4DC8', '6C3HVGXPGQG', 'KmL1fG@qq.com', '女', '', '', '普通用户');
-INSERT INTO `user` VALUES ('2', '300OUXIT5BQ', '503RPPJGARY', 'gcg0ph@qq.com', '女', '', '', '普通用户');
+INSERT INTO `user` VALUES ('2', '300OUXIT5BQ', '503RPPJGARY', 'gcg0ph@qq.com', '女', '', '', '管理员');
 INSERT INTO `user` VALUES ('3', 'RBF2E0SS78X', '31DJ616R56U', '40k1EM@qq.com', '女', '', '', '普通用户');
 INSERT INTO `user` VALUES ('4', 'YJFDNA663D', '41P7TFO267', '1ouE26@qq.com', '男', '', '', '普通用户');
 INSERT INTO `user` VALUES ('5', 'YQBVU5RJV4G', 'CC31KWW70DI', 'vY88tv@qq.com', '男', '', '', '普通用户');
@@ -1228,16 +1227,6 @@ INSERT INTO `user` VALUES ('978', '54VT6Z1EG3Z', '75J130HJGPH', 'kEu047@qq.com',
 INSERT INTO `user` VALUES ('979', 'C89318UG34R', '66U3BH9N1S1', 'fgkN06@qq.com', '女', '', '', '普通用户');
 INSERT INTO `user` VALUES ('980', 'S65Q49OW5A8', 'FV683NWY9IZ', '00Kkoj@qq.com', '男', '', '', '普通用户');
 INSERT INTO `user` VALUES ('981', 'QL6LA4I4Y0Z', '9B7HUM36F5K', 'Q7O6D0@qq.com', '女', '', '', '普通用户');
-INSERT INTO `user` VALUES ('982', 'X7I6QG90U7F', 'ACTD2B04JX9', 'h41s24@qq.com', '女', '', '', '普通用户');
-INSERT INTO `user` VALUES ('983', 'GQZP86C39NG', 'C49N8B5B891', '658vh1@qq.com', '男', '', '', '普通用户');
-INSERT INTO `user` VALUES ('984', '2906Z5554E9', '82W4O8190RE', '22586g@qq.com', '男', '', '', '普通用户');
-INSERT INTO `user` VALUES ('985', '8MI7T32U4R2', '4UQ4JFUQLN9', '7LHC10@qq.com', '女', '', '', '普通用户');
-INSERT INTO `user` VALUES ('986', '4SKMTYL0300', 'LN25032Y48K', '5YU576@qq.com', '男', '', '', '普通用户');
-INSERT INTO `user` VALUES ('987', '91HUG5C2VRG', 'J681Z59QS0T', 'Xwai60@qq.com', '女', '', '', '普通用户');
-INSERT INTO `user` VALUES ('988', 'M6Z175LQ4D1', '8HT78L7T76A', '1cb04R@qq.com', '男', '', '', '普通用户');
-INSERT INTO `user` VALUES ('989', 'XBHQ8OVND2K', '33S713HN575', '80H072@qq.com', '女', '', '', '普通用户');
-INSERT INTO `user` VALUES ('990', 'EL3QM21AG6G', '600J9497TJC', '03b0d0@qq.com', '男', '', '', '普通用户');
-INSERT INTO `user` VALUES ('991', 'BT63I1C4WN7', 'OL11I6M8NT4', '3k5t8T@qq.com', '男', '', '', '普通用户');
 INSERT INTO `user` VALUES ('992', 'HWX948CV46Q', 'HZ98NZ898U3', 'xh3201@qq.com', '女', '', '', '普通用户');
 INSERT INTO `user` VALUES ('993', 'I303J8X3BCE', 'FT6RO1RP7W2', '4155A6@qq.com', '男', '', '', '普通用户');
 INSERT INTO `user` VALUES ('994', 'K5I6D7A9E3H', 'G8H249RNN36', '614j7B@qq.com', '女', '', '', '普通用户');
@@ -1589,7 +1578,7 @@ INSERT INTO `zysoftware` VALUES ('13', 'Vmware', '工具', 'Sjiying/Sjy14.png', 
 INSERT INTO `zysoftware` VALUES ('14', 'Eclipse 3.2', '开发', 'Sjiying/Sjy15.png', '1', 'Eclipse 是一个开放源代码的、基于Java的可扩展开发平台。就其本身而言，它只是一个框架和一组服务，用于通过插件组件构建开发环境。幸运的是，Eclipse 附带了一个标准的插件集，包括Java开发工具（Java Development Kit，JDK）。', 'Bjiying/Bjy17.jpg', 'soft/14.rar', '2017/5/3', '1.0.0', 'j6qj', '14.mp4');
 INSERT INTO `zysoftware` VALUES ('15', 'lingo 9.0', '工具', 'Sjiying/Sjy16.png', '1', 'LINGO交互式的线性和通用优化求解器可以用于求解非线性规划，也可以用于一些线性和非线性方程组的求解等，功能十分强大，是求解优化模型的最佳选择。', 'Bjiying/Bjy18.jpg', 'soft/15.rar', '2017/5/3', '1.0.0', 'vvzu', '15.mp4');
 INSERT INTO `zysoftware` VALUES ('16', '微信开发者工具', '开发', 'Sjiying/Sjy18.png', '1', '为帮助开发者更方便、更安全地开发和调试基于微信的网页，我们推出了 web 开发者工具。它是一个桌面应用，通过模拟微信客户端的表现，使得开发者可以使用这个工具方便地在 PC 或者 Mac 上进行开发和调试工作。', 'Bjiying/Bjy14.jpg', 'soft/16.rar', '2017/5/3', '1.0.0', 'yxvq', '16.mp4');
-INSERT INTO `zysoftware` VALUES ('17', '网页三剑客（MX）', '开发', 'Sjiying/Sjy19.png', '1', 'Dreamweaver与Flash、Firework 并称为 Macromedia的网页制作三剑客，由于是同一公司的产品，因而在功能上有着一个非常紧密的结合 。', 'Bjiying/Bjy15.jpg', 'soft/17.rar', '2017/5/3', '1.0.0', 'n6r5', '17.mp4');
+INSERT INTO `zysoftware` VALUES ('17', '网页三剑客（MX）', '开发', 'Sjiying/Sjy19.png', '1', 'Dreamweaver与Flash、Firework 并称为Macromedia的网页制作三剑客，由于是同一公司的产品，因而在功能上有着一个非常紧密的结合 。', 'Bjiying/Bjy15.jpg', 'soft/17.rar', '2017/5/3', '1.0.0', 'n6r5', '17.mp4');
 INSERT INTO `zysoftware` VALUES ('18', 'office 2010', '办公', 'Syunjisuan/Syjs14.png', '2', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Byunjisuan/Byjs9.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
 INSERT INTO `zysoftware` VALUES ('19', 'SSH', '工具', 'Syunjisuan/Syjs01.png', '2', '', 'Byunjisuan/Byjs1.jpg', 'soft/2.rar', '2017/5/3', '1.0.0', 'ev4b', '2.mp4');
 INSERT INTO `zysoftware` VALUES ('20', 'Adobe Flash CS6', '图形', 'Syunjisuan/Syjs02.png', '2', 'Adobe Flash CS6是用于创建动画和多媒体内容的强大的创作平台。Adobe Flash CS6设计身临其境，而且在台式计算机和平板电脑、智能手机和电视等多种设备中都能呈现一致效果的互动体验。', 'Byunjisuan/Byjs12.jpg', 'soft/3.rar', '2017/5/3', '1.0.0', 'b4b4', '3.mp4');
@@ -1645,7 +1634,7 @@ INSERT INTO `zysoftware` VALUES ('69', 'office 2010', '办公', 'Shuizhan/Shz1.p
 INSERT INTO `zysoftware` VALUES ('70', 'Photoshop CS6', '图形', 'Shuizhan/Shz2.png', '14', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bhuizhan/Bhz2.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
 INSERT INTO `zysoftware` VALUES ('71', 'office 2010', '办公', 'Sshichang/Sshic2.png', '15', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bshiying/Bsy1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
 INSERT INTO `zysoftware` VALUES ('72', 'Photoshop CS6', '图形', 'Sshichang/Sshic1.png', '15', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bshiying/Bsy2.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('73', 'office 2010', '办公', 'Sjinrong/Sjingr1.png', '16', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'jinrong/Bjy1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
+INSERT INTO `zysoftware` VALUES ('73', 'office 2010', '办公', 'Sjinrong/Sjingr1.png', '16', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bjinrong/Bjr1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
 INSERT INTO `zysoftware` VALUES ('74', 'office 2010', '办公', 'Sdianqi/Sdianq1.png', '17', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bdianhua/Bdh1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
 INSERT INTO `zysoftware` VALUES ('75', 'S7 200', '开发', 'Sdianqi/Sdianq2.png', '17', 'S7-200 是一种小型的可编程序控制器，适用于各行各业，各种场合中的检测、监测及控制的自动化。S7-200系列的强大功能使其无论在独立运行中，或相连成网络皆能实现复杂控制功能。因此S7-200系列具有极高的性能/价格比。', 'Bdianhua/Bdh2.jpg', 'soft/36.rar', '2017/5/3', '1.0.0', '1cce', '36.mp4');
 INSERT INTO `zysoftware` VALUES ('76', 'STEP 7 MicroWIN', '开发', 'Sdianqi/Sdianq3.png', '17', 'STEP 7 MicroWIN是西门子PLC S7-200编程软件最新版本', 'Bdianhua/Bdh3.jpg', 'soft/37.rar', '2017/5/3', '1.0.0', 'ozyg', '37.mp4');
@@ -1664,7 +1653,7 @@ INSERT INTO `zysoftware` VALUES ('88', 'STEP 7 MicroWIN', '开发', 'Sjidian/Sjd
 INSERT INTO `zysoftware` VALUES ('89', 'UG 8.0', '工具', 'Sjidian/Sjdian4.png', '19', 'UG是Siemens PLM Software公司出品的一个产品工程解决方案，它为用户的产品设计及加工过程提供了数字化造型和验证手段。Unigraphics NX针对用户的虚拟产品设计和工艺设计的需求，提供了经过实践验证的解决方案。', 'Bjidian/Bjd4.jpg', 'soft/45.rar', '2017/5/3', '1.0.0', '', '45.mp4');
 INSERT INTO `zysoftware` VALUES ('90', 'AutoCAD 2008', '图形', 'Sjidian/Sjdian5.png', '19', 'Autodesk公司升级产品AutoCAD 2008在界面、工作空间、面板、选项板、图形管理、图层、标注等到方面进行了改时宜，增加和增强了部分功能。', 'Bjidian/Bjd5.jpg', 'soft/38.rar', '2017/5/3', '1.0.0', '8pj2', '38.mp4');
 INSERT INTO `zysoftware` VALUES ('91', 'FluidSim', '工具', 'Sjidian/Sjdian6.png', '19', 'FluidSIM是德国Festo公司和Paderborn大学开发的用于液压与气压传动的教学软件等的软件。', 'Bjidian/Bjd6.jpg', 'soft/46.rar', '2017/5/3', '1.0.0', 'z3ky', '46.mp4');
-INSERT INTO `zysoftware` VALUES ('92', 'office 2010', '办公', 'Sqicheweixiu/Sqcwx1.png', '20', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bqixiu/Bqx1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
+INSERT INTO `zysoftware` VALUES ('92', 'office 2010', '办公', 'Sqicheweixiu/Sqcwx1.png', '20', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bqiqiu/Bqx1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
 INSERT INTO `zysoftware` VALUES ('93', 'office 2010', '办公', 'Sqichefuwu/Sqcfwu1.png', '21', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bqijin/Bqj1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
 INSERT INTO `zysoftware` VALUES ('94', 'office 2010', '办公', 'Syingshi/Sys1.png', '22', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Byingshi/Bys1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
 INSERT INTO `zysoftware` VALUES ('95', 'Premiere pro CS6', '图形', 'Syingshi/Sys2.png', '22', 'Adobe Premiere Pro CS6 软件将卓越的性能、优美的改进用户界面和许多奇妙的创意功能结合在一起，包括用于稳定素材的 Warp Stabilizer、动态时间轴裁切、扩展的多机编辑、调整图层等。', 'Byingshi/Bys2.jpg', 'soft/23.rar', '2017/5/3', '1.0.0', '56cx', '23.mp4');
