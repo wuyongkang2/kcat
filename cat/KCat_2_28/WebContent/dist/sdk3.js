@@ -100,8 +100,8 @@ function getTime(){
             
             var successCallBack3 = function (result3) {
                 console.log('request success.');
-                
                 $("#result3").val("上传成功");
+                $('#uploadFile_soft').attr("href", "http://kcat-1251241286.cosgz.myqcloud.com/soft/"+time_name3);
                 soft_flag = true;
             };
             
@@ -159,14 +159,11 @@ function getTime(){
                 $('#js-file3').off('change').on('change', function (e) {
                 	console.log(e);
                     file = e.target.files[0];
-                    $.post("${pageContext.request.contextPath}/getSoftName_id",{softName:softName},function(data){
-                    	
-                    });
-                    time_name3 = 1;
+                    time_name3 = getTime();
                     var img_name_last = file.name.substring(file.name.length-4,file.name.length);
                     time_name3 += img_name_last;
                     $('#result3').val(time_name3);
-                    error_cancel("result3");
+                    //error_cancel("result3");
                 	cos.uploadFile(successCallBack3, errorCallBack3, progressCallBack3, bucket, myFolder + time_name3, file, 0, taskReady);//insertOnly==0 表示允许覆盖文件 1表示不允许
                 	$('#form3')[0].reset();
                 	return false;
