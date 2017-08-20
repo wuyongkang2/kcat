@@ -17,6 +17,8 @@
 <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="../dist/main.css">
+<link rel="stylesheet" href="../dist/highlight.css">
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -66,22 +68,20 @@
 		<div class="formControls col-xs-8 col-sm-9">
 			<input style="width:190px;" disabled="true" type="text" id="result1" class="input-text" placeholder="请选择要上传的图标" />
 			<input id="uploadFile1" class="btn btn-secondary radius" type="button" value="&nbsp;&nbsp;选择图标并上传&nbsp;&nbsp;" /><br />
-			<img src="../images/upload_df.png" id="uploadFile_img1" class="img-rounded mar_b15" style="width: 60px;height: 60px;border-radius: 100px;"/>
+			<img src="../images/upload_df.png" id="uploadFile_img1" class="img-rounded mar_b15" style="width: 60px;height: 60px;margin:10px 0;"/>
 		</div>
-		<form id="form1">
+		
 	        <input id="js-file1" type="file" style="display:none;"/>
-	    </form>
+	    
 	</div>
-	<div class="row cl">
+	<div class="row cl" style="margin-top:10px;">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>大图上传：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input style="width:190px;" disabled="true" type="text" id="result2" class="input-text" placeholder="请选择要上传的大图" />
 			<input id="uploadFile2" class="btn btn-secondary radius" type="button" value="&nbsp;&nbsp;选择大图并上传&nbsp;&nbsp;" /><br />
-			<img src="../images/upload_df.png" id="uploadFile_img2" class="img-rounded mar_b15" style="width: 300px; height: 200px;"/>
+			<img src="../images/upload_df.png" id="uploadFile_img2" class="img-rounded mar_b15" style="width: 300px; height: 200px;margin:10px 0;"/>
 		</div>
-		<form id="form2">
 	        <input id="js-file2" type="file" style="display:none;"/>
-	    </form>
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>软件上传：</label>
@@ -90,10 +90,38 @@
 			<input id="uploadFile3" class="btn btn-secondary radius" type="button" value="&nbsp;&nbsp;选择软件并上传&nbsp;&nbsp;" /><br />
 			<a id="uploadFile_soft" style="text-decoration:none;" href="javascript:volid(0);"><i style="font-size:28px;" class="Hui-iconfont"></i></a>
 		</div>
-		<form id="form3">
 	        <input id="js-file3" type="file" style="display:none;"/>
-	    </form>
 	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>软件简介：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<textarea class="textarea" value="" placeholder="" id="softContent" name="softContent" ></textarea>
+		</div>
+	</div>
+	<div class="row cl" style="margin-top:10px;">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频上传：</label>
+        <input type="hidden" id="domain" value="http://op86rjyxw.bkt.clouddn.com/">
+        <input type="hidden" id="uptoken_url" value="uptoken">
+        <div class="formControls col-xs-8 col-sm-9">
+            <div id="container" style="position: relative;">
+                <a id="pickfiles" href="http://jssdk.demo.qiniu.io/#" style="position: relative; z-index: 1;"><input class="btn btn-secondary radius" type="button" value="选择视频并上传" /></a>
+        	</div>
+        <div style="display:none" id="success">
+            <div class="alert-success" style="border-radius: 10px;">视频上传完毕</div>
+        </div>
+    </div>
+    </div>
+	<table class="table table-striped table-hover text-left" style="margin-top:40px;display:none">
+	    <thead>
+	      <tr>
+	        <th class="col-md-4">视频名称</th>
+	        <th class="col-md-2">大小</th>
+	        <th class="col-md-6">详细信息</th>
+	      </tr>
+	    </thead>
+	    <tbody id="fsUploadProgress">
+	    </tbody>
+	</table>
 	
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
@@ -117,6 +145,14 @@
 <script type="text/javascript" src="../dist/sdk1.js"></script>
 <script type="text/javascript" src="../dist/sdk2.js"></script>
 <script type="text/javascript" src="../dist/sdk3.js"></script>
+<script type="text/javascript" src="../dist/bootstrap.min.js"></script>
+<script type="text/javascript" src="../dist/moxie.js"></script>
+<script type="text/javascript" src="../dist/plupload.dev.js"></script>
+<script type="text/javascript" src="../dist/zh_CN.js"></script>
+<script type="text/javascript" src="../dist/ui.js"></script>
+<script type="text/javascript" src="../dist/qiniu.js"></script>
+<script type="text/javascript" src="../dist/highlight.js"></script>
+<script type="text/javascript" src="../dist/main.js"></script>
 <script type="text/javascript">
 $(function(){
 	college();

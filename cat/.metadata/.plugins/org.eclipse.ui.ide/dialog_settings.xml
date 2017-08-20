@@ -14,6 +14,7 @@
 		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\kangkang\Desktop\RobotChat"/>
 			<item value="E:\Crawler"/>
 			<item value="J:\KCat_2_28"/>
 			<item value="J:\K-Cat项目备份\KCat_2_28(7)"/>

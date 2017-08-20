@@ -6,6 +6,7 @@
 		<item value="Apache Tomcat v8.0"/>
 	</list>
 	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="E:\RobotChat.war"/>
 		<item value="E:\KCat_2_28.war"/>
 	</list>
 </section>
