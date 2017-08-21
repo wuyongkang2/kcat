@@ -49,7 +49,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学院：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softCollege" name="softType" size="1">
+			<select class="select" id="softCollege" name="softCollege" size="1">
 				<option value="0">请选择学院</option>
 				<option value="0">加载中...</option>
 			</select>
@@ -58,7 +58,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softMajor" name="softType" size="1">
+			<select class="select" id="softMajor" name="softMajor" size="1">
 				<option value="0">请选择专业</option>
 			</select>
 		</div>
@@ -66,7 +66,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图标上传：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input style="width:190px;" disabled="true" type="text" id="result1" class="input-text" placeholder="请选择要上传的图标" />
+			<input style="width:190px;" type="text" id="result1" name="ico_flag" class="input-text" placeholder="请选择要上传的图标" />
 			<input id="uploadFile1" class="btn btn-secondary radius" type="button" value="&nbsp;&nbsp;选择图标并上传&nbsp;&nbsp;" /><br />
 			<img src="../images/upload_df.png" id="uploadFile_img1" class="img-rounded mar_b15" style="width: 60px;height: 60px;margin:10px 0;"/>
 		</div>
@@ -77,7 +77,7 @@
 	<div class="row cl" style="margin-top:10px;">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>大图上传：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input style="width:190px;" disabled="true" type="text" id="result2" class="input-text" placeholder="请选择要上传的大图" />
+			<input style="width:190px;" type="text" id="result2" name="jpg_flag" class="input-text" placeholder="请选择要上传的大图" />
 			<input id="uploadFile2" class="btn btn-secondary radius" type="button" value="&nbsp;&nbsp;选择大图并上传&nbsp;&nbsp;" /><br />
 			<img src="../images/upload_df.png" id="uploadFile_img2" class="img-rounded mar_b15" style="width: 300px; height: 200px;margin:10px 0;"/>
 		</div>
@@ -86,7 +86,7 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>软件上传：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input style="width:190px;" disabled="true" type="text" id="result3" class="input-text" placeholder="请选择要上传的软件" />
+			<input style="width:190px;" type="text" id="result3" name="soft_flag" class="input-text" placeholder="请选择要上传的软件" />
 			<input id="uploadFile3" class="btn btn-secondary radius" type="button" value="&nbsp;&nbsp;选择软件并上传&nbsp;&nbsp;" /><br />
 			<a id="uploadFile_soft" style="text-decoration:none;" href="javascript:volid(0);"><i style="font-size:28px;" class="Hui-iconfont"></i></a>
 		</div>
@@ -162,52 +162,70 @@ $(function(){
 		increaseArea: '20%'
 	});
 	
+	//检查select是否选中
+	$.validator.addMethod("checkSelect",function(value,element,params){
+		 var flagTemp = false;
+		 if($('#'+element.id).prop('selectedIndex') != 0){
+			flagTemp = true;
+		 }
+		 return flagTemp;
+	},"这是必选选项");
+	
+	//检查图标上传是否成功
+	$.validator.addMethod("checkUpload1",function(value,element,params){
+		 var flagTemp = false;
+		 if(ico_flag == true){
+			flagTemp = true;
+		 }
+		 return flagTemp;
+	},"你尚未上传，或者上传未完毕");
+	//检查大图上传是否成功
+	$.validator.addMethod("checkUpload2",function(value,element,params){
+		 var flagTemp = false;
+		 if(jpg_flag == true){
+			flagTemp = true;
+		 }
+		 return flagTemp;
+	},"你尚未上传，或者上传未完毕");
+	//检查软件上传是否成功
+	$.validator.addMethod("checkUpload3",function(value,element,params){
+		 var flagTemp = false;
+		 if(soft_flag == true){
+			flagTemp = true;
+		 }
+		 return flagTemp;
+	},"你尚未上传，或者上传未完毕");
+	
 	$("#form-admin-add").validate({
 		rules:{
-			adminName:{
-				required:true,
-				minlength:4,
-				maxlength:16
-			},
-			password:{
+			softName:{
 				required:true,
 			},
-			password2:{
-				required:true,
-				equalTo: "#password"
+			softType:{
+				checkSelect:true,
 			},
-			sex:{
-				required:true,
+			softCollege:{
+				checkSelect:true,
 			},
-			phone:{
-				required:true,
-				isPhone:true,
+			softMajor:{
+				checkSelect:true,
 			},
-			email:{
-				required:true,
-				email:true,
+			ico_flag:{
+				checkUpload1:true,
 			},
-			adminRole:{
-				required:true,
+			jpg_flag:{
+				checkUpload2:true,
 			},
+			soft_flag:{
+				checkUpload3:true,
+			}
+			
 		},
 		onkeyup:false,
-		focusCleanup:true,
+		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$(form).ajaxSubmit({
-				type: 'post',
-				url: "xxxxxxx" ,
-				success: function(data){
-					layer.msg('添加成功!',{icon:1,time:1000});
-				},
-                error: function(XmlHttpRequest, textStatus, errorThrown){
-					layer.msg('error!',{icon:1,time:1000});
-				}
-			});
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.$('.btn-refresh').click();
-			parent.layer.close(index);
+			alert(time_name1);
 		}
 	});
 });

@@ -156,7 +156,7 @@ $(function(){
 			},	
 		},
 		onkeyup:false,
-		focusCleanup:true,
+		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
 			$.post("${pageContext.request.contextPath}/addUser.do",{userName:$("#addname").val(),userPwd:$("#addpassword").val(),email:$("#addemail").val(),sex:$("input[name='sex']:checked").val()},function(data){
