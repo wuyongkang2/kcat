@@ -4,8 +4,6 @@
 <fullyQualifiedTypeName name="model.Zuoye"/>
 <fullyQualifiedTypeName name="mapper.ZuoyeMapper"/>
 <fullyQualifiedTypeName name="dao.ZuoyeDAO"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="model.Homework"/>
 <fullyQualifiedTypeName name="mapper.YlsoftwareMapper"/>
 <fullyQualifiedTypeName name="dao.YlsoftwareDAO"/>
@@ -30,4 +28,6 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="model.First"/>
 <fullyQualifiedTypeName name="model.StudySoft"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 </qualifiedTypeNameHistroy>

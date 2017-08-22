@@ -16,6 +16,7 @@ import dao.AdminDAO;
 import model.Admin;
 import model.First;
 @Controller
+@RequestMapping(value={"admin", "admin/login.jsp"})
 public class AdminController {
 	AdminDAO adminDAO;
 

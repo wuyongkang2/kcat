@@ -133,7 +133,7 @@ public class StudySoftController {
 	@RequestMapping("/addStudySoft.do")
 	@ResponseBody
 	public boolean addStudySoft(StudySoft studySoft){
-		System.out.println("进入StudySoftController:"+studySoft.getSoftName());
+		System.out.println("进入StudySoftController:"+studySoft);
 		studySoftDAO.addStudySoft(studySoft);
 		return true;
 	}

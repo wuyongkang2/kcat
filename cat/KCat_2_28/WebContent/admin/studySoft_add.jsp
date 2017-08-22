@@ -104,7 +104,7 @@
         <input type="hidden" id="uptoken_url" value="uptoken">
         <div class="formControls col-xs-8 col-sm-9">
             <div id="container" style="position: relative;">
-                <a id="pickfiles" href="http://jssdk.demo.qiniu.io/#" style="position: relative; z-index: 1;"><input class="btn btn-secondary radius" type="button" value="选择视频并上传" /></a>
+                <a id="pickfiles" href="http://jssdk.demo.qiniu.io/#" style="position: relative; z-index: 1;"><input id="video_flag" name="video_flag" class="btn btn-secondary radius" type="button" value="选择视频并上传" /></a>
         	</div>
         <div style="display:none" id="success">
             <div class="alert-success" style="border-radius: 10px;">视频上传完毕</div>
@@ -195,6 +195,31 @@ $(function(){
 		 }
 		 return flagTemp;
 	},"你尚未上传，或者上传未完毕");
+	//检查视频上传是否成功
+	$.validator.addMethod("checkUpload4",function(value,element,params){
+		 var flagTemp = false;
+		 if(videoName != ""){
+			flagTemp = true;
+		 }
+		 return flagTemp;
+	},"<div style='width:180px;position: relative;top: -20px;left: 470px;'><br>你尚未上传，或者上传未完毕</div>");
+	
+	//获取当前日期
+	function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "/";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    }
 	
 	$("#form-admin-add").validate({
 		rules:{
@@ -218,6 +243,12 @@ $(function(){
 			},
 			soft_flag:{
 				checkUpload3:true,
+			},
+			softContent:{
+				required:true,
+			},
+			video_flag:{
+				checkUpload4:true,
 			}
 			
 		},
@@ -225,7 +256,26 @@ $(function(){
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			alert(time_name1);
+			$.post("${pageContext.request.contextPath}/addSoftName.do",{softName:$("#softName").val()},function(data1){
+				$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:$("#softName").val(),softType:$('#softType option:selected').text(),soft_to_titleS:$("#softMajor").get(0).selectedIndex,softImage:time_name1,soft_jietu:time_name2,softUrl:'soft/'+time_name3,soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate()},function(data2){
+					if(data2){
+						parent.layer.msg(
+								'添加成功',{time: 500, icon: 1},function(){
+							window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+							var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		                    parent.layer.close(index);
+						});
+						
+	                    
+					}else{
+						parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
+							window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+							var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		                    parent.layer.close(index);
+						});
+					}
+				});
+			});
 		}
 	});
 });
