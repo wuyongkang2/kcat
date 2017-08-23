@@ -24,15 +24,15 @@
 	</select>
 	
 	<select id="getAllSoftName" resultType="model.StudySoft">
-		select * from soft
+		SELECT * FROM soft ORDER BY id ASC
 	</select>
 	
 	<select id="addSoftName" parameterType="String" resultType="model.StudySoft">
 		insert into soft (softName) VALUES (#{softName})
 	</select>
 	
-	<select id="getSoftName_id" parameterType="String" resultType="int">
-		select id from soft where softName=#{softName}
+	<select id="getSoftName_id" parameterType="String" resultType="model.StudySoft">
+		select * from zySoftware where softName=#{softName}
 	</select>
 	
 	<select id="addStudySoft" parameterType="model.StudySoft" resultType="model.StudySoft">

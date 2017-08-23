@@ -257,7 +257,7 @@ $(function(){
 		success:"valid",
 		submitHandler:function(form){
 			$.post("${pageContext.request.contextPath}/addSoftName.do",{softName:$("#softName").val()},function(data1){
-				$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:$("#softName").val(),softType:$('#softType option:selected').text(),soft_to_titleS:$("#softMajor").get(0).selectedIndex,softImage:time_name1,soft_jietu:time_name2,softUrl:'soft/'+time_name3,soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate()},function(data2){
+				$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:$("#softName").val(),softType:$('#softType option:selected').text(),soft_to_titleS:$("#softMajor").get(0).selectedIndex,softImage:time_name1,soft_jietu:time_name2,softUrl:'soft/'+time_name3,soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data2){
 					if(data2){
 						parent.layer.msg(
 								'添加成功',{time: 500, icon: 1},function(){
