@@ -122,25 +122,22 @@ $(function(){
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$.post("${pageContext.request.contextPath}/getSoftName_id.do",{softName:$('#softName option:selected').text()},function(data1){
-				console.log($('#softName option:selected').text());
-				$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:data1[0].softName,softType:data1[0].softType,soft_to_titleS:$("#softMajor").get(0).selectedIndex,softImage:data1[0].softImage,soft_jietu:data1[0].soft_jietu,softUrl:data1[0].softUrl,soft_jianjie:data1[0].soft_jianjie,soft_video:data1[0].soft_video,soft_date:getNowFormatDate(),soft_version:data1[0].soft_version},function(data2){
-					if(data2){
-						parent.layer.msg('添加成功',{time: 500, icon: 1},function(){
-							window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
-							var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-		                    parent.layer.close(index);
-						});
-						
-	                    
-					}else{
-						parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
-							window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
-							var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-		                    parent.layer.close(index);
-						});
-					}
-				});
+			$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:$('#softName option:selected').text(),soft_to_titleS:$("#softMajor").get(0).selectedIndex},function(data){
+				if(data){
+					parent.layer.msg('添加成功',{time: 500, icon: 1},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+					
+                    
+				}else{
+					parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+				}
 			});
 		}
 	});

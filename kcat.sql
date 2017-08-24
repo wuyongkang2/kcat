@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2017-08-18 23:20:12
+Date: 2017-08-24 23:38:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -127,66 +127,77 @@ DROP TABLE IF EXISTS `soft`;
 CREATE TABLE `soft` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `softName` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+  `softType` varchar(255) DEFAULT NULL,
+  `softImage` varchar(255) DEFAULT NULL,
+  `soft_to_titleS` int(11) DEFAULT NULL,
+  `soft_jianjie` varchar(255) DEFAULT NULL,
+  `soft_jietu` varchar(255) DEFAULT NULL,
+  `softUrl` varchar(255) DEFAULT NULL,
+  `soft_date` varchar(255) DEFAULT NULL,
+  `soft_version` varchar(255) DEFAULT NULL,
+  `soft_pw` varchar(255) DEFAULT NULL,
+  `soft_video` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `soft_to_titleS` (`soft_to_titleS`),
+  KEY `zysoftware_ibfk_2` (`softName`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of soft
 -- ----------------------------
-INSERT INTO `soft` VALUES ('1', 'office 2010');
-INSERT INTO `soft` VALUES ('2', 'SSH');
-INSERT INTO `soft` VALUES ('3', 'Adobe Flash CS6');
-INSERT INTO `soft` VALUES ('4', 'Android ADT');
-INSERT INTO `soft` VALUES ('5', 'Cisco Packet Tracer');
-INSERT INTO `soft` VALUES ('6', 'Dreamware CS6');
-INSERT INTO `soft` VALUES ('7', 'MatLab 6.5');
-INSERT INTO `soft` VALUES ('8', 'MyEclipse 8.6');
-INSERT INTO `soft` VALUES ('9', 'Photoshop CS6');
-INSERT INTO `soft` VALUES ('10', 'SQL Server 2005');
-INSERT INTO `soft` VALUES ('11', 'SQL Server 2008');
-INSERT INTO `soft` VALUES ('12', 'VC++ 6.0');
-INSERT INTO `soft` VALUES ('13', 'Vmware');
-INSERT INTO `soft` VALUES ('14', 'Eclipse 3.2');
-INSERT INTO `soft` VALUES ('15', 'lingo 9.0');
-INSERT INTO `soft` VALUES ('16', '微信开发者工具');
-INSERT INTO `soft` VALUES ('17', '网页三剑客（MX）');
-INSERT INTO `soft` VALUES ('18', 'ensp');
-INSERT INTO `soft` VALUES ('19', 'VirtualBox');
-INSERT INTO `soft` VALUES ('20', 'unity 3D 5.0');
-INSERT INTO `soft` VALUES ('21', '3ds Max 2014');
-INSERT INTO `soft` VALUES ('22', 'Adobe Effects CS6');
-INSERT INTO `soft` VALUES ('23', 'Premiere pro CS6');
-INSERT INTO `soft` VALUES ('24', 'ImageReady CS2');
-INSERT INTO `soft` VALUES ('25', 'Progisp');
-INSERT INTO `soft` VALUES ('26', 'stc-isp-15xx-v6.85D');
-INSERT INTO `soft` VALUES ('27', 'Quartus II 12.0');
-INSERT INTO `soft` VALUES ('28', 'Proteus Pro 7.8');
-INSERT INTO `soft` VALUES ('29', 'Keil uVision4');
-INSERT INTO `soft` VALUES ('30', 'icc avr');
-INSERT INTO `soft` VALUES ('31', 'GX simulator6');
-INSERT INTO `soft` VALUES ('32', 'securecrt 5.2');
-INSERT INTO `soft` VALUES ('33', 'Ewb50');
-INSERT INTO `soft` VALUES ('34', '用友T3');
-INSERT INTO `soft` VALUES ('35', 'pocib');
-INSERT INTO `soft` VALUES ('36', 'S7 200');
-INSERT INTO `soft` VALUES ('37', 'STEP 7 MicroWIN');
-INSERT INTO `soft` VALUES ('38', 'AutoCAD 2008');
-INSERT INTO `soft` VALUES ('39', 'ISIS 7 Professional');
-INSERT INTO `soft` VALUES ('40', 'GPPW');
-INSERT INTO `soft` VALUES ('41', 'solidWorks 2010');
-INSERT INTO `soft` VALUES ('42', 'RobotStudio 5.61');
-INSERT INTO `soft` VALUES ('43', 'winCC Flexible 2008');
-INSERT INTO `soft` VALUES ('44', 'Keil uVision3');
-INSERT INTO `soft` VALUES ('45', 'UG 8.0');
-INSERT INTO `soft` VALUES ('46', 'FluidSim');
-INSERT INTO `soft` VALUES ('47', 'Illustrator CS5');
-INSERT INTO `soft` VALUES ('48', 'Painter 2016');
-INSERT INTO `soft` VALUES ('49', 'MAYA');
-INSERT INTO `soft` VALUES ('50', 'CorelDRAW X4');
-INSERT INTO `soft` VALUES ('51', 'Rhinoceros 5.0');
-INSERT INTO `soft` VALUES ('52', '富怡服装CAD');
-INSERT INTO `soft` VALUES ('53', 'audition CS6');
-INSERT INTO `soft` VALUES ('56', '琪儿');
+INSERT INTO `soft` VALUES ('1', 'office 2010', '办公', 'Sjiying/Sjy17.png', '1', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bjiying/Bjy13.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
+INSERT INTO `soft` VALUES ('2', 'SSH', '工具', 'Sjiying/Sjy02.png', '1', 'SSH是一个用来替代TELNET、FTP以及R命令的工具包，主要是想解决口令在网上明文传输的问题。通过使用SSH，你可以把所有传输的数据进行加密，这样\"中间人\"这种攻击方式就不可能实现了，而且也能够防止DNS欺骗和IP欺骗。', 'Bjiying/Bjy1.jpg', 'soft/2.rar', '2017/5/3', '1.0.0', 'ev4b', '2.mp4');
+INSERT INTO `soft` VALUES ('3', 'Adobe Flash CS6', '图形', 'Sjiying/Sjy03.png', '1', 'Adobe Flash CS6是用于创建动画和多媒体内容的强大的创作平台。Adobe Flash CS6设计身临其境，而且在台式计算机和平板电脑、智能手机和电视等多种设备中都能呈现一致效果的互动体验。', 'Bjiying/Bjy2.jpg', 'soft/3.rar', '2017/5/3', '1.0.0', 'b4b4', '3.mp4');
+INSERT INTO `soft` VALUES ('4', 'Android ADT', '开发', 'Sjiying/Sjy04.png', '1', 'ADT（Android Development Tools）在Eclipse编译IDE环境中，需安装ADT(Android Developer Tools)Plug-in,这是Android在Eclipse上的开发工具。', 'Bjiying/Bjy3.jpg', 'soft/4.rar', '2017/5/3', '1.0.0', '2txm', '4.mp4');
+INSERT INTO `soft` VALUES ('5', 'Cisco Packet Tracer', '工具', 'Sjiying/Sjy05.png', '1', 'Packet Tracer是一个功能强大的网络仿真程序，允许学生实验与网络行为，问“如果”的问题。随着网络技术学院的全面的学习经验的一个组成部分，包示踪提供的仿真，可视化，编辑，评估，和协作能力，有利于教学和复杂的技术概念的学习。', 'Bjiying/Bjy4.jpg', 'soft/5.rar', '2017/5/3', '1.0.0', 'tvrq', '5.mp4');
+INSERT INTO `soft` VALUES ('6', 'Dreamware CS6', '开发', 'Sjiying/Sjy06.png', '1', 'dreamweaver cs6用于制作并编辑网站和移动应用程序的网页设计软件。由于它支持代码、拆分、设计、实时视图等多种方式来创作、编写和修改网页，对于初级人员，你可以无需编写任何代码就能快速创建web页面。', 'Bjiying/Bjy5.jpg', 'soft/6.rar', '2017/5/3', '1.0.0', 'p6g6', '6.mp4');
+INSERT INTO `soft` VALUES ('7', 'MatLab 6.5', '工具', 'Sjiying/Sjy08.png', '1', 'MATLAB可以进行矩阵运算、绘制函数和数据、实现算法、创建用户界面、连接其他编程语言的程序等，主要应用于工程计算、控制设计、信号处理与通讯、图像处理、信号检测、金融建模设计与分析等领域。', 'Bjiying/Bjy12.jpg', 'soft/7.rar', '2017/5/3', '1.0.0', '22bz', '7.mp4');
+INSERT INTO `soft` VALUES ('8', 'MyEclipse 8.6', '开发', 'Sjiying/Sjy09.png', '1', 'MyEclipse，是在eclipse 基础上加上自己的插件开发而成的功能强大的企业级集成开发环境，主要用于Java、Java EE以及移动应用的开发。MyEclipse的功能非常强大，支持也十分广泛，尤其是对各种开源产品的支持相当不错。', 'Bjiying/Bjy7.jpg', 'soft/8.rar', '2017/5/3', '1.0.0', '33w9', '8.mp4');
+INSERT INTO `soft` VALUES ('9', 'Photoshop CS6', '图形', 'Sjiying/Sjy10.png', '1', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bjiying/Bjy8.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
+INSERT INTO `soft` VALUES ('10', 'SQL Server 2005', '开发', 'Sjiying/Sjy11.png', '1', 'Microsoft SQL Server 数据库引擎为关系型数据和结构化数据提供了更安全可靠的存储功能，使您可以构建和管理用于业务的高可用和高性能的数据应用程序。', 'Bjiying/Bjy9.jpg', 'soft/10.rar', '2017/5/3', '1.0.0', '0br9', '10.mp4');
+INSERT INTO `soft` VALUES ('11', 'SQL Server 2008', '开发', 'Sjiying/Sjy12.png', '1', 'Microsoft SQL Server 数据库引擎为关系型数据和结构化数据提供了更安全可靠的存储功能，使您可以构建和管理用于业务的高可用和高性能的数据应用程序。', 'Bjiying/Bjy10.jpg', 'soft/11.rar', '2017/5/3', '1.0.0', '5j4v', '11.mp4');
+INSERT INTO `soft` VALUES ('12', 'VC++ 6.0', '开发', 'Sjiying/Sjy13.png', '1', 'Microsoft Visual C++具有程序框架自动生成、灵活方便的类管理、代码编写和界面设计集成交互操作、可开发多种程序等优点，而且通过的设置就可使其生成的程序框架支持数据库接口、OLE2.0，WinSock网络。', 'Bjiying/Bjy11.jpg', 'soft/12.rar', '2017/5/3', '1.0.0', 'evn1', '12.mp4');
+INSERT INTO `soft` VALUES ('13', 'Vmware', '工具', 'Sjiying/Sjy14.png', '1', 'VMware Workstation可在一部实体机器上模拟完整的网络环境，以及可便于携带的虚拟机器，其更好的灵活性与先进的技术胜过了市面上其他的虚拟计算机软件。', 'Bjiying/Bjy16.jpg', 'soft/13.rar', '2017/5/3', '1.0.0', 'tw2a', '13.mp4');
+INSERT INTO `soft` VALUES ('14', 'Eclipse 3.2', '开发', 'Sjiying/Sjy15.png', '1', 'Eclipse 是一个开放源代码的、基于Java的可扩展开发平台。就其本身而言，它只是一个框架和一组服务，用于通过插件组件构建开发环境。幸运的是，Eclipse 附带了一个标准的插件集，包括Java开发工具（Java Development Kit，JDK）。', 'Bjiying/Bjy17.jpg', 'soft/14.rar', '2017/5/3', '1.0.0', 'j6qj', '14.mp4');
+INSERT INTO `soft` VALUES ('15', 'lingo 9.0', '工具', 'Sjiying/Sjy16.png', '1', 'LINGO交互式的线性和通用优化求解器可以用于求解非线性规划，也可以用于一些线性和非线性方程组的求解等，功能十分强大，是求解优化模型的最佳选择。', 'Bjiying/Bjy18.jpg', 'soft/15.rar', '2017/5/3', '1.0.0', 'vvzu', '15.mp4');
+INSERT INTO `soft` VALUES ('16', '微信开发者工具', '开发', 'Sjiying/Sjy18.png', '1', '为帮助开发者更方便、更安全地开发和调试基于微信的网页，我们推出了 web 开发者工具。它是一个桌面应用，通过模拟微信客户端的表现，使得开发者可以使用这个工具方便地在 PC 或者 Mac 上进行开发和调试工作。', 'Bjiying/Bjy14.jpg', 'soft/16.rar', '2017/5/3', '1.0.0', 'yxvq', '16.mp4');
+INSERT INTO `soft` VALUES ('17', '网页三剑客（MX）', '开发', 'Sjiying/Sjy19.png', '1', 'Dreamweaver与Flash、Firework 并称为Macromedia的网页制作三剑客，由于是同一公司的产品，因而在功能上有着一个非常紧密的结合 。', 'Bjiying/Bjy15.jpg', 'soft/17.rar', '2017/5/3', '1.0.0', 'n6r5', '17.mp4');
+INSERT INTO `soft` VALUES ('18', 'ensp', '工具', 'Syunjisuan/Syjs03.png', '2', 'eNSP由华为提供的可扩展的、图形化操作的网络仿真工具平台，主要对企业网络路由器、交换机进行软件仿真。让广大用户有机会在没有真实设备的情况下能够模拟演练，学习网络技术。', 'Byunjisuan/Byjs10.jpg', 'soft/18.rar', '2017/5/3', '1.0.0', 'eeo2', '18.mp4');
+INSERT INTO `soft` VALUES ('19', 'VirtualBox', '工具', 'Syunjisuan/Syjs04.png', '2', 'VirtualBox号称是最强的免费虚拟机软件，它不仅具有丰富的特色，而且性能也很优异！它简单易用，可虚拟的系统包括Windows、Mac OS X、Linux、OpenBSD、Solaris、IBM OS2甚至Android等操作系统！', 'Byunjisuan/Byjs11.jpg', 'soft/19.rar', '2017/5/3', '1.0.0', 'y53j', '19.mp4');
+INSERT INTO `soft` VALUES ('20', 'unity 3D 5.0', '图形', 'Sdongman/Sdm04.png', '3', 'Unity3D是由Unity Technologies开发的一个让玩家轻松创建诸如三维视频游戏、建筑可视化、实时三维动画等类型互动内容的多平台的综合型游戏开发工具，是一个全面整合的专业游戏引擎。', 'Bdongman/Bdm4.jpg', 'soft/20.rar', '2017/5/3', '1.0.0', '6a09', '20.mp4');
+INSERT INTO `soft` VALUES ('21', '3ds Max 2014', '图形', 'Sdongman/Sdm6.png', '3', '3D Studio Max，常简称为3d Max[1]  或3ds MAX，是Discreet公司开发的（后被Autodesk公司合并）基于PC系统的三维动画渲染和制作软件。其前身是基于DOS操作系统的3D Studio系列软件。', 'Bdongman/Bdm6.jpg', 'soft/21.rar', '2017/5/3', '1.0.0', 'j22k', '21.mp4');
+INSERT INTO `soft` VALUES ('22', 'Adobe Effects CS6', '图形', 'Sdongman/Sdm08.png', '3', '利用 Adobe After Effects CS6 软件，用户可以使用新的全局高性能缓存，比以往任何时候更快地实现影院视觉效果和动态图形。使用内置的文本和形状挤出功能、新的蒙版羽化选项和快速易用的 3D Camera Tracker，扩展您的创造力。', 'Bdongman/Bdm8.jpg', 'soft/22.rar', '2017/5/3', '1.0.0', 'uqay', '22.mp4');
+INSERT INTO `soft` VALUES ('23', 'Premiere pro CS6', '图形', 'Sdongman/Sdm10.png', '3', 'Adobe Premiere Pro CS6 软件将卓越的性能、优美的改进用户界面和许多奇妙的创意功能结合在一起，包括用于稳定素材的 Warp Stabilizer、动态时间轴裁切、扩展的多机编辑、调整图层等。', 'Bdongman/Bdm10.jpg', 'soft/23.rar', '2017/5/3', '1.0.0', '56cx', '23.mp4');
+INSERT INTO `soft` VALUES ('24', 'ImageReady CS2', '工具', 'Sdianzishangwu/Sdzsw01.png', '4', 'ImageReady是由Adobe公司开发的，以处理网络图形为主的图像编辑软件。', 'Bdianshang/Bds2.jpg', 'soft/24.rar', '2017/5/3', '1.0.0', '660r', '24.mp4');
+INSERT INTO `soft` VALUES ('25', 'Progisp', '工具', 'Sdianzixinxi/Sdzxx02.png', '5', '超级下载软件Progisp，是一款应用广泛的下载软件', 'Bdianxin/Bdx10.jpg', 'soft/25.rar', '2017/5/3', '1.0.0', 'f6w5', '25.mp4');
+INSERT INTO `soft` VALUES ('26', 'stc-isp-15xx-v6.85D', '工具', 'Sdianzixinxi/Sdzxx03.png', '5', 'STC-ISP 是一款单片机下载编程烧录软件，是针对STC系列单片机而设计的，可下载STC89系列、12C2052系列和12C5410等系列的STC单片机，使用简便，现已被广泛使用。', 'Bdianxin/Bdx2.jpg', 'soft/26.rar', '2017/5/3', '1.0.0', 'qm8a', '26.mp4');
+INSERT INTO `soft` VALUES ('27', 'Quartus II 12.0', '工具', 'Sdianzixinxi/Sdzxx04.png', '5', '业界唯一提供FPGA和固定功能HardCopy器件统一设计流程的设计工具。', 'Bdianxin/Bdx3.jpg', 'soft/27.rar', '2017/5/3', '1.0.0', 'gbir', '27.mp4');
+INSERT INTO `soft` VALUES ('28', 'Proteus Pro 7.8', '工具', 'Sdianzixinxi/Sdzxx05.png', '5', 'Proteus是英国著名的EDA工具(仿真软件)，从原理图布图、代码调试到单片机与外围电路协同仿真，一键切换到PCB设计，真正实现了从概念到产品的完整设计。', 'Bdianxin/Bdx4.jpg', 'soft/28.rar', '2017/5/3', '1.0.0', 'n3ct', '28.mp4');
+INSERT INTO `soft` VALUES ('29', 'icc avr', '工具', 'Sdianzixinxi/Sdzxx07.png', '5', 'CCAVR是一种符合ANSI标准的C语言来开发MCU（单片机）程序的一个工具，功能合适、使用方便、技术支持好', 'Bdianxin/Bdx6.jpg', 'soft/30.rar', '2017/5/3', '1.0.0', 'n33p', '30.mp4');
+INSERT INTO `soft` VALUES ('30', 'icc avr', '工具', 'Sdianzixinxi/Sdzxx07.png', '5', 'CCAVR是一种符合ANSI标准的C语言来开发MCU（单片机）程序的一个工具，功能合适、使用方便、技术支持好', 'Bdianxin/Bdx6.jpg', 'soft/30.rar', '2017/5/3', '1.0.0', 'n33p', '30.mp4');
+INSERT INTO `soft` VALUES ('31', 'GX simulator6', '工具', 'Sdianzixinxi/Sdzxx08.png', '5', '三菱全系列PLC仿真调试软件gx simulator', 'Bdianxin/Bdx7.jpg', 'soft/31.rar', '2017/5/3', '1.0.0', 'cm3v', '31.mp4');
+INSERT INTO `soft` VALUES ('32', 'securecrt 5.2', '工具', 'Sdianzixinxi/Sdzxx09.png', '5', 'SecureCRT是一款支持SSH（SSH1和SSH2）的终端仿真程序，简单地说是Windows下登录UNIX或Linux服务器主机的软件。', 'Bdianxin/Bdx8.jpg', 'soft/32.rar', '2017/5/3', '1.0.0', '7z0h', '32.mp4');
+INSERT INTO `soft` VALUES ('33', 'Ewb50', '工具', 'Sdianzixinxi/Sdzxx10.png', '5', 'EWB软件是交互图像技术有限公司在九十年代初推出的EDA软件，用于模拟电路和数字电路的混合仿真，利用它可以直接从屏幕上看到各种电路的输出波形。EWB是一款小巧，但是仿真功能十分强大的软件。', 'Bdianxin/Bdx11.jpg', 'soft/33.rar', '2017/5/3', '1.0.0', '3gzt', '33.mp4');
+INSERT INTO `soft` VALUES ('34', '用友T3', '办公', 'Scaiwu/Scaiw1.png', '12', '用友T3支持成长型中小企业快速应对日益激烈的市场竞争，以客户为核心，集产、供、销、财一体解决方案，实现内部业务流程畅通、智能化管控平台、立体综合统计分析，支持全面科学决策。', 'Bcaiwu/Bcw2.jpg', 'soft/34.rar', '2017/5/3', '1.0.0', 'llhq', '34.mp4');
+INSERT INTO `soft` VALUES ('35', 'pocib', '办公', 'Sguoji/gji1.png', '13', 'POCIB是国际贸易从业技能综合实训是中国国际贸易学会继外销员考试、跟单员考试等考试项目之后，联合国际贸易杂志社和世格软件共同推出的互联网培训证书课程。', 'Bjingmao/Bjm2.jpg', 'soft/35.rar', '2017/5/3', '1.0.0', 'pwdw', '35.mp4');
+INSERT INTO `soft` VALUES ('36', 'S7 200', '开发', 'Sdianqi/Sdianq2.png', '17', 'S7-200 是一种小型的可编程序控制器，适用于各行各业，各种场合中的检测、监测及控制的自动化。S7-200系列的强大功能使其无论在独立运行中，或相连成网络皆能实现复杂控制功能。因此S7-200系列具有极高的性能/价格比。', 'Bdianhua/Bdh2.jpg', 'soft/36.rar', '2017/5/3', '1.0.0', '1cce', '36.mp4');
+INSERT INTO `soft` VALUES ('37', 'STEP 7 MicroWIN', '开发', 'Sdianqi/Sdianq3.png', '17', 'STEP 7 MicroWIN是西门子PLC S7-200编程软件最新版本', 'Bdianhua/Bdh3.jpg', 'soft/37.rar', '2017/5/3', '1.0.0', 'ozyg', '37.mp4');
+INSERT INTO `soft` VALUES ('38', 'AutoCAD 2008', '图形', 'Sdianqi/Sdianq4.png', '17', 'Autodesk公司升级产品AutoCAD 2008在界面、工作空间、面板、选项板、图形管理、图层、标注等到方面进行了改时宜，增加和增强了部分功能。', 'Bdianhua/Bdh4.jpg', 'soft/38.rar', '2017/5/3', '1.0.0', '8pj2', '38.mp4');
+INSERT INTO `soft` VALUES ('39', 'ISIS 7 Professional', '工具', 'Sdianqi/Sdianq5.png', '17', 'ISIS是智能原理图输入系统，用于设计原理图和电路仿真；', 'Bdianhua/Bdh5.jpg', 'soft/39.rar', '2017/5/3', '1.0.0', '', '39.mp4');
+INSERT INTO `soft` VALUES ('40', 'GPPW', '工具', 'Sdianqi/Sdianq6.png', '17', 'ISIS是智能原理图输入系统，用于设计原理图和电路仿真；ARES是先进的布线编辑系统，用于PCB设计。', 'Bdianhua/Bdh6.jpg', 'soft/40.rar', '2017/5/3', '1.0.0', 'hy09', '40.mp4');
+INSERT INTO `soft` VALUES ('41', 'solidWorks 2010', '工具', 'Sdianqi/Sdianq7.png', '17', 'SolidWorks为达索系统下的子公司，专门负责研发与销售机械设计软件的视窗产品。该集团提供涵盖整个产品生命周期的系统，包括设计、工程、制造和产品数据管理等各个领域中的最佳软件系统。', 'Bdianhua/Bdh7.jpg', 'soft/41.rar', '2017/5/3', '1.0.0', 'j5zn', '41.mp4');
+INSERT INTO `soft` VALUES ('42', 'RobotStudio 5.61', '工具', 'Sdianqi/Sdianq8.png', '17', 'ABB RobotStudio是优秀的计算机仿真软件。为帮助您提高生产率，降低购买与实施机器人解决方案的总成本，ABB开发了一个适用于机器人寿命周期各个阶段的软件产品家族。', 'Bdianhua/Bdh8.jpg', 'soft/42.rar', '2017/5/3', '1.0.0', 'w17m', '42.mp4');
+INSERT INTO `soft` VALUES ('43', 'winCC Flexible 2008', '工具', 'Sdianqi/Sdianq9.png', '17', 'WinCC flexible，德国西门子公司工业全集成自动化的子产品，是一款面向机器的自动化概念的HMI软件。WinCC flexible 用于组态用户界面以操作和监视机器与设备，提供了对面向解决方案概念的组态任务的支持。', 'Bdianhua/Bdh9.jpg', 'soft/43.rar', '2017/5/3', '1.0.0', 'cq1j', '43.mp4');
+INSERT INTO `soft` VALUES ('44', 'Keil uVision3', '工具', 'Sdianqi/Sdianq10.png', '17', 'KeilSoftware公司推出的uVision3是一款可用于多种8051MCU的集成开发环境(IDE)，该IDE同时也是PK51及其它开发套件的一个重要组件。包括AnalogDevices的ADuC83x和ADuC84x，以及Infineon的XC866等。', 'Bdianhua/Bdh10.jpg', 'soft/44.rar', '2017/5/3', '1.0.0', 'i1hf', '44.mp4');
+INSERT INTO `soft` VALUES ('45', 'UG 8.0', '工具', 'Sjidian/Sjdian4.png', '19', 'UG是Siemens PLM Software公司出品的一个产品工程解决方案，它为用户的产品设计及加工过程提供了数字化造型和验证手段。Unigraphics NX针对用户的虚拟产品设计和工艺设计的需求，提供了经过实践验证的解决方案。', 'Bjidian/Bjd4.jpg', 'soft/45.rar', '2017/5/3', '1.0.0', '', '45.mp4');
+INSERT INTO `soft` VALUES ('46', 'FluidSim', '工具', 'Sjidian/Sjdian6.png', '19', 'FluidSIM是德国Festo公司和Paderborn大学开发的用于液压与气压传动的教学软件等的软件。', 'Bjidian/Bjd6.jpg', 'soft/46.rar', '2017/5/3', '1.0.0', 'z3ky', '46.mp4');
+INSERT INTO `soft` VALUES ('47', 'Illustrator CS5', '图形', 'Syingshi/Sys3.png', '22', 'Adobe illustrator是一种应用于出版、多媒体和在线图像的工业标准矢量插画的软件，作为一款非常好的矢量图形处理工具', 'Byingshi/Bys3.jpg', 'soft/47.rar', '2017/5/3', '1.0.0', 'qb3z', '47.mp4');
+INSERT INTO `soft` VALUES ('48', 'Painter 2016', '图形', 'Syingshi/Sys4.png', '22', 'Painter是数码素描与绘画工具的终极选择，是一款极其优秀的仿自然绘画软件，拥有全面和逼真的仿自然画笔。它是专门为渴望追求自由创意及需要数码工具来仿真传统绘画的数码艺术家、插画画家及摄影师而开发的。', 'Byingshi/Bys4.jpg', 'soft/48.rar', '2017/5/3', '1.0.0', 'f1oo', '48.mp4');
+INSERT INTO `soft` VALUES ('49', 'MAYA', '图形', 'Syingshi/Sys6.png', '22', 'Autodesk Maya是美国Autodesk公司出品的世界顶级的三维动画软件，应用对象是专业的影视广告，角色动画，电影特技等。Maya功能完善，工作灵活，易学易用，制作效率极高，渲染真实感极强，是电影级别的高端制作软件.', 'Byingshi/Bys6.jpg', 'soft/49.rar', '2017/5/3', '1.0.0', 'zjs0', '49.mp4');
+INSERT INTO `soft` VALUES ('50', 'CorelDRAW X4', '图形', 'Sguanggao/ggao3.png', '23', 'CorelDRAW X4是矢量绘图软件CORELDRAW的第14个版本，使用直观的矢量插图和页面布局工具创建卓越的设计，并使用专业照片编辑软件，润饰和增强照片效果。', 'Bguanggao/Bgg3.jpg', 'soft/50.rar', '2017/5/3', '1.0.0', '652o', '50.mp4');
+INSERT INTO `soft` VALUES ('51', 'Rhinoceros 5.0', '图形', 'Schanpin/Scpin2.png', '24', 'Rhinoceros 3D是一套专业的3D立体模型制作软件，简称Rhino3D，由位于美国西雅图的Robert', 'Bchanpin/Bcp2.jpg', 'soft/51.rar', '2017/5/3', '1.0.0', 'z9sb', '51.mp4');
+INSERT INTO `soft` VALUES ('52', '富怡服装CAD', '图形', 'Sfuzhuang/Sfz4.png', '27', '富怡服装CAD系统是一套应用于纺织、服装行业生产的专业电脑软件。它是集纸样设计、放码、排料于一体的专业系统。它可以开纸样、放码、排料及打印各种比例纸样图、排料图等，为纺织、服装行业提供了一个方便快捷、灵活高效的生产环境。', 'Bfuzhuang/Bfz4.jpg', 'soft/52.rar', '2017/5/3', '1.0.0', '09jg', '52.mp4');
+INSERT INTO `soft` VALUES ('53', 'audition CS6', '音频', 'Syinbiao/Syb1.png', '28', 'Adobe Audition，为Syntrillum出品的多音轨编辑工具(声音编辑软件)，支持128条音轨、多种音频特效、多种音频格式，可以很方便地对音频文件进行修改、合并。', 'Byinbiao/Byb1.jpg', 'soft/53.rar', '2017/5/3', '1.0.0', 'pd4v', '53.mp4');
 
 -- ----------------------------
 -- Table structure for tzz_login
@@ -1544,148 +1555,141 @@ DROP TABLE IF EXISTS `zysoftware`;
 CREATE TABLE `zysoftware` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `softName` varchar(255) DEFAULT NULL,
-  `softType` varchar(255) DEFAULT NULL,
-  `softImage` varchar(255) DEFAULT NULL,
   `soft_to_titleS` int(11) DEFAULT NULL,
-  `soft_jianjie` varchar(255) DEFAULT NULL,
-  `soft_jietu` varchar(255) DEFAULT NULL,
-  `softUrl` varchar(255) DEFAULT NULL,
-  `soft_date` varchar(255) DEFAULT NULL,
-  `soft_version` varchar(255) DEFAULT NULL,
-  `soft_pw` varchar(255) DEFAULT NULL,
-  `soft_video` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `softName` (`softName`),
   KEY `soft_to_titleS` (`soft_to_titleS`),
-  CONSTRAINT `zysoftware_ibfk_1` FOREIGN KEY (`soft_to_titleS`) REFERENCES `zysoftware_titles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8;
+  CONSTRAINT `zysoftware_ibfk_1` FOREIGN KEY (`soft_to_titleS`) REFERENCES `zysoftware_titles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `zysoftware_ibfk_2` FOREIGN KEY (`softName`) REFERENCES `soft` (`softName`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zysoftware
 -- ----------------------------
-INSERT INTO `zysoftware` VALUES ('1', 'office 2010', '办公', 'Sjiying/Sjy17.png', '1', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bjiying/Bjy13.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('2', 'SSH', '工具', 'Sjiying/Sjy02.png', '1', 'SSH是一个用来替代TELNET、FTP以及R命令的工具包，主要是想解决口令在网上明文传输的问题。通过使用SSH，你可以把所有传输的数据进行加密，这样\"中间人\"这种攻击方式就不可能实现了，而且也能够防止DNS欺骗和IP欺骗。', 'Bjiying/Bjy1.jpg', 'soft/2.rar', '2017/5/3', '1.0.0', 'ev4b', '2.mp4');
-INSERT INTO `zysoftware` VALUES ('3', 'Adobe Flash CS6', '图形', 'Sjiying/Sjy03.png', '1', 'Adobe Flash CS6是用于创建动画和多媒体内容的强大的创作平台。Adobe Flash CS6设计身临其境，而且在台式计算机和平板电脑、智能手机和电视等多种设备中都能呈现一致效果的互动体验。', 'Bjiying/Bjy2.jpg', 'soft/3.rar', '2017/5/3', '1.0.0', 'b4b4', '3.mp4');
-INSERT INTO `zysoftware` VALUES ('4', 'Android ADT', '开发', 'Sjiying/Sjy04.png', '1', 'ADT（Android Development Tools）在Eclipse编译IDE环境中，需安装ADT(Android Developer Tools)Plug-in,这是Android在Eclipse上的开发工具。', 'Bjiying/Bjy3.jpg', 'soft/4.rar', '2017/5/3', '1.0.0', '2txm', '4.mp4');
-INSERT INTO `zysoftware` VALUES ('5', 'Cisco Packet Tracer', '工具', 'Sjiying/Sjy05.png', '1', 'Packet Tracer是一个功能强大的网络仿真程序，允许学生实验与网络行为，问“如果”的问题。随着网络技术学院的全面的学习经验的一个组成部分，包示踪提供的仿真，可视化，编辑，评估，和协作能力，有利于教学和复杂的技术概念的学习。', 'Bjiying/Bjy4.jpg', 'soft/5.rar', '2017/5/3', '1.0.0', 'tvrq', '5.mp4');
-INSERT INTO `zysoftware` VALUES ('6', 'Dreamware CS6', '开发', 'Sjiying/Sjy06.png', '1', 'dreamweaver cs6用于制作并编辑网站和移动应用程序的网页设计软件。由于它支持代码、拆分、设计、实时视图等多种方式来创作、编写和修改网页，对于初级人员，你可以无需编写任何代码就能快速创建web页面。', 'Bjiying/Bjy5.jpg', 'soft/6.rar', '2017/5/3', '1.0.0', 'p6g6', '6.mp4');
-INSERT INTO `zysoftware` VALUES ('7', 'MatLab 6.5', '工具', 'Sjiying/Sjy08.png', '1', 'MATLAB可以进行矩阵运算、绘制函数和数据、实现算法、创建用户界面、连接其他编程语言的程序等，主要应用于工程计算、控制设计、信号处理与通讯、图像处理、信号检测、金融建模设计与分析等领域。', 'Bjiying/Bjy12.jpg', 'soft/7.rar', '2017/5/3', '1.0.0', '22bz', '7.mp4');
-INSERT INTO `zysoftware` VALUES ('8', 'MyEclipse 8.6', '开发', 'Sjiying/Sjy09.png', '1', 'MyEclipse，是在eclipse 基础上加上自己的插件开发而成的功能强大的企业级集成开发环境，主要用于Java、Java EE以及移动应用的开发。MyEclipse的功能非常强大，支持也十分广泛，尤其是对各种开源产品的支持相当不错。', 'Bjiying/Bjy7.jpg', 'soft/8.rar', '2017/5/3', '1.0.0', '33w9', '8.mp4');
-INSERT INTO `zysoftware` VALUES ('9', 'Photoshop CS6', '图形', 'Sjiying/Sjy10.png', '1', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bjiying/Bjy8.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('10', 'SQL Server 2005', '开发', 'Sjiying/Sjy11.png', '1', 'Microsoft SQL Server 数据库引擎为关系型数据和结构化数据提供了更安全可靠的存储功能，使您可以构建和管理用于业务的高可用和高性能的数据应用程序。', 'Bjiying/Bjy9.jpg', 'soft/10.rar', '2017/5/3', '1.0.0', '0br9', '10.mp4');
-INSERT INTO `zysoftware` VALUES ('11', 'SQL Server 2008', '开发', 'Sjiying/Sjy12.png', '1', 'Microsoft SQL Server 数据库引擎为关系型数据和结构化数据提供了更安全可靠的存储功能，使您可以构建和管理用于业务的高可用和高性能的数据应用程序。', 'Bjiying/Bjy10.jpg', 'soft/11.rar', '2017/5/3', '1.0.0', '5j4v', '11.mp4');
-INSERT INTO `zysoftware` VALUES ('12', 'VC++ 6.0', '开发', 'Sjiying/Sjy13.png', '1', 'Microsoft Visual C++具有程序框架自动生成、灵活方便的类管理、代码编写和界面设计集成交互操作、可开发多种程序等优点，而且通过的设置就可使其生成的程序框架支持数据库接口、OLE2.0，WinSock网络。', 'Bjiying/Bjy11.jpg', 'soft/12.rar', '2017/5/3', '1.0.0', 'evn1', '12.mp4');
-INSERT INTO `zysoftware` VALUES ('13', 'Vmware', '工具', 'Sjiying/Sjy14.png', '1', 'VMware Workstation可在一部实体机器上模拟完整的网络环境，以及可便于携带的虚拟机器，其更好的灵活性与先进的技术胜过了市面上其他的虚拟计算机软件。', 'Bjiying/Bjy16.jpg', 'soft/13.rar', '2017/5/3', '1.0.0', 'tw2a', '13.mp4');
-INSERT INTO `zysoftware` VALUES ('14', 'Eclipse 3.2', '开发', 'Sjiying/Sjy15.png', '1', 'Eclipse 是一个开放源代码的、基于Java的可扩展开发平台。就其本身而言，它只是一个框架和一组服务，用于通过插件组件构建开发环境。幸运的是，Eclipse 附带了一个标准的插件集，包括Java开发工具（Java Development Kit，JDK）。', 'Bjiying/Bjy17.jpg', 'soft/14.rar', '2017/5/3', '1.0.0', 'j6qj', '14.mp4');
-INSERT INTO `zysoftware` VALUES ('15', 'lingo 9.0', '工具', 'Sjiying/Sjy16.png', '1', 'LINGO交互式的线性和通用优化求解器可以用于求解非线性规划，也可以用于一些线性和非线性方程组的求解等，功能十分强大，是求解优化模型的最佳选择。', 'Bjiying/Bjy18.jpg', 'soft/15.rar', '2017/5/3', '1.0.0', 'vvzu', '15.mp4');
-INSERT INTO `zysoftware` VALUES ('16', '微信开发者工具', '开发', 'Sjiying/Sjy18.png', '1', '为帮助开发者更方便、更安全地开发和调试基于微信的网页，我们推出了 web 开发者工具。它是一个桌面应用，通过模拟微信客户端的表现，使得开发者可以使用这个工具方便地在 PC 或者 Mac 上进行开发和调试工作。', 'Bjiying/Bjy14.jpg', 'soft/16.rar', '2017/5/3', '1.0.0', 'yxvq', '16.mp4');
-INSERT INTO `zysoftware` VALUES ('17', '网页三剑客（MX）', '开发', 'Sjiying/Sjy19.png', '1', 'Dreamweaver与Flash、Firework 并称为Macromedia的网页制作三剑客，由于是同一公司的产品，因而在功能上有着一个非常紧密的结合 。', 'Bjiying/Bjy15.jpg', 'soft/17.rar', '2017/5/3', '1.0.0', 'n6r5', '17.mp4');
-INSERT INTO `zysoftware` VALUES ('18', 'office 2010', '办公', 'Syunjisuan/Syjs14.png', '2', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Byunjisuan/Byjs9.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('19', 'SSH', '工具', 'Syunjisuan/Syjs01.png', '2', '', 'Byunjisuan/Byjs1.jpg', 'soft/2.rar', '2017/5/3', '1.0.0', 'ev4b', '2.mp4');
-INSERT INTO `zysoftware` VALUES ('20', 'Adobe Flash CS6', '图形', 'Syunjisuan/Syjs02.png', '2', 'Adobe Flash CS6是用于创建动画和多媒体内容的强大的创作平台。Adobe Flash CS6设计身临其境，而且在台式计算机和平板电脑、智能手机和电视等多种设备中都能呈现一致效果的互动体验。', 'Byunjisuan/Byjs12.jpg', 'soft/3.rar', '2017/5/3', '1.0.0', 'b4b4', '3.mp4');
-INSERT INTO `zysoftware` VALUES ('21', 'ensp', '工具', 'Syunjisuan/Syjs03.png', '2', 'eNSP由华为提供的可扩展的、图形化操作的网络仿真工具平台，主要对企业网络路由器、交换机进行软件仿真。让广大用户有机会在没有真实设备的情况下能够模拟演练，学习网络技术。', 'Byunjisuan/Byjs10.jpg', 'soft/18.rar', '2017/5/3', '1.0.0', 'eeo2', '18.mp4');
-INSERT INTO `zysoftware` VALUES ('22', 'VirtualBox', '工具', 'Syunjisuan/Syjs04.png', '2', 'VirtualBox号称是最强的免费虚拟机软件，它不仅具有丰富的特色，而且性能也很优异！它简单易用，可虚拟的系统包括Windows、Mac OS X、Linux、OpenBSD、Solaris、IBM OS2甚至Android等操作系统！', 'Byunjisuan/Byjs11.jpg', 'soft/19.rar', '2017/5/3', '1.0.0', 'y53j', '19.mp4');
-INSERT INTO `zysoftware` VALUES ('23', 'Vmware', '工具', 'Syunjisuan/Syjs05.png', '2', 'VMware Workstation可在一部实体机器上模拟完整的网络环境，以及可便于携带的虚拟机器，其更好的灵活性与先进的技术胜过了市面上其他的虚拟计算机软件。', 'Byunjisuan/Byjs13.jpg', 'soft/13.rar', '2017/5/3', '1.0.0', 'tw2a', '13.mp4');
-INSERT INTO `zysoftware` VALUES ('24', 'Android ADT', '开发', 'Syunjisuan/Syjs06.png', '2', 'ADT（Android Development Tools）在Eclipse编译IDE环境中，需安装ADT(Android Developer Tools)Plug-in,这是Android在Eclipse上的开发工具。', 'Byunjisuan/Byjs5.jpg', 'soft/4.rar', '2017/5/3', '1.0.0', '2txm', '4.mp4');
-INSERT INTO `zysoftware` VALUES ('25', 'Cisco Packet Tracer', '工具', 'Syunjisuan/Syjs07.png', '2', 'Packet Tracer是一个功能强大的网络仿真程序，允许学生实验与网络行为，问“如果”的问题。随着网络技术学院的全面的学习经验的一个组成部分，包示踪提供的仿真，可视化，编辑，评估，和协作能力，有利于教学和复杂的技术概念的学习。', 'Byunjisuan/Byjs6.jpg', 'soft/5.rar', '2017/5/3', '1.0.0', 'tvrq', '5.mp4');
-INSERT INTO `zysoftware` VALUES ('26', 'Dreamware CS6', '开发', 'Syunjisuan/Syjs08.png', '2', 'dreamweaver cs6用于制作并编辑网站和移动应用程序的网页设计软件。由于它支持代码、拆分、设计、实时视图等多种方式来创作、编写和修改网页，对于初级人员，你可以无需编写任何代码就能快速创建web页面。', 'Byunjisuan/Byjs2.jpg', 'soft/6.rar', '2017/5/3', '1.0.0', 'p6g6', '6.mp4');
-INSERT INTO `zysoftware` VALUES ('27', 'Photoshop CS6', '图形', 'Syunjisuan/Syjs09.png', '2', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Byunjisuan/Byjs3.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('28', 'SQL Server 2005', '开发', 'Syunjisuan/Syjs10.png', '2', 'Microsoft SQL Server 数据库引擎为关系型数据和结构化数据提供了更安全可靠的存储功能，使您可以构建和管理用于业务的高可用和高性能的数据应用程序。', 'Byunjisuan/Byjs4.jpg', 'soft/10.rar', '2017/5/3', '1.0.0', '0br9', '10.mp4');
-INSERT INTO `zysoftware` VALUES ('29', 'VC++ 6.0', '开发', 'Syunjisuan/Syjs11.png', '2', 'Microsoft Visual C++具有程序框架自动生成、灵活方便的类管理、代码编写和界面设计集成交互操作、可开发多种程序等优点，而且通过的设置就可使其生成的程序框架支持数据库接口、OLE2.0，WinSock网络。', 'Byunjisuan/Byjs7.jpg', 'soft/12.rar', '2017/5/3', '1.0.0', 'evn1', '12.mp4');
-INSERT INTO `zysoftware` VALUES ('30', 'Eclipse 3.2', '开发', 'Syunjisuan/Syjs12.png', '2', 'Eclipse 是一个开放源代码的、基于Java的可扩展开发平台。就其本身而言，它只是一个框架和一组服务，用于通过插件组件构建开发环境。幸运的是，Eclipse 附带了一个标准的插件集，包括Java开发工具（Java Development Kit，JDK）。', 'Byunjisuan/Byjs14.jpg', 'soft/14.rar', '2017/5/3', '1.0.0', 'j6qj', '14.mp4');
-INSERT INTO `zysoftware` VALUES ('31', '网页三剑客（MX）', '开发', 'Syunjisuan/Syjs13.png', '2', 'Dreamweaver与Flash、Firework 并称为 Macromedia的网页制作三剑客，由于是同一公司的产品，因而在功能上有着一个非常紧密的结合 。', 'Byunjisuan/Byjs8.jpg', 'soft/17.rar', '2017/5/3', '1.0.0', 'n6r5', '17.mp4');
-INSERT INTO `zysoftware` VALUES ('32', 'office 2010', '办公', 'Sdongman/Sdm01.png', '3', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bdongman/Bdm1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('33', 'Eclipse 3.2', '开发', 'Sdongman/Sdm02.png', '3', 'Eclipse 是一个开放源代码的、基于Java的可扩展开发平台。就其本身而言，它只是一个框架和一组服务，用于通过插件组件构建开发环境。幸运的是，Eclipse 附带了一个标准的插件集，包括Java开发工具（Java Development Kit，JDK）。', 'Bdongman/Bdm2.jpg', 'soft/14.rar', '2017/5/3', '1.0.0', 'j6qj', '14.mp4');
-INSERT INTO `zysoftware` VALUES ('34', 'Android ADT', '开发', 'Sdongman/Sdm03.png', '3', 'ADT（Android Development Tools）在Eclipse编译IDE环境中，需安装ADT(Android Developer Tools)Plug-in,这是Android在Eclipse上的开发工具。', 'Bdongman/Bdm3.jpg', 'soft/4.rar', '2017/5/3', '1.0.0', '2txm', '4.mp4');
-INSERT INTO `zysoftware` VALUES ('35', 'unity 3D 5.0', '图形', 'Sdongman/Sdm04.png', '3', 'Unity3D是由Unity Technologies开发的一个让玩家轻松创建诸如三维视频游戏、建筑可视化、实时三维动画等类型互动内容的多平台的综合型游戏开发工具，是一个全面整合的专业游戏引擎。', 'Bdongman/Bdm4.jpg', 'soft/20.rar', '2017/5/3', '1.0.0', '6a09', '20.mp4');
-INSERT INTO `zysoftware` VALUES ('36', 'VC++ 6.0', '开发', 'Sdongman/Sdm05.png', '3', 'Microsoft Visual C++具有程序框架自动生成、灵活方便的类管理、代码编写和界面设计集成交互操作、可开发多种程序等优点，而且通过的设置就可使其生成的程序框架支持数据库接口、OLE2.0，WinSock网络。', 'Bdongman/Bdm5.jpg', 'soft/12.rar', '2017/5/3', '1.0.0', 'evn1', '12.mp4');
-INSERT INTO `zysoftware` VALUES ('37', '3ds Max 2014', '图形', 'Sdongman/Sdm6.png', '3', '3D Studio Max，常简称为3d Max[1]  或3ds MAX，是Discreet公司开发的（后被Autodesk公司合并）基于PC系统的三维动画渲染和制作软件。其前身是基于DOS操作系统的3D Studio系列软件。', 'Bdongman/Bdm6.jpg', 'soft/21.rar', '2017/5/3', '1.0.0', 'j22k', '21.mp4');
-INSERT INTO `zysoftware` VALUES ('38', 'Adobe Flash CS6', '图形', 'Sdongman/Sdm7.png', '3', 'Adobe Flash CS6是用于创建动画和多媒体内容的强大的创作平台。Adobe Flash CS6设计身临其境，而且在台式计算机和平板电脑、智能手机和电视等多种设备中都能呈现一致效果的互动体验。', 'Bdongman/Bdm7.jpg', 'soft/3.rar', '2017/5/3', '1.0.0', 'b4b4', '3.mp4');
-INSERT INTO `zysoftware` VALUES ('39', 'Adobe Effects CS6', '图形', 'Sdongman/Sdm08.png', '3', '利用 Adobe After Effects CS6 软件，用户可以使用新的全局高性能缓存，比以往任何时候更快地实现影院视觉效果和动态图形。使用内置的文本和形状挤出功能、新的蒙版羽化选项和快速易用的 3D Camera Tracker，扩展您的创造力。', 'Bdongman/Bdm8.jpg', 'soft/22.rar', '2017/5/3', '1.0.0', 'uqay', '22.mp4');
-INSERT INTO `zysoftware` VALUES ('40', 'Photoshop CS6', '图形', 'Sdongman/Sdm09.png', '3', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bdongman/Bdm9.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('41', 'Premiere pro CS6', '图形', 'Sdongman/Sdm10.png', '3', 'Adobe Premiere Pro CS6 软件将卓越的性能、优美的改进用户界面和许多奇妙的创意功能结合在一起，包括用于稳定素材的 Warp Stabilizer、动态时间轴裁切、扩展的多机编辑、调整图层等。', 'Bdongman/Bdm10.jpg', 'soft/23.rar', '2017/5/3', '1.0.0', '56cx', '23.mp4');
-INSERT INTO `zysoftware` VALUES ('42', 'office 2010', '办公', 'Sdianzishangwu/Sdzsw06.png', '4', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bdianshang/Bds1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('43', 'ImageReady CS2', '工具', 'Sdianzishangwu/Sdzsw01.png', '4', 'ImageReady是由Adobe公司开发的，以处理网络图形为主的图像编辑软件。', 'Bdianshang/Bds2.jpg', 'soft/24.rar', '2017/5/3', '1.0.0', '660r', '24.mp4');
-INSERT INTO `zysoftware` VALUES ('44', 'Dreamware CS6', '开发', 'Sdianzishangwu/Sdzsw02.png', '4', 'dreamweaver cs6用于制作并编辑网站和移动应用程序的网页设计软件。由于它支持代码、拆分、设计、实时视图等多种方式来创作、编写和修改网页，对于初级人员，你可以无需编写任何代码就能快速创建web页面。', 'Bdianshang/Bds3.jpg', 'soft/6.rar', '2017/5/3', '1.0.0', 'p6g6', '6.mp4');
-INSERT INTO `zysoftware` VALUES ('45', 'Photoshop CS6', '图形', 'Sdianzishangwu/Sdzsw03.png', '4', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bdianshang/Bds4.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('46', 'SQL Server 2005', '开发', 'Sdianzishangwu/Sdzsw04.png', '4', 'Microsoft SQL Server 数据库引擎为关系型数据和结构化数据提供了更安全可靠的存储功能，使您可以构建和管理用于业务的高可用和高性能的数据应用程序。', 'Bdianshang/Bds5.jpg', 'soft/10.rar', '2017/5/3', '1.0.0', '0br9', '10.mp4');
-INSERT INTO `zysoftware` VALUES ('47', 'Vmware', '工具', 'Sdianzishangwu/Sdzsw05.png', '4', 'VMware Workstation可在一部实体机器上模拟完整的网络环境，以及可便于携带的虚拟机器，其更好的灵活性与先进的技术胜过了市面上其他的虚拟计算机软件。', 'Bdianshang/Bds6.jpg', 'soft/13.rar', '2017/5/3', '1.0.0', 'tw2a', '13.mp4');
-INSERT INTO `zysoftware` VALUES ('48', 'office 2010', '办公', 'Sdianzixinxi/Sdzxx01.png', '5', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bdianxin/Bdx1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('49', 'Progisp', '工具', 'Sdianzixinxi/Sdzxx02.png', '5', '超级下载软件Progisp，是一款应用广泛的下载软件', 'Bdianxin/Bdx10.jpg', 'soft/25.rar', '2017/5/3', '1.0.0', 'f6w5', '25.mp4');
-INSERT INTO `zysoftware` VALUES ('50', 'stc-isp-15xx-v6.85D', '工具', 'Sdianzixinxi/Sdzxx03.png', '5', 'STC-ISP 是一款单片机下载编程烧录软件，是针对STC系列单片机而设计的，可下载STC89系列、12C2052系列和12C5410等系列的STC单片机，使用简便，现已被广泛使用。', 'Bdianxin/Bdx2.jpg', 'soft/26.rar', '2017/5/3', '1.0.0', 'qm8a', '26.mp4');
-INSERT INTO `zysoftware` VALUES ('51', 'Quartus II 12.0', '工具', 'Sdianzixinxi/Sdzxx04.png', '5', '业界唯一提供FPGA和固定功能HardCopy器件统一设计流程的设计工具。', 'Bdianxin/Bdx3.jpg', 'soft/27.rar', '2017/5/3', '1.0.0', 'gbir', '27.mp4');
-INSERT INTO `zysoftware` VALUES ('52', 'Proteus Pro 7.8', '工具', 'Sdianzixinxi/Sdzxx05.png', '5', 'Proteus是英国著名的EDA工具(仿真软件)，从原理图布图、代码调试到单片机与外围电路协同仿真，一键切换到PCB设计，真正实现了从概念到产品的完整设计。', 'Bdianxin/Bdx4.jpg', 'soft/28.rar', '2017/5/3', '1.0.0', 'n3ct', '28.mp4');
-INSERT INTO `zysoftware` VALUES ('53', 'Keil uVision4', '工具', 'Sdianzixinxi/Sdzxx06.png', '5', '目前使用Keil uVision4的产品有Keil MDK-ARM，Keil C51，Keil C166和Keil C251', 'Bdianxin/Bdx5.jpg', 'soft/29.rar', '2017/5/3', '1.0.0', '9b54', '29.mp4');
-INSERT INTO `zysoftware` VALUES ('54', 'icc avr', '工具', 'Sdianzixinxi/Sdzxx07.png', '5', 'CCAVR是一种符合ANSI标准的C语言来开发MCU（单片机）程序的一个工具，功能合适、使用方便、技术支持好', 'Bdianxin/Bdx6.jpg', 'soft/30.rar', '2017/5/3', '1.0.0', 'n33p', '30.mp4');
-INSERT INTO `zysoftware` VALUES ('55', 'GX simulator6', '工具', 'Sdianzixinxi/Sdzxx08.png', '5', '三菱全系列PLC仿真调试软件gx simulator', 'Bdianxin/Bdx7.jpg', 'soft/31.rar', '2017/5/3', '1.0.0', 'cm3v', '31.mp4');
-INSERT INTO `zysoftware` VALUES ('56', 'securecrt 5.2', '工具', 'Sdianzixinxi/Sdzxx09.png', '5', 'SecureCRT是一款支持SSH（SSH1和SSH2）的终端仿真程序，简单地说是Windows下登录UNIX或Linux服务器主机的软件。', 'Bdianxin/Bdx8.jpg', 'soft/32.rar', '2017/5/3', '1.0.0', '7z0h', '32.mp4');
-INSERT INTO `zysoftware` VALUES ('57', 'Ewb50', '工具', 'Sdianzixinxi/Sdzxx10.png', '5', 'EWB软件是交互图像技术有限公司在九十年代初推出的EDA软件，用于模拟电路和数字电路的混合仿真，利用它可以直接从屏幕上看到各种电路的输出波形。EWB是一款小巧，但是仿真功能十分强大的软件。', 'Bdianxin/Bdx11.jpg', 'soft/33.rar', '2017/5/3', '1.0.0', '3gzt', '33.mp4');
-INSERT INTO `zysoftware` VALUES ('58', 'Vmware', '工具', 'Sdianzixinxi/Sdzxx11.png', '5', 'VMware Workstation可在一部实体机器上模拟完整的网络环境，以及可便于携带的虚拟机器，其更好的灵活性与先进的技术胜过了市面上其他的虚拟计算机软件。', 'Bdianxin/Bdx9.jpg', 'soft/13.rar', '2017/5/3', '1.0.0', 'tw2a', '13.mp4');
-INSERT INTO `zysoftware` VALUES ('59', 'office 2010', '办公', 'Sgongshang/Sgshang1.png', '6', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bgongshang/Bgs1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('60', 'office 2010', '办公', 'Schenggui/Scgui1.png', '7', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bchenggui/Bcg1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('61', 'office 2010', '办公', 'Swuliu/Swl1.png', '8', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bwuliu/Bwl1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('62', 'office 2010', '办公', 'Sshegong/Ssheg1.png', '9', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bshegong/Bsg1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('63', 'office 2010', '办公', 'Slvyou/Slvy1.png', '10', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Blvyou/Bly1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('64', 'office 2010', '办公', 'Syingyong/Syingy1.png', '11', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Byingyong/Byy1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('65', 'office 2010', '办公', 'Scaiwu/Scaiw2.png', '12', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bcaiwu/Bcw1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('66', '用友T3', '办公', 'Scaiwu/Scaiw1.png', '12', '用友T3支持成长型中小企业快速应对日益激烈的市场竞争，以客户为核心，集产、供、销、财一体解决方案，实现内部业务流程畅通、智能化管控平台、立体综合统计分析，支持全面科学决策。', 'Bcaiwu/Bcw2.jpg', 'soft/34.rar', '2017/5/3', '1.0.0', 'llhq', '34.mp4');
-INSERT INTO `zysoftware` VALUES ('67', 'office 2010', '办公', 'Sguoji/gji2.png', '13', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bjingmao/Bjm1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('68', 'pocib', '办公', 'Sguoji/gji1.png', '13', 'POCIB是国际贸易从业技能综合实训是中国国际贸易学会继外销员考试、跟单员考试等考试项目之后，联合国际贸易杂志社和世格软件共同推出的互联网培训证书课程。', 'Bjingmao/Bjm2.jpg', 'soft/35.rar', '2017/5/3', '1.0.0', 'pwdw', '35.mp4');
-INSERT INTO `zysoftware` VALUES ('69', 'office 2010', '办公', 'Shuizhan/Shz1.png', '14', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bhuizhan/Bhz1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('70', 'Photoshop CS6', '图形', 'Shuizhan/Shz2.png', '14', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bhuizhan/Bhz2.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('71', 'office 2010', '办公', 'Sshichang/Sshic2.png', '15', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bshiying/Bsy1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('72', 'Photoshop CS6', '图形', 'Sshichang/Sshic1.png', '15', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bshiying/Bsy2.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('73', 'office 2010', '办公', 'Sjinrong/Sjingr1.png', '16', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bjinrong/Bjr1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('74', 'office 2010', '办公', 'Sdianqi/Sdianq1.png', '17', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bdianhua/Bdh1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('75', 'S7 200', '开发', 'Sdianqi/Sdianq2.png', '17', 'S7-200 是一种小型的可编程序控制器，适用于各行各业，各种场合中的检测、监测及控制的自动化。S7-200系列的强大功能使其无论在独立运行中，或相连成网络皆能实现复杂控制功能。因此S7-200系列具有极高的性能/价格比。', 'Bdianhua/Bdh2.jpg', 'soft/36.rar', '2017/5/3', '1.0.0', '1cce', '36.mp4');
-INSERT INTO `zysoftware` VALUES ('76', 'STEP 7 MicroWIN', '开发', 'Sdianqi/Sdianq3.png', '17', 'STEP 7 MicroWIN是西门子PLC S7-200编程软件最新版本', 'Bdianhua/Bdh3.jpg', 'soft/37.rar', '2017/5/3', '1.0.0', 'ozyg', '37.mp4');
-INSERT INTO `zysoftware` VALUES ('77', 'AutoCAD 2008', '图形', 'Sdianqi/Sdianq4.png', '17', 'Autodesk公司升级产品AutoCAD 2008在界面、工作空间、面板、选项板、图形管理、图层、标注等到方面进行了改时宜，增加和增强了部分功能。', 'Bdianhua/Bdh4.jpg', 'soft/38.rar', '2017/5/3', '1.0.0', '8pj2', '38.mp4');
-INSERT INTO `zysoftware` VALUES ('78', 'ISIS 7 Professional', '工具', 'Sdianqi/Sdianq5.png', '17', 'ISIS是智能原理图输入系统，用于设计原理图和电路仿真；', 'Bdianhua/Bdh5.jpg', 'soft/39.rar', '2017/5/3', '1.0.0', '', '39.mp4');
-INSERT INTO `zysoftware` VALUES ('79', 'GPPW', '工具', 'Sdianqi/Sdianq6.png', '17', 'ISIS是智能原理图输入系统，用于设计原理图和电路仿真；ARES是先进的布线编辑系统，用于PCB设计。', 'Bdianhua/Bdh6.jpg', 'soft/40.rar', '2017/5/3', '1.0.0', 'hy09', '40.mp4');
-INSERT INTO `zysoftware` VALUES ('80', 'solidWorks 2010', '工具', 'Sdianqi/Sdianq7.png', '17', 'SolidWorks为达索系统下的子公司，专门负责研发与销售机械设计软件的视窗产品。该集团提供涵盖整个产品生命周期的系统，包括设计、工程、制造和产品数据管理等各个领域中的最佳软件系统。', 'Bdianhua/Bdh7.jpg', 'soft/41.rar', '2017/5/3', '1.0.0', 'j5zn', '41.mp4');
-INSERT INTO `zysoftware` VALUES ('81', 'RobotStudio 5.61', '工具', 'Sdianqi/Sdianq8.png', '17', 'ABB RobotStudio是优秀的计算机仿真软件。为帮助您提高生产率，降低购买与实施机器人解决方案的总成本，ABB开发了一个适用于机器人寿命周期各个阶段的软件产品家族。', 'Bdianhua/Bdh8.jpg', 'soft/42.rar', '2017/5/3', '1.0.0', 'w17m', '42.mp4');
-INSERT INTO `zysoftware` VALUES ('82', 'winCC Flexible 2008', '工具', 'Sdianqi/Sdianq9.png', '17', 'WinCC flexible，德国西门子公司工业全集成自动化的子产品，是一款面向机器的自动化概念的HMI软件。WinCC flexible 用于组态用户界面以操作和监视机器与设备，提供了对面向解决方案概念的组态任务的支持。', 'Bdianhua/Bdh9.jpg', 'soft/43.rar', '2017/5/3', '1.0.0', 'cq1j', '43.mp4');
-INSERT INTO `zysoftware` VALUES ('83', 'Keil uVision3', '工具', 'Sdianqi/Sdianq10.png', '17', 'KeilSoftware公司推出的uVision3是一款可用于多种8051MCU的集成开发环境(IDE)，该IDE同时也是PK51及其它开发套件的一个重要组件。包括AnalogDevices的ADuC83x和ADuC84x，以及Infineon的XC866等。', 'Bdianhua/Bdh10.jpg', 'soft/44.rar', '2017/5/3', '1.0.0', 'i1hf', '44.mp4');
-INSERT INTO `zysoftware` VALUES ('84', 'office 2010', '办公', 'Smoju/Smoj2.png', '18', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bmuju/Bmj1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('85', 'AutoCAD 2008', '图形', 'Smoju/Smoj1.png', '18', 'Autodesk公司升级产品AutoCAD 2008在界面、工作空间、面板、选项板、图形管理、图层、标注等到方面进行了改时宜，增加和增强了部分功能。', 'Bmuju/Bmj2.jpg', 'soft/38.rar', '2017/5/3', '1.0.0', '8pj2', '38.mp4');
-INSERT INTO `zysoftware` VALUES ('86', 'office 2010', '办公', 'Sjidian/Sjdian1.png', '19', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bjidian/Bjd1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('87', 'S7 200', '开发', 'Sjidian/Sjdian2.png', '19', 'S7-200 是一种小型的可编程序控制器，适用于各行各业，各种场合中的检测、监测及控制的自动化。S7-200系列的强大功能使其无论在独立运行中，或相连成网络皆能实现复杂控制功能。因此S7-200系列具有极高的性能/价格比。', 'Bjidian/Bjd2.jpg', 'soft/36.rar', '2017/5/3', '1.0.0', '1cce', '36.mp4');
-INSERT INTO `zysoftware` VALUES ('88', 'STEP 7 MicroWIN', '开发', 'Sjidian/Sjdian3.png', '19', 'STEP 7 MicroWIN是西门子PLC S7-200编程软件最新版本', 'Bjidian/Bjd3.jpg', 'soft/37.rar', '2017/5/3', '1.0.0', 'ozyg', '37.mp4');
-INSERT INTO `zysoftware` VALUES ('89', 'UG 8.0', '工具', 'Sjidian/Sjdian4.png', '19', 'UG是Siemens PLM Software公司出品的一个产品工程解决方案，它为用户的产品设计及加工过程提供了数字化造型和验证手段。Unigraphics NX针对用户的虚拟产品设计和工艺设计的需求，提供了经过实践验证的解决方案。', 'Bjidian/Bjd4.jpg', 'soft/45.rar', '2017/5/3', '1.0.0', '', '45.mp4');
-INSERT INTO `zysoftware` VALUES ('90', 'AutoCAD 2008', '图形', 'Sjidian/Sjdian5.png', '19', 'Autodesk公司升级产品AutoCAD 2008在界面、工作空间、面板、选项板、图形管理、图层、标注等到方面进行了改时宜，增加和增强了部分功能。', 'Bjidian/Bjd5.jpg', 'soft/38.rar', '2017/5/3', '1.0.0', '8pj2', '38.mp4');
-INSERT INTO `zysoftware` VALUES ('91', 'FluidSim', '工具', 'Sjidian/Sjdian6.png', '19', 'FluidSIM是德国Festo公司和Paderborn大学开发的用于液压与气压传动的教学软件等的软件。', 'Bjidian/Bjd6.jpg', 'soft/46.rar', '2017/5/3', '1.0.0', 'z3ky', '46.mp4');
-INSERT INTO `zysoftware` VALUES ('92', 'office 2010', '办公', 'Sqicheweixiu/Sqcwx1.png', '20', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bqiqiu/Bqx1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('93', 'office 2010', '办公', 'Sqichefuwu/Sqcfwu1.png', '21', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bqijin/Bqj1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('94', 'office 2010', '办公', 'Syingshi/Sys1.png', '22', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Byingshi/Bys1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('95', 'Premiere pro CS6', '图形', 'Syingshi/Sys2.png', '22', 'Adobe Premiere Pro CS6 软件将卓越的性能、优美的改进用户界面和许多奇妙的创意功能结合在一起，包括用于稳定素材的 Warp Stabilizer、动态时间轴裁切、扩展的多机编辑、调整图层等。', 'Byingshi/Bys2.jpg', 'soft/23.rar', '2017/5/3', '1.0.0', '56cx', '23.mp4');
-INSERT INTO `zysoftware` VALUES ('96', 'Illustrator CS5', '图形', 'Syingshi/Sys3.png', '22', 'Adobe illustrator是一种应用于出版、多媒体和在线图像的工业标准矢量插画的软件，作为一款非常好的矢量图形处理工具', 'Byingshi/Bys3.jpg', 'soft/47.rar', '2017/5/3', '1.0.0', 'qb3z', '47.mp4');
-INSERT INTO `zysoftware` VALUES ('97', 'Painter 2016', '图形', 'Syingshi/Sys4.png', '22', 'Painter是数码素描与绘画工具的终极选择，是一款极其优秀的仿自然绘画软件，拥有全面和逼真的仿自然画笔。它是专门为渴望追求自由创意及需要数码工具来仿真传统绘画的数码艺术家、插画画家及摄影师而开发的。', 'Byingshi/Bys4.jpg', 'soft/48.rar', '2017/5/3', '1.0.0', 'f1oo', '48.mp4');
-INSERT INTO `zysoftware` VALUES ('98', 'Adobe Flash CS6', '图形', 'Syingshi/Sys5.png', '22', 'Adobe Flash CS6是用于创建动画和多媒体内容的强大的创作平台。Adobe Flash CS6设计身临其境，而且在台式计算机和平板电脑、智能手机和电视等多种设备中都能呈现一致效果的互动体验。', 'Byingshi/Bys5.jpg', 'soft/3.rar', '2017/5/3', '1.0.0', 'b4b4', '3.mp4');
-INSERT INTO `zysoftware` VALUES ('99', 'MAYA', '图形', 'Syingshi/Sys6.png', '22', 'Autodesk Maya是美国Autodesk公司出品的世界顶级的三维动画软件，应用对象是专业的影视广告，角色动画，电影特技等。Maya功能完善，工作灵活，易学易用，制作效率极高，渲染真实感极强，是电影级别的高端制作软件.', 'Byingshi/Bys6.jpg', 'soft/49.rar', '2017/5/3', '1.0.0', 'zjs0', '49.mp4');
-INSERT INTO `zysoftware` VALUES ('100', 'Photoshop CS6', '图形', 'Syingshi/Sys7.png', '22', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Byingshi/Bys7.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('101', 'Adobe Effects CS6', '图形', 'Syingshi/Sys8.png', '22', '利用 Adobe After Effects CS6 软件，用户可以使用新的全局高性能缓存，比以往任何时候更快地实现影院视觉效果和动态图形。使用内置的文本和形状挤出功能、新的蒙版羽化选项和快速易用的 3D Camera Tracker，扩展您的创造力。', 'Byingshi/Bys8.jpg', 'soft/22.rar', '2017/5/3', '1.0.0', 'uqay', '22.mp4');
-INSERT INTO `zysoftware` VALUES ('102', 'office 2010', '办公', 'Sguanggao/ggao1.png', '23', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bguanggao/Bgg1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('103', 'Photoshop CS6', '图形', 'Sguanggao/ggao2.png', '23', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bguanggao/Bgg2.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('104', 'CorelDRAW X4', '图形', 'Sguanggao/ggao3.png', '23', 'CorelDRAW X4是矢量绘图软件CORELDRAW的第14个版本，使用直观的矢量插图和页面布局工具创建卓越的设计，并使用专业照片编辑软件，润饰和增强照片效果。', 'Bguanggao/Bgg3.jpg', 'soft/50.rar', '2017/5/3', '1.0.0', '652o', '50.mp4');
-INSERT INTO `zysoftware` VALUES ('105', 'office 2010', '办公', 'Schanpin/Scpin1.png', '24', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bchanpin/Bcp1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('106', 'Rhinoceros 5.0', '图形', 'Schanpin/Scpin2.png', '24', 'Rhinoceros 3D是一套专业的3D立体模型制作软件，简称Rhino3D，由位于美国西雅图的Robert', 'Bchanpin/Bcp2.jpg', 'soft/51.rar', '2017/5/3', '1.0.0', 'z9sb', '51.mp4');
-INSERT INTO `zysoftware` VALUES ('107', 'Illustrator CS5', '图形', 'Schanpin/Scpin3.png', '24', 'Adobe Flash CS6是用于创建动画和多媒体内容的强大的创作平台。Adobe Flash CS6设计身临其境，而且在台式计算机和平板电脑、智能手机和电视等多种设备中都能呈现一致效果的互动体验。', 'Bchanpin/Bcp3.jpg', 'soft/47.rar', '2017/5/3', '1.0.0', 'qb3z', '47.mp4');
-INSERT INTO `zysoftware` VALUES ('108', 'CAD 2008', '图形', 'Schanpin/Scpin4.png', '24', 'Autodesk公司升级产品AutoCAD 2008在界面、工作空间、面板、选项板、图形管理、图层、标注等到方面进行了改时宜，增加和增强了部分功能。', 'Bchanpin/Bcp4.jpg', 'soft/38.rar', '2017/5/3', '1.0.0', '8pj2', '38.mp4');
-INSERT INTO `zysoftware` VALUES ('109', 'Photoshop CS6', '图形', 'Schanpin/Scpin5.png', '24', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bchanpin/Bcp5.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('110', 'office 2010', '办公', 'Shuanjing/Shj1.png', '25', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bhuanyi/Bhy1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('111', '3ds Max 2014', '图形', 'Shuanjing/Shj2.png', '25', '3D Studio Max，常简称为3d Max[1]  或3ds MAX，是Discreet公司开发的（后被Autodesk公司合并）基于PC系统的三维动画渲染和制作软件。其前身是基于DOS操作系统的3D Studio系列软件。', 'Bhuanyi/Bhy2.jpg', 'soft/21.rar', '2017/5/3', '1.0.0', 'j22k', '21.mp4');
-INSERT INTO `zysoftware` VALUES ('112', 'CAD 2008', '图形', 'Shuanjing/Shj3.png', '25', 'Autodesk公司升级产品AutoCAD 2008在界面、工作空间、面板、选项板、图形管理、图层、标注等到方面进行了改时宜，增加和增强了部分功能。', 'Bhuanyi/Bhy3.jpg', 'soft/38.rar', '2017/5/3', '1.0.0', '8pj2', '38.mp4');
-INSERT INTO `zysoftware` VALUES ('113', 'Photoshop CS6', '图形', 'Shuanjing/Shj4.png', '25', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bhuanyi/Bhy4.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('114', 'office 2010', '办公', 'Spiju/Spj1.png', '26', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bpiju/Bpj1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('115', 'Painter 2016', '图形', 'Spiju/Spj2.png', '26', 'Painter是数码素描与绘画工具的终极选择，是一款极其优秀的仿自然绘画软件，拥有全面和逼真的仿自然画笔。它是专门为渴望追求自由创意及需要数码工具来仿真传统绘画的数码艺术家、插画画家及摄影师而开发的。', 'Bpiju/Bpj2.jpg', 'soft/48.rar', '2017/5/3', '1.0.0', 'f1oo', '48.mp4');
-INSERT INTO `zysoftware` VALUES ('116', 'CorelDRAW X4', '图形', 'Spiju/Spj3.png', '26', 'CorelDRAW X4是矢量绘图软件CORELDRAW的第14个版本，使用直观的矢量插图和页面布局工具创建卓越的设计，并使用专业照片编辑软件，润饰和增强照片效果。', 'Bpiju/Bpj3.jpg', 'soft/50.rar', '2017/5/3', '1.0.0', '652o', '50.mp4');
-INSERT INTO `zysoftware` VALUES ('117', 'Illustrator CS5', '图形', 'Spiju/Spj4.png', '26', 'Adobe illustrator是一种应用于出版、多媒体和在线图像的工业标准矢量插画的软件，作为一款非常好的矢量图形处理工具', 'Bpiju/Bpj4.jpg', 'soft/47.rar', '2017/5/3', '1.0.0', 'qb3z', '47.mp4');
-INSERT INTO `zysoftware` VALUES ('118', 'CAD 2008', '图形', 'Spiju/Spj5.png', '26', 'Autodesk公司升级产品AutoCAD 2008在界面、工作空间、面板、选项板、图形管理、图层、标注等到方面进行了改时宜，增加和增强了部分功能。', 'Bpiju/Bpj5.jpg', 'soft/38.rar', '2017/5/3', '1.0.0', '8pj2', '38.mp4');
-INSERT INTO `zysoftware` VALUES ('119', 'Photoshop CS6', '图形', 'Spiju/Spj6.png', '26', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bpiju/Bpj6.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('120', 'office 2010', '办公', 'Sfuzhuang/Sfz1.png', '27', 'Microsoft Office 2010，是微软推出的新一代办公软件，开发代号为Office 14，实际是第12个发行版。该软件共有6个版本，分别是初级版、家庭及学生版、家庭及商业版、标准版、专业版和专业高级版。', 'Bfuzhuang/Bfz1.jpg', 'soft/1.rar', '2017/5/3', '1.0.0', '9m39', '1.mp4');
-INSERT INTO `zysoftware` VALUES ('121', 'CorelDRAW X4', '图形', 'Sfuzhuang/Sfz2.png', '27', 'CorelDRAW X4是矢量绘图软件CORELDRAW的第14个版本，使用直观的矢量插图和页面布局工具创建卓越的设计，并使用专业照片编辑软件，润饰和增强照片效果。', 'Bfuzhuang/Bfz2.jpg', 'soft/50.rar', '2017/5/3', '1.0.0', '652o', '50.mp4');
-INSERT INTO `zysoftware` VALUES ('122', 'Photoshop CS6', '图形', 'Sfuzhuang/Sfz3.png', '27', 'AdobePhotoshopCS6在前几代加入了GPUOpenGL加速、内容填充等新特性，此代会加强3D图像编辑，采用新的暗色调用户界面，其他改进还有整合Adobe云服务、改进文件搜索等。', 'Bfuzhuang/Bfz3.jpg', 'soft/9.rar', '2017/5/3', '1.0.0', 'ok73', '9.mp4');
-INSERT INTO `zysoftware` VALUES ('123', '富怡服装CAD', '图形', 'Sfuzhuang/Sfz4.png', '27', '富怡服装CAD系统是一套应用于纺织、服装行业生产的专业电脑软件。它是集纸样设计、放码、排料于一体的专业系统。它可以开纸样、放码、排料及打印各种比例纸样图、排料图等，为纺织、服装行业提供了一个方便快捷、灵活高效的生产环境。', 'Bfuzhuang/Bfz4.jpg', 'soft/52.rar', '2017/5/3', '1.0.0', '09jg', '52.mp4');
-INSERT INTO `zysoftware` VALUES ('124', 'audition CS6', '音频', 'Syinbiao/Syb1.png', '28', 'Adobe Audition，为Syntrillum出品的多音轨编辑工具(声音编辑软件)，支持128条音轨、多种音频特效、多种音频格式，可以很方便地对音频文件进行修改、合并。', 'Byinbiao/Byb1.jpg', 'soft/53.rar', '2017/5/3', '1.0.0', 'pd4v', '53.mp4');
+INSERT INTO `zysoftware` VALUES ('1', 'office 2010', '1');
+INSERT INTO `zysoftware` VALUES ('2', 'SSH', '1');
+INSERT INTO `zysoftware` VALUES ('3', 'Adobe Flash CS6', '1');
+INSERT INTO `zysoftware` VALUES ('4', 'Android ADT', '1');
+INSERT INTO `zysoftware` VALUES ('5', 'Cisco Packet Tracer', '1');
+INSERT INTO `zysoftware` VALUES ('6', 'Dreamware CS6', '1');
+INSERT INTO `zysoftware` VALUES ('7', 'MatLab 6.5', '1');
+INSERT INTO `zysoftware` VALUES ('8', 'MyEclipse 8.6', '1');
+INSERT INTO `zysoftware` VALUES ('9', 'Photoshop CS6', '1');
+INSERT INTO `zysoftware` VALUES ('10', 'SQL Server 2005', '1');
+INSERT INTO `zysoftware` VALUES ('11', 'SQL Server 2008', '1');
+INSERT INTO `zysoftware` VALUES ('12', 'VC++ 6.0', '1');
+INSERT INTO `zysoftware` VALUES ('13', 'Vmware', '1');
+INSERT INTO `zysoftware` VALUES ('14', 'Eclipse 3.2', '1');
+INSERT INTO `zysoftware` VALUES ('15', 'lingo 9.0', '1');
+INSERT INTO `zysoftware` VALUES ('16', '微信开发者工具', '1');
+INSERT INTO `zysoftware` VALUES ('17', '网页三剑客（MX）', '1');
+INSERT INTO `zysoftware` VALUES ('18', 'office 2010', '2');
+INSERT INTO `zysoftware` VALUES ('19', 'SSH', '2');
+INSERT INTO `zysoftware` VALUES ('20', 'Adobe Flash CS6', '2');
+INSERT INTO `zysoftware` VALUES ('21', 'ensp', '2');
+INSERT INTO `zysoftware` VALUES ('22', 'VirtualBox', '2');
+INSERT INTO `zysoftware` VALUES ('23', 'Vmware', '2');
+INSERT INTO `zysoftware` VALUES ('24', 'Android ADT', '2');
+INSERT INTO `zysoftware` VALUES ('25', 'Cisco Packet Tracer', '2');
+INSERT INTO `zysoftware` VALUES ('26', 'Dreamware CS6', '2');
+INSERT INTO `zysoftware` VALUES ('27', 'Photoshop CS6', '2');
+INSERT INTO `zysoftware` VALUES ('28', 'SQL Server 2005', '2');
+INSERT INTO `zysoftware` VALUES ('29', 'VC++ 6.0', '2');
+INSERT INTO `zysoftware` VALUES ('30', 'Eclipse 3.2', '2');
+INSERT INTO `zysoftware` VALUES ('31', '网页三剑客（MX）', '2');
+INSERT INTO `zysoftware` VALUES ('32', 'office 2010', '3');
+INSERT INTO `zysoftware` VALUES ('33', 'Eclipse 3.2', '3');
+INSERT INTO `zysoftware` VALUES ('34', 'Android ADT', '3');
+INSERT INTO `zysoftware` VALUES ('35', 'unity 3D 5.0', '3');
+INSERT INTO `zysoftware` VALUES ('36', 'VC++ 6.0', '3');
+INSERT INTO `zysoftware` VALUES ('37', '3ds Max 2014', '3');
+INSERT INTO `zysoftware` VALUES ('38', 'Adobe Flash CS6', '3');
+INSERT INTO `zysoftware` VALUES ('39', 'Adobe Effects CS6', '3');
+INSERT INTO `zysoftware` VALUES ('40', 'Photoshop CS6', '3');
+INSERT INTO `zysoftware` VALUES ('41', 'Premiere pro CS6', '3');
+INSERT INTO `zysoftware` VALUES ('42', 'office 2010', '4');
+INSERT INTO `zysoftware` VALUES ('43', 'ImageReady CS2', '4');
+INSERT INTO `zysoftware` VALUES ('44', 'Dreamware CS6', '4');
+INSERT INTO `zysoftware` VALUES ('45', 'Photoshop CS6', '4');
+INSERT INTO `zysoftware` VALUES ('46', 'SQL Server 2005', '4');
+INSERT INTO `zysoftware` VALUES ('47', 'Vmware', '4');
+INSERT INTO `zysoftware` VALUES ('48', 'office 2010', '5');
+INSERT INTO `zysoftware` VALUES ('49', 'Progisp', '5');
+INSERT INTO `zysoftware` VALUES ('50', 'stc-isp-15xx-v6.85D', '5');
+INSERT INTO `zysoftware` VALUES ('51', 'Quartus II 12.0', '5');
+INSERT INTO `zysoftware` VALUES ('52', 'Proteus Pro 7.8', '5');
+INSERT INTO `zysoftware` VALUES ('53', 'Keil uVision4', '5');
+INSERT INTO `zysoftware` VALUES ('54', 'icc avr', '5');
+INSERT INTO `zysoftware` VALUES ('55', 'GX simulator6', '5');
+INSERT INTO `zysoftware` VALUES ('56', 'securecrt 5.2', '5');
+INSERT INTO `zysoftware` VALUES ('57', 'Ewb50', '5');
+INSERT INTO `zysoftware` VALUES ('58', 'Vmware', '5');
+INSERT INTO `zysoftware` VALUES ('59', 'office 2010', '6');
+INSERT INTO `zysoftware` VALUES ('60', 'office 2010', '7');
+INSERT INTO `zysoftware` VALUES ('61', 'office 2010', '8');
+INSERT INTO `zysoftware` VALUES ('62', 'office 2010', '9');
+INSERT INTO `zysoftware` VALUES ('63', 'office 2010', '10');
+INSERT INTO `zysoftware` VALUES ('64', 'office 2010', '11');
+INSERT INTO `zysoftware` VALUES ('65', 'office 2010', '12');
+INSERT INTO `zysoftware` VALUES ('66', '用友T3', '12');
+INSERT INTO `zysoftware` VALUES ('67', 'office 2010', '13');
+INSERT INTO `zysoftware` VALUES ('68', 'pocib', '13');
+INSERT INTO `zysoftware` VALUES ('69', 'office 2010', '14');
+INSERT INTO `zysoftware` VALUES ('70', 'Photoshop CS6', '14');
+INSERT INTO `zysoftware` VALUES ('71', 'office 2010', '15');
+INSERT INTO `zysoftware` VALUES ('72', 'Photoshop CS6', '15');
+INSERT INTO `zysoftware` VALUES ('73', 'office 2010', '16');
+INSERT INTO `zysoftware` VALUES ('74', 'office 2010', '17');
+INSERT INTO `zysoftware` VALUES ('75', 'S7 200', '17');
+INSERT INTO `zysoftware` VALUES ('76', 'STEP 7 MicroWIN', '17');
+INSERT INTO `zysoftware` VALUES ('77', 'AutoCAD 2008', '17');
+INSERT INTO `zysoftware` VALUES ('78', 'ISIS 7 Professional', '17');
+INSERT INTO `zysoftware` VALUES ('79', 'GPPW', '17');
+INSERT INTO `zysoftware` VALUES ('80', 'solidWorks 2010', '17');
+INSERT INTO `zysoftware` VALUES ('81', 'RobotStudio 5.61', '17');
+INSERT INTO `zysoftware` VALUES ('82', 'winCC Flexible 2008', '17');
+INSERT INTO `zysoftware` VALUES ('83', 'Keil uVision3', '17');
+INSERT INTO `zysoftware` VALUES ('84', 'office 2010', '18');
+INSERT INTO `zysoftware` VALUES ('85', 'AutoCAD 2008', '18');
+INSERT INTO `zysoftware` VALUES ('86', 'office 2010', '19');
+INSERT INTO `zysoftware` VALUES ('87', 'S7 200', '19');
+INSERT INTO `zysoftware` VALUES ('88', 'STEP 7 MicroWIN', '19');
+INSERT INTO `zysoftware` VALUES ('89', 'UG 8.0', '19');
+INSERT INTO `zysoftware` VALUES ('90', 'AutoCAD 2008', '19');
+INSERT INTO `zysoftware` VALUES ('91', 'FluidSim', '19');
+INSERT INTO `zysoftware` VALUES ('92', 'office 2010', '20');
+INSERT INTO `zysoftware` VALUES ('93', 'office 2010', '21');
+INSERT INTO `zysoftware` VALUES ('94', 'office 2010', '22');
+INSERT INTO `zysoftware` VALUES ('95', 'Premiere pro CS6', '22');
+INSERT INTO `zysoftware` VALUES ('96', 'Illustrator CS5', '22');
+INSERT INTO `zysoftware` VALUES ('97', 'Painter 2016', '22');
+INSERT INTO `zysoftware` VALUES ('98', 'Adobe Flash CS6', '22');
+INSERT INTO `zysoftware` VALUES ('99', 'MAYA', '22');
+INSERT INTO `zysoftware` VALUES ('100', 'Photoshop CS6', '22');
+INSERT INTO `zysoftware` VALUES ('101', 'Adobe Effects CS6', '22');
+INSERT INTO `zysoftware` VALUES ('102', 'office 2010', '23');
+INSERT INTO `zysoftware` VALUES ('103', 'Photoshop CS6', '23');
+INSERT INTO `zysoftware` VALUES ('104', 'CorelDRAW X4', '23');
+INSERT INTO `zysoftware` VALUES ('105', 'office 2010', '24');
+INSERT INTO `zysoftware` VALUES ('106', 'Rhinoceros 5.0', '24');
+INSERT INTO `zysoftware` VALUES ('107', 'Illustrator CS5', '24');
+INSERT INTO `zysoftware` VALUES ('108', 'AutoCAD 2008', '24');
+INSERT INTO `zysoftware` VALUES ('109', 'Photoshop CS6', '24');
+INSERT INTO `zysoftware` VALUES ('110', 'office 2010', '25');
+INSERT INTO `zysoftware` VALUES ('111', '3ds Max 2014', '25');
+INSERT INTO `zysoftware` VALUES ('112', 'AutoCAD 2008', '25');
+INSERT INTO `zysoftware` VALUES ('113', 'Photoshop CS6', '25');
+INSERT INTO `zysoftware` VALUES ('114', 'office 2010', '26');
+INSERT INTO `zysoftware` VALUES ('115', 'Painter 2016', '26');
+INSERT INTO `zysoftware` VALUES ('116', 'CorelDRAW X4', '26');
+INSERT INTO `zysoftware` VALUES ('117', 'Illustrator CS5', '26');
+INSERT INTO `zysoftware` VALUES ('118', 'AutoCAD 2008', '26');
+INSERT INTO `zysoftware` VALUES ('119', 'Photoshop CS6', '26');
+INSERT INTO `zysoftware` VALUES ('120', 'office 2010', '27');
+INSERT INTO `zysoftware` VALUES ('121', 'CorelDRAW X4', '27');
+INSERT INTO `zysoftware` VALUES ('122', 'Photoshop CS6', '27');
+INSERT INTO `zysoftware` VALUES ('123', '富怡服装CAD', '27');
+INSERT INTO `zysoftware` VALUES ('124', 'audition CS6', '28');
 
 -- ----------------------------
 -- Table structure for zysoftware_titleb

@@ -88,5 +88,11 @@ public class StudySoftDAO {
 	public ArrayList<StudySoft> getAllSoft(){
 		return studySoftMapper.getAllSoft();
 	}
+/**
+ * É¾³ýÈí¼þ
+ */		
+	public void deleteStudySoft(int id){
+		studySoftMapper.deleteStudySoft(id);
+	}
 	
 }

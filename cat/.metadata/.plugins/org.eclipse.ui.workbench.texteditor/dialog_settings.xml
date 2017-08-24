@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="getSoftName_id" key="selection"/>
+		<item value="删除" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="删除"/>
+			<item value="datadel()"/>
+			<item value="del"/>
 			<item value="getSoftName_id"/>
 			<item value="soft_add"/>
 			<item value="添加软件"/>
 			<item value="ico_flag"/>
 			<item value="checkRepeat"/>
-			<item value="error_can"/>
-			<item value="error_cancle"/>
-			<item value="error"/>
 		</list>
 		<list key="replacehistory">
 			<item value="time_name3"/>

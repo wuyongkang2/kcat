@@ -164,4 +164,17 @@ public class StudySoftController {
 		return list;
 	}
 	
+/**
+ * É¾³ýÈí¼þ
+ * @param studySoft
+ * @return
+ */
+	
+	@RequestMapping("/deleteStudySoft.do")
+	@ResponseBody
+	public boolean deleteStudySoft(int id){
+		studySoftDAO.deleteStudySoft(id);
+		return true;
+	}
+	
 }

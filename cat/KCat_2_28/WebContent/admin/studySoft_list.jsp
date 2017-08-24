@@ -81,7 +81,7 @@ $(function(){
 			html+="<td><a onclick='soft_jianjie("+"$(this)"+")' title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
 
 			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a onclick='soft_video("+"$(this)"+")' title='http://op86rjyxw.bkt.clouddn.com/video/"+data[i].soft_video+"' style='text-decoration:none;'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
-			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='user_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
  	});
@@ -139,6 +139,68 @@ function soft_video(object){
 /*软件-添加*/
 function soft_add(title,url,w,h){
 	layer_show(title,url,w,h);
+}
+/*用户-删除*/
+function soft_del(object){
+	var path = object.parent().parent().children();
+	var id = path.eq(1).text();
+	member_del(id);
+}
+/*用户-删除*/
+function member_del(id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type : "post",  
+	        dataType : "json",  
+	        data : {  
+	        	id : id
+	        },  
+	        async : false, 
+	        cache : false, 
+	        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
+			success: function(data){
+				layer.msg('已删除!',{icon:1,time:1000});
+				location.replace(location.href);
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+/*批量删除*/
+function datadel(){
+	
+	var user_checked = $(":checked").parent().parent();
+	var num = 0; //选中的人数
+	for(var i = 0; i < user_checked.length; i++){
+		if(user_checked[i].getElementsByTagName("td")[1] !=undefined){
+			num++;
+		}
+	}
+	layer.confirm('您当前选中了'+num+'个软件，确认要全部删除吗？',function(index){
+		for(var i = 0; i < user_checked.length; i++){
+			if(user_checked[i].getElementsByTagName("td")[1] !=undefined){
+				$.ajax({
+					type : "post",  
+			        dataType : "json",  
+			        data : {  
+			        	id : user_checked[i].getElementsByTagName("td")[1].innerText
+			        },  
+			        async : false, 
+			        cache : false, 
+			        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
+					success: function(data){
+						layer.msg('已删除!',{icon:1,time:1000});
+						location.replace(location.href);
+					},
+					error:function(data) {
+						console.log(data.msg);
+					},
+				});
+			}
+		}
+	});
 }
 
 </script>
