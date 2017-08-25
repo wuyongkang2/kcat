@@ -94,5 +94,11 @@ public class StudySoftDAO {
 	public void deleteStudySoft(int id){
 		studySoftMapper.deleteStudySoft(id);
 	}
+/**
+ * ¼ì²éÈí¼şÃû×Ö
+ */			
+	public ArrayList<StudySoft> checkSoftName(String softName){
+		return studySoftMapper.checkSoftName(softName);
+	}
 	
 }

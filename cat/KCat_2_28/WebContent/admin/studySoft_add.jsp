@@ -162,6 +162,37 @@ $(function(){
 		increaseArea: '20%'
 	});
 	
+	//向jQuery Validator中添加自己的规则
+	$.validator.addMethod("checkRepeat",function(value,element,params){
+		return checkSoftName(value);
+	},"软件已存在，请更换名字");
+	
+	//检测软件名字是否重复方法  
+	function checkSoftName(softName){  
+        var flagTemp = false;
+        $.ajax({  
+	        type : "post",  
+	        dataType : "json",  
+	        data : {  
+	        	softName : softName
+	        },  
+	        async : false, 
+	        cache : false, 
+	        url : "${pageContext.request.contextPath}/checkSoftName.do",  
+	        success : function(data) {  
+	            if(data){  
+	                flagTemp = true;  
+	            }else{  
+	                flagTemp = false;  
+	            }  
+	        },  
+	        error : function() {  
+	            alertMsg("服务器出错");  
+	        }  
+	    });  
+	    return flagTemp;  
+    }
+	
 	//检查select是否选中
 	$.validator.addMethod("checkSelect",function(value,element,params){
 		 var flagTemp = false;
@@ -225,6 +256,7 @@ $(function(){
 		rules:{
 			softName:{
 				required:true,
+				checkRepeat:true,
 			},
 			softType:{
 				checkSelect:true,

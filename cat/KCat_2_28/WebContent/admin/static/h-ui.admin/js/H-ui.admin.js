@@ -203,6 +203,7 @@ function layer_show(title,url,w,h){
 		shade:0.4,
 		title: title,
 		content: url,
+		scrolling:'no',
 	});
 }
 /*关闭弹出框口*/

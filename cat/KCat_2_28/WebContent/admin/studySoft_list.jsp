@@ -81,7 +81,7 @@ $(function(){
 			html+="<td><a onclick='soft_jianjie("+"$(this)"+")' title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
 
 			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a onclick='soft_video("+"$(this)"+")' title='http://op86rjyxw.bkt.clouddn.com/video/"+data[i].soft_video+"' style='text-decoration:none;'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
-			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='user_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='soft_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
  	});
@@ -138,6 +138,20 @@ function soft_video(object){
 }
 /*软件-添加*/
 function soft_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*软件-编辑*/
+function soft_edit(object){
+	
+	var path = object.parent().parent().children();
+	var id = path.eq(1).text();
+	var userName = path.eq(2).text();
+	var sex = path.eq(3).text();
+	var email = path.eq(4).text();
+	member_edit('编辑用户','studySoft_modify.jsp?id='+id+'&userName='+userName+'&sex='+sex+'&email='+email+'','800','460');
+}
+/*软件-编辑*/
+function member_edit(title,url,w,h){
 	layer_show(title,url,w,h);
 }
 /*用户-删除*/

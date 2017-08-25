@@ -17,4 +17,6 @@ public interface StudySoftMapper {
 	public ArrayList<StudySoft> getSoftName_id(String softName); //获得软件名字对应的序号
 	public ArrayList<StudySoft> getAllSoft(); //获取所有的软件信息
 	public void deleteStudySoft(int id); //删除软件
+	public ArrayList<StudySoft> checkSoftName(String softName); //检查软件名字
+	
 }

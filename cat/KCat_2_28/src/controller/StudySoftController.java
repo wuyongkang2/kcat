@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import constan.Global;
 import dao.StudySoftDAO;
+import model.First;
 import model.StudySoft;
 import model.StudySoft_titleB;
 import model.StudySoft_titleS;
@@ -176,5 +177,16 @@ public class StudySoftController {
 		studySoftDAO.deleteStudySoft(id);
 		return true;
 	}
-	
+/*
+ * ¼ì²éÈí¼þÃû×Ö	
+ */
+	@RequestMapping("/checkSoftName.do")
+	@ResponseBody
+	public boolean checkSoftName(String softName){
+		ArrayList<StudySoft> list=studySoftDAO.checkSoftName(softName);
+		if(list.size()>0){    
+			return false;    
+		}
+		return true;
+	}
 }
