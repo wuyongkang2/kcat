@@ -122,10 +122,10 @@ $(function(){
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:$('#softName option:selected').text(),soft_to_titleS:$("#softMajor").get(0).selectedIndex},function(data){
+			$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:$('#softName option:selected').text(),soft_to_titleS:$("#softMajor").val()},function(data){
 				if(data){
 					parent.layer.msg('添加成功',{time: 500, icon: 1},function(){
-						window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+						window.parent.location="${pageContext.request.contextPath}/admin/studySoftAllot_list.jsp";
 						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 	                    parent.layer.close(index);
 					});
@@ -133,7 +133,7 @@ $(function(){
                     
 				}else{
 					parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
-						window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+						window.parent.location="${pageContext.request.contextPath}/admin/studySoftAllot_list.jsp";
 						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 	                    parent.layer.close(index);
 					});

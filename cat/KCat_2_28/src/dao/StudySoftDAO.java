@@ -64,8 +64,8 @@ public class StudySoftDAO {
 /**
  * Ìí¼ÓÈí¼þÃû×Ö
  */	
-	public void addSoftName(String softName){
-		studySoftMapper.addSoftName(softName);
+	public void addSoftName(StudySoft studySoft){
+		studySoftMapper.addSoftName(studySoft);
 	}
 	
 /**
@@ -99,6 +99,10 @@ public class StudySoftDAO {
  */			
 	public ArrayList<StudySoft> checkSoftName(String softName){
 		return studySoftMapper.checkSoftName(softName);
+	}
+	
+	public void deleteStudySoftAllot(int id){
+		studySoftMapper.deleteStudySoftAllot(id);
 	}
 	
 }

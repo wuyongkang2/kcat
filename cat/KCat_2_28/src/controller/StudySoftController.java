@@ -120,9 +120,9 @@ public class StudySoftController {
  */
 	@RequestMapping("/addSoftName.do")
 	@ResponseBody
-	public boolean addSoftName(String softName){
-		System.out.println("进入StudySoftController:softName:"+softName);
-		studySoftDAO.addSoftName(softName);
+	public boolean addSoftName(StudySoft studySoft){
+		System.out.println("进入StudySoftController:softName:"+studySoft);
+		studySoftDAO.addSoftName(studySoft);
 		return true;
 	}
 	
@@ -189,4 +189,18 @@ public class StudySoftController {
 		}
 		return true;
 	}
+
+/**
+ * 删除软件
+ * @param studySoft
+ * @return
+ */
+	
+	@RequestMapping("/deleteStudySoftAllot.do")
+	@ResponseBody
+	public boolean deleteStudySoftAllot(int id){
+		studySoftDAO.deleteStudySoftAllot(id);
+		return true;
+	}
+	
 }

@@ -24,10 +24,10 @@
 	</select>
 	
 	<select id="getAllSoftName" resultType="model.StudySoft">
-		SELECT id,softName FROM soft order by id asc
+		SELECT * FROM soft order by id asc
 	</select>
 	
-	<select id="addSoftName" parameterType="String" resultType="model.StudySoft">
+	<select id="addSoftName" parameterType="model.StudySoft" resultType="model.StudySoft">
 		insert into soft (softName, softType, softImage, soft_jietu, softUrl, soft_jianjie, soft_video, soft_date, soft_version) VALUES (#{softName},#{softType},#{softImage},#{soft_jietu},#{softUrl},#{soft_jianjie},#{soft_video},#{soft_date},#{soft_version})
 	</select>
 	
@@ -43,8 +43,12 @@
 		SELECT a.id,a.softName,b.softType,b.softImage,b.soft_jianjie,b.soft_jietu,b.softUrl,b.soft_date,b.soft_version,b.soft_pw,b.soft_video,d.titleBName,c.titleSName FROM zysoftware AS a INNER JOIN soft AS b ON a.softName = b.softName INNER JOIN zysoftware_titles AS c ON a.soft_to_titleS = c.id INNER JOIN zysoftware_titleb AS d ON c.titleS_to_titleB = d.id ORDER BY id DESC
 	</select>
 	
-	<select id="deleteStudySoft" parameterType="model.StudySoft" resultType="model.StudySoft">
+	<select id="deleteStudySoftAllot" parameterType="model.StudySoft" resultType="model.StudySoft">
 		delete from zySoftware where id=#{id}
+	</select>
+	
+	<select id="deleteStudySoft" parameterType="model.StudySoft" resultType="model.StudySoft">
+		delete from soft where id=#{id}
 	</select>
 	
 </mapper>

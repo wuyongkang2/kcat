@@ -24,9 +24,9 @@
 <title>KCat-Admin</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 专业软件 <span class="c-gray en">&gt;</span> 软件列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 专业软件<span class="c-gray en">&gt;</span> 软件分配 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="soft_add('添加软件','studySoft_add.jsp','800','460')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a> </span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>  <a class="btn btn-primary radius" onclick="soft_add('软件分配','studySoft_allot.jsp','480','260')" href="javascript:;"><i class="Hui-iconfont">&#xe61d;</i> 软件分配</a></span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
@@ -36,6 +36,8 @@
 					<th width="150">名字</th>
 					<th width="50">类型</th>
 					<th width="100">图标</th>
+					<th width="100">学院</th>
+					<th width="120">专业</th>
 					<th width="150">软件简介</th>
 					<th width="150">大图</th>
 					<th width="40">软件</th>
@@ -65,18 +67,21 @@
 $(function(){
 	var html="";
 	$.ajaxSetup({async:false});
- 	$.post("${pageContext.request.contextPath}/getAllSoftName.do",function(data){
+ 	$.post("${pageContext.request.contextPath}/getAllSoft.do",function(data){
  		$("#soft_count").text(data.length);
 		$.each(data,function(i,e){
 			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].softName+"</u></td>"
 			html+="<td>"+data[i].softType+"</td><td><img style='width:60px;height:60px;border-radius:100px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].softImage+"'</td>"
+			
+			html+="<td>"+data[i].titleBName+"</td>";
+			html+="<td>"+data[i].titleSName+"</td>";
 			var jianjie = data[i].soft_jianjie.substring(0,30)+"...";
 			data[i].soft_jianjie = data[i].soft_jianjie.replace(/ /g,'_');
 			var datu_new = "'"+data[i].soft_jietu+"'";
 			html+="<td><a onclick='soft_jianjie("+"$(this)"+")' title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
 
 			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a onclick='soft_video("+"$(this)"+")' title='http://op86rjyxw.bkt.clouddn.com/video/"+data[i].soft_video+"' style='text-decoration:none;'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
-			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='soft_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
+			html+="<td class='td-manage'><a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
  	});
@@ -86,7 +91,7 @@ $(function(){
 		"bStateSave": true,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,4,5,6,7,8,9]}// 制定列不参与排序
+		  {"orderable":false,"aTargets":[0,4,5,6,7,8,9,10,11]}// 制定列不参与排序
 		]
 	});
 });
@@ -135,21 +140,6 @@ function soft_video(object){
 function soft_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
-/*软件-编辑*/
-function soft_edit(object){
-	
-	var path = object.parent().parent().children();
-	var id = path.eq(1).text();
-	var softName = path.eq(2).text();
-	var softType = path.eq(3).text();
-	var time_name1 = path.eq(4).text();
-	console.log(path.eq(4).td);
-	member_edit('编辑软件','studySoft_modify.jsp?id='+id+'&userName='+userName+'&sex='+sex+'&email='+email+'','800','460');
-}
-/*软件-编辑*/
-function member_edit(title,url,w,h){
-	layer_show(title,url,w,h);
-}
 /*用户-删除*/
 function soft_del(object){
 	var path = object.parent().parent().children();
@@ -167,7 +157,7 @@ function member_del(id){
 	        },  
 	        async : false, 
 	        cache : false, 
-	        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
+	        url : "${pageContext.request.contextPath}/deleteStudySoftAllot.do",  
 			success: function(data){
 				layer.msg('已删除!',{icon:1,time:1000});
 				location.replace(location.href);
@@ -199,7 +189,7 @@ function datadel(){
 			        },  
 			        async : false, 
 			        cache : false, 
-			        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
+			        url : "${pageContext.request.contextPath}/deleteStudySoftAllot.do",  
 					success: function(data){
 						layer.msg('已删除!',{icon:1,time:1000});
 						location.replace(location.href);

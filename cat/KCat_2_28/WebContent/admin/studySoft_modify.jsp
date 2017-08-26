@@ -47,23 +47,6 @@
 		</div>
 	</div>
 	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学院：</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softCollege" name="softCollege" size="1">
-				<option value="0">请选择学院</option>
-				<option value="0">加载中...</option>
-			</select>
-		</div>
-	</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softMajor" name="softMajor" size="1">
-				<option value="0">请选择专业</option>
-			</select>
-		</div>
-	</div>
-	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>图标上传：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input style="width:190px;" type="text" id="result1" name="ico_flag" class="input-text" placeholder="请选择要上传的图标" />
