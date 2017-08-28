@@ -138,6 +138,24 @@
 <script type="text/javascript" src="../dist/main.js"></script>
 <script type="text/javascript">
 $(function(){
+	//获取list页面传来当前的id
+	var id = "<%=request.getParameter("id")%>";
+	var softName = "<%=request.getParameter("softName")%>";
+	var softType = "<%=request.getParameter("softType")%>";
+	var time_name1 = "<%=request.getParameter("time_name1")%>";
+	var soft_jianjie = "<%=request.getParameter("soft_jianjie")%>";
+	var time_name2 = "<%=request.getParameter("time_name2")%>";
+	var time_name3 = "<%=request.getParameter("time_name3")%>";
+	var videoName = "<%=request.getParameter("videoName")%>";
+	$("#softName").val(softName);
+	$("#softType").val(softType);
+	$("#result1").val(sub(time_name1));
+	ico_flag = true;
+	$("#result2").val(sub(time_name2));
+	ico_flag = true;
+	$("#result3").val(sub(time_name3));
+	ico_flag = true;
+	
 	college();
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -287,6 +305,19 @@ $("#softCollege").change(function(){
  		});
  	});
 });
+function sub(s){
+	var length = s.length;
+	var ss = "";
+	for(var i = 0; i < length; i ++){
+		
+		if(s.substring(s.length-i-1,s.length-i) != "/"){
+			ss = s.substring(s.length-i-1,s.length-i) + ss;
+		}else{
+			return ss;
+		}
+	}
+	
+}
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

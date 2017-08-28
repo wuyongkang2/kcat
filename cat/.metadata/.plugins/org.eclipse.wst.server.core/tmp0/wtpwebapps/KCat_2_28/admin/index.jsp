@@ -82,7 +82,7 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="user_list.jsp" data-title="用户列表" href="javascript:void(0)">查看用户列表</a></li>
+					<li><a data-href="user_list.jsp" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
 				</ul>
 			</dd>
 		</dl>
