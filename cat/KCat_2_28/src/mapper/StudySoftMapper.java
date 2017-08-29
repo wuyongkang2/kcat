@@ -18,6 +18,8 @@ public interface StudySoftMapper {
 	public ArrayList<StudySoft> getAllSoft(); //获取所有的软件信息
 	public void deleteStudySoft(int id); //删除软件
 	public ArrayList<StudySoft> checkSoftName(String softName); //检查软件名字
-	public void deleteStudySoftAllot(int id);
+	public void deleteStudySoftAllot(int id); //删除软件分配
+	public void updateStudySoft(StudySoft studySoft); //修改软件信息
+	
 	
 }

@@ -203,4 +203,16 @@ public class StudySoftController {
 		return true;
 	}
 	
+/**
+ * 修改软件信息
+ * @param studySoft
+ * @return
+ */	
+	@RequestMapping("/updateStudySoft.do")
+	@ResponseBody
+	public boolean updateStudySoft(StudySoft studySoft){
+		studySoftDAO.updateStudySoft(studySoft);
+		return true;
+	}
+	
 }

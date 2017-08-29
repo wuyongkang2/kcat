@@ -43,6 +43,7 @@
 				<option value="2">工具</option>
 				<option value="3">图形</option>
 				<option value="4">开发</option>
+				<option value="5">音频</option>
 			</select>
 		</div>
 	</div>
@@ -89,8 +90,8 @@
             <div id="container" style="position: relative;">
                 <a id="pickfiles" href="http://jssdk.demo.qiniu.io/#" style="position: relative; z-index: 1;"><input id="video_flag" name="video_flag" class="btn btn-secondary radius" type="button" value="选择视频并上传" /></a>
         	</div>
-        <div style="display:none" id="success">
-            <div class="alert-success" style="border-radius: 10px;">视频上传完毕</div>
+        <div style="display:block;" id="success">
+            <div id="videoName" class="alert-success" style="border-radius: 10px;">视频上传完毕</div>
         </div>
     </div>
     </div>
@@ -141,6 +142,7 @@ $(function(){
 	//获取list页面传来当前的id
 	var id = "<%=request.getParameter("id")%>";
 	var softName = "<%=request.getParameter("softName")%>";
+	var softName_df = "<%=request.getParameter("softName")%>";
 	var softType = "<%=request.getParameter("softType")%>";
 	var time_name1 = "<%=request.getParameter("time_name1")%>";
 	var soft_jianjie = "<%=request.getParameter("soft_jianjie")%>";
@@ -148,13 +150,27 @@ $(function(){
 	var time_name3 = "<%=request.getParameter("time_name3")%>";
 	var videoName = "<%=request.getParameter("videoName")%>";
 	$("#softName").val(softName);
-	$("#softType").val(softType);
+	
+	$("#softType option").each(function (){
+	    if($(this).text()==softType){   
+	    $("#softType").val($(this).val())  
+	 }});  
+	
 	$("#result1").val(sub(time_name1));
+	$("#uploadFile_img1").attr('src',time_name1); 
 	ico_flag = true;
 	$("#result2").val(sub(time_name2));
-	ico_flag = true;
+	$("#uploadFile_img2").attr('src',time_name2); 
+	jpg_flag = true;
 	$("#result3").val(sub(time_name3));
-	ico_flag = true;
+	$("#uploadFile_soft").attr('href',time_name3); 
+	soft_flag = true;
+	$("#softContent").val(soft_jianjie);
+	
+	
+	
+	
+	
 	
 	college();
 	$('.skin-minimal input').iCheck({
@@ -162,6 +178,41 @@ $(function(){
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
 	});
+	
+	//向jQuery Validator中添加自己的规则
+	$.validator.addMethod("checkRepeat",function(value,element,params){
+		return checkSoftName(value);
+	},"软件已存在，请更换名字");
+	
+	//检测软件名字是否重复方法  
+	function checkSoftName(softName){  
+        var flagTemp = false;
+        $.ajax({  
+	        type : "post",  
+	        dataType : "json",  
+	        data : {  
+	        	softName : softName
+	        },  
+	        async : false, 
+	        cache : false, 
+	        url : "${pageContext.request.contextPath}/checkSoftName.do",  
+	        success : function(data) {  
+	            if(softName == softName_df){
+	        		flagTemp = true;
+	        	}else{
+	        		if(data){  
+		                flagTemp = true;  
+		            }else{  
+		                flagTemp = false;  
+		            } 
+	        	}
+	        },  
+	        error : function() {  
+	            alertMsg("服务器出错");  
+	        }  
+	    });  
+	    return flagTemp;  
+    }
 	
 	//检查select是否选中
 	$.validator.addMethod("checkSelect",function(value,element,params){
@@ -226,6 +277,7 @@ $(function(){
 		rules:{
 			softName:{
 				required:true,
+				checkRepeat:true,
 			},
 			softType:{
 				checkSelect:true,
@@ -257,25 +309,23 @@ $(function(){
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$.post("${pageContext.request.contextPath}/addSoftName.do",{softName:$("#softName").val(),softType:$('#softType option:selected').text(),softImage:time_name1,soft_jietu:time_name2,softUrl:'soft/'+time_name3,soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data1){
-				$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:$("#softName").val(),soft_to_titleS:$("#softMajor").get(0).selectedIndex},function(data2){
-					if(data2){
-						parent.layer.msg(
-								'添加成功',{time: 500, icon: 1},function(){
-							window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
-							var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-		                    parent.layer.close(index);
-						});
-						
-	                    
-					}else{
-						parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
-							window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
-							var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-		                    parent.layer.close(index);
-						});
-					}
-				});
+			$.post("${pageContext.request.contextPath}/updateStudySoft.do",{id:id,softName:$("#softName").val(),softType:$('#softType option:selected').text(),softImage:sub(time_name1),soft_jietu:sub(time_name2),softUrl:'soft/'+sub(time_name3),soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data){
+				if(data){
+					parent.layer.msg(
+							'修改成功',{time: 500, icon: 1},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+					
+                    
+				}else{
+					parent.layer.msg('修改失败',{time: 300}, {icon: 2},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+				}
 			});
 		}
 	});

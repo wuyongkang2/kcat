@@ -105,4 +105,11 @@ public class StudySoftDAO {
 		studySoftMapper.deleteStudySoftAllot(id);
 	}
 	
+/**
+ * 修改软件信息
+ */			
+	public void updateStudySoft(StudySoft studySoft){
+		studySoftMapper.updateStudySoft(studySoft);
+	}
+	
 }
