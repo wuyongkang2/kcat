@@ -91,10 +91,9 @@ function user_edit(object){
 	
 	var path = object.parent().parent().children();
 	var id = path.eq(1).text();
-	var userName = escape(path.eq(2).text());
-	alert(escape(path.eq(2).text()));
-	var sex = escape(path.eq(3).text());
-	var email = escape(path.eq(4).text());
+	var userName = encodeURI(encodeURI(path.eq(2).text()));
+	var sex = encodeURI(encodeURI(path.eq(3).text()));
+	var email = encodeURI(encodeURI(path.eq(4).text()));
 	member_edit('编辑用户','user_modify.jsp?id='+id+'&userName='+userName+'&sex='+sex+'&email='+email+'','360','260');
 }
 /*用户组-修改*/

@@ -140,13 +140,13 @@ function soft_edit(object){
 	
 	var path = object.parent().parent().children();
 	var id = path.eq(1).text();
-	var softName = path.eq(2).text();
-	var softType = path.eq(3).text();
-	var time_name1 = path.eq(4).children()[0].src;
-	var soft_jianjie = path.eq(5).children()[0].title;
-	var time_name2 = path.eq(6).children().children()[0].src;
-	var time_name3 = path.eq(7).children()[0].href;
-	var videoName = path.eq(8).children()[0].title;
+	var softName = encodeURI(encodeURI(path.eq(2).text()));
+	var softType = encodeURI(encodeURI(path.eq(3).text()));
+	var time_name1 = encodeURI(encodeURI(path.eq(4).children()[0].src));
+	var soft_jianjie = encodeURI(encodeURI(path.eq(5).children()[0].title));
+	var time_name2 = encodeURI(encodeURI(path.eq(6).children().children()[0].src));
+	var time_name3 = encodeURI(encodeURI(path.eq(7).children()[0].href));
+	var videoName = encodeURI(encodeURI(path.eq(8).children()[0].title));
 	member_edit('编辑软件','studySoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&time_name1='+time_name1+'&soft_jianjie='+soft_jianjie+'&time_name2='+time_name2+'&time_name3='+time_name3+'&videoName='+videoName+'','800','460');
 }
 /*软件-编辑*/

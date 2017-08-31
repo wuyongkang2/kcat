@@ -141,14 +141,14 @@
 $(function(){
 	//获取list页面传来当前的id
 	var id = "<%=request.getParameter("id")%>";
-	var softName = "<%=request.getParameter("softName")%>";
-	var softName_df = "<%=request.getParameter("softName")%>";
-	var softType = "<%=request.getParameter("softType")%>";
-	var time_name1 = "<%=request.getParameter("time_name1")%>";
-	var soft_jianjie = "<%=request.getParameter("soft_jianjie")%>";
-	var time_name2 = "<%=request.getParameter("time_name2")%>";
-	var time_name3 = "<%=request.getParameter("time_name3")%>";
-	var videoName = "<%=request.getParameter("videoName")%>";
+	var softName = decodeURI("<%=request.getParameter("softName")%>");
+	var softName_df = decodeURI("<%=request.getParameter("softName")%>");
+	var softType = decodeURI("<%=request.getParameter("softType")%>");
+	var time_name1 = decodeURI("<%=request.getParameter("time_name1")%>");
+	var soft_jianjie = decodeURI("<%=request.getParameter("soft_jianjie")%>");
+	var time_name2 = decodeURI("<%=request.getParameter("time_name2")%>");
+	var time_name3 = decodeURI("<%=request.getParameter("time_name3")%>");
+	var videoName = decodeURI("<%=request.getParameter("videoName")%>");
 	$("#softName").val(softName);
 	
 	$("#softType option").each(function (){

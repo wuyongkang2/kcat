@@ -47,4 +47,8 @@ public class PlaySoftDAO {
 	public void uploadPlay(PlaySoft playSoft){
 		playSoftMapper.uploadPlay(playSoft);
 	}
+	
+	public ArrayList<PlaySoft> getAllPlaySoft(){
+		return playSoftMapper.getAllPlaySoft();
+	}
 }

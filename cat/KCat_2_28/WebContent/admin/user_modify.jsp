@@ -78,11 +78,10 @@
 $(function(){
 	//获取list页面传来当前的id
 	var id = "<%=request.getParameter("id")%>";
-	var userName = "<%=request.getParameter("userName")%>";
-	alert(unescape(userName));
-	var userName_df = unescape(<%=request.getParameter("userName")%>);
-	var sex = unescape(<%=request.getParameter("sex")%>);
-	var email = unescape(<%=request.getParameter("email")%>);
+	var userName = decodeURI("<%=request.getParameter("userName")%>");
+	var userName_df = decodeURI("<%=request.getParameter("userName")%>");
+	var sex = decodeURI("<%=request.getParameter("sex")%>");
+	var email = decodeURI("<%=request.getParameter("email")%>");
 	$("#addname").val(userName);
 	if(sex == "男"){
 		$("#sex-1").attr('checked','true');

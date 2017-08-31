@@ -90,4 +90,15 @@ public class PlaySoftController {
 		}
 	}
 	
+	@RequestMapping("/getAllPlaySoft.do")
+	@ResponseBody
+	public ArrayList<PlaySoft> getAllPlaySoft(){
+		ArrayList<PlaySoft> list=playSoftDAO.getAllPlaySoft();
+		System.out.println(list);
+		return list;
+		
+	}
+	
+	
+	
 }
