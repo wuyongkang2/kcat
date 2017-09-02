@@ -16,6 +16,7 @@ import constan.Global;
 import dao.PlaySoftDAO;
 import model.PlaySoft;
 import model.PlaySoft_title;
+import model.StudySoft;
 
 @Controller
 public class PlaySoftController {
@@ -98,6 +99,28 @@ public class PlaySoftController {
 		return list;
 		
 	}
+	
+	@RequestMapping("/checkPlaySoftName.do")
+	@ResponseBody
+	public boolean checkPlaySoftName(String softName){
+	
+		ArrayList<PlaySoft> list=playSoftDAO.checkPlaySoftName(softName);
+		if(list.size()>0){    
+			return false;    
+		}
+		return true;
+		
+	}
+	
+	@RequestMapping("/addPlaySoft.do")
+	@ResponseBody
+	public boolean addPlaySoft(PlaySoft playSoft){
+		playSoftDAO.addPlaySoft(playSoft);
+		return true;
+		
+	}
+	
+	
 	
 	
 	

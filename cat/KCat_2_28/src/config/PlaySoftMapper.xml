@@ -21,5 +21,13 @@
 	<select id="getAllPlaySoft"  resultType="model.PlaySoft" >
 		select * from ylSoftware
 	</select>
+	
+	<select id="checkPlaySoftName" parameterType="String" resultType="model.PlaySoft">
+		SELECT * FROM ylSoftware WHERE softName=#{softName}
+	</select>
+	
+	<insert id="addPlaySoft" parameterType="model.PlaySoft">
+		insert into ylSoftware (softName,softType,softImage,soft_to_title,soft_jianjie,soft_jietu,softUrl,soft_date,soft_version,soft_pw) values (#{softName},#{softType},#{softImage},#{soft_to_title},#{soft_jianjie},#{soft_jietu},#{softUrl},#{soft_date},#{soft_version},#{soft_pw})   
+	</insert>
 
 </mapper>

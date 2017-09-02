@@ -51,4 +51,12 @@ public class PlaySoftDAO {
 	public ArrayList<PlaySoft> getAllPlaySoft(){
 		return playSoftMapper.getAllPlaySoft();
 	}
+	
+	public ArrayList<PlaySoft> checkPlaySoftName(String softName){
+		return playSoftMapper.checkPlaySoftName(softName);
+	}
+	
+	public void addPlaySoft(PlaySoft playSoft){
+		playSoftMapper.addPlaySoft(playSoft);
+	}
 }
