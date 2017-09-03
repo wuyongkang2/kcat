@@ -59,4 +59,11 @@ public class PlaySoftDAO {
 	public void addPlaySoft(PlaySoft playSoft){
 		playSoftMapper.addPlaySoft(playSoft);
 	}
+	
+	public void updatePlaySoft(PlaySoft playSoft){
+		playSoftMapper.updatePlaySoft(playSoft);
+	}
+	public void deletePlaySoft(int id){
+		playSoftMapper.deletePlaySoft(id);
+	}
 }

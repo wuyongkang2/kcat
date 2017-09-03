@@ -145,9 +145,9 @@ function soft_edit(object){
 	var time_name1 = encodeURI(encodeURI(path.eq(4).children()[0].src));
 	var soft_jianjie = encodeURI(encodeURI(path.eq(5).children()[0].title));
 	var time_name2 = encodeURI(encodeURI(path.eq(6).children().children()[0].src));
-	var time_name3 = encodeURI(encodeURI(path.eq(7).children()[0].href));
-	var videoName = encodeURI(encodeURI(path.eq(8).children()[0].title));
-	member_edit('编辑软件','studySoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&time_name1='+time_name1+'&soft_jianjie='+soft_jianjie+'&time_name2='+time_name2+'&time_name3='+time_name3+'&videoName='+videoName+'','800','460');
+	var softUrl = encodeURI(encodeURI(path.eq(7).children()[0].title));
+	var soft_pw = encodeURI(encodeURI(path.eq(8).text()));
+	member_edit('编辑软件','playSoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&time_name1='+time_name1+'&soft_jianjie='+soft_jianjie+'&time_name2='+time_name2+'&softUrl='+softUrl+'&soft_pw='+soft_pw+'','800','460');
 }
 /*软件-编辑*/
 function member_edit(title,url,w,h){
@@ -170,7 +170,7 @@ function member_del(id){
 	        },  
 	        async : false, 
 	        cache : false, 
-	        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
+	        url : "${pageContext.request.contextPath}/deletePlaySoft.do",  
 			success: function(data){
 				layer.msg('已删除!',{icon:1,time:1000});
 				location.replace(location.href);
@@ -202,7 +202,7 @@ function datadel(){
 			        },  
 			        async : false, 
 			        cache : false, 
-			        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
+			        url : "${pageContext.request.contextPath}/deletePlaySoft.do",  
 					success: function(data){
 						layer.msg('已删除!',{icon:1,time:1000});
 						location.replace(location.href);

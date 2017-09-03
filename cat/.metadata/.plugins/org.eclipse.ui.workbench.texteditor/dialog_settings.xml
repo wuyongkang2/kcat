@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="userName_df" key="selection"/>
+		<item value="sub" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="sub"/>
+			<item value="删除"/>
 			<item value="userName_df"/>
 			<item value="datu"/>
 			<item value="soft_edit"/>
 			<item value="编辑"/>
 			<item value="edit"/>
-			<item value="删除"/>
 			<item value="datadel()"/>
-			<item value="del"/>
 		</list>
 		<list key="replacehistory">
 			<item value="time_name3"/>

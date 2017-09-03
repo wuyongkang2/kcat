@@ -120,6 +120,21 @@ public class PlaySoftController {
 		
 	}
 	
+	@RequestMapping("/updatePlaySoft.do")
+	@ResponseBody
+	public boolean updatePlaySoft(PlaySoft playSoft){
+		playSoftDAO.updatePlaySoft(playSoft);
+		return true;
+	}
+	
+	@RequestMapping("/deletePlaySoft.do")
+	@ResponseBody
+	public boolean deletePlaySoft(int id){
+		playSoftDAO.deletePlaySoft(id);
+		return true;
+	}
+	
+	
 	
 	
 	

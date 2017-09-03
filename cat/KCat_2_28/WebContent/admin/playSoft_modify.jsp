@@ -108,6 +108,33 @@
 <script type="text/javascript" src="../dist/sdk3.js"></script>
 <script type="text/javascript">
 $(function(){
+	//获取list页面传来当前的id
+	var id = "<%=request.getParameter("id")%>";
+	var softName = decodeURI("<%=request.getParameter("softName")%>");
+	var softName_df = decodeURI("<%=request.getParameter("softName")%>");
+	var softType = decodeURI("<%=request.getParameter("softType")%>");
+	var time_name1 = decodeURI("<%=request.getParameter("time_name1")%>");
+	var soft_jianjie = decodeURI("<%=request.getParameter("soft_jianjie")%>");
+	var time_name2 = decodeURI("<%=request.getParameter("time_name2")%>");
+	var softUrl = decodeURI("<%=request.getParameter("softUrl")%>");
+	var soft_pw = decodeURI("<%=request.getParameter("soft_pw")%>");
+	$("#softName").val(softName);
+	
+	$("#softType option").each(function (){
+	    if($(this).text()==softType){   
+	    $("#softType").val($(this).val())  
+	 }});  
+	
+	$("#result1").val(sub(time_name1));
+	$("#uploadFile_img1").attr('src',time_name1); 
+	ico_flag = true;
+	$("#result2").val(sub(time_name2));
+	$("#uploadFile_img2").attr('src',time_name2); 
+	jpg_flag = true;
+	$("#softContent").val(soft_jianjie);
+	$("#softUrl").val(softUrl);
+	$("#softPw").val(soft_pw);
+	
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
@@ -131,12 +158,16 @@ $(function(){
 	        async : false, 
 	        cache : false, 
 	        url : "${pageContext.request.contextPath}/checkPlaySoftName.do",  
-	        success : function(data) { 
-	            if(data){  
-	                flagTemp = true;  
-	            }else{  
-	                flagTemp = false;  
-	            }  
+	        success : function(data) {  
+	            if(softName == softName_df){
+	        		flagTemp = true;
+	        	}else{
+	        		if(data){  
+		                flagTemp = true;  
+		            }else{  
+		                flagTemp = false;  
+		            } 
+	        	}
 	        },  
 	        error : function() {  
 	            alertMsg("服务器出错");  
@@ -218,15 +249,18 @@ $(function(){
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$.post("${pageContext.request.contextPath}/addPlaySoft.do",{softName:$("#softName").val(),softType:$('#softType option:selected').text(),softImage:time_name1,soft_to_title:$('#softType option:selected').val(),soft_jietu:time_name2,softUrl:$("#softUrl").val(),soft_jianjie:$('#softContent').val(),soft_pw:$('#softPw').val(),soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data){
+			$.post("${pageContext.request.contextPath}/updatePlaySoft.do",{id:id,softName:$("#softName").val(),softType:$('#softType option:selected').text(),softImage:sub(time_name1),soft_to_title:$('#softType option:selected').val(),soft_jietu:sub(time_name2),softUrl:$("#softUrl").val(),soft_jianjie:$('#softContent').val(),soft_pw:$('#softPw').val(),soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data){
 				if(data){
-					parent.layer.msg('添加成功',{time: 500, icon: 1},function(){
+					parent.layer.msg(
+							'修改成功',{time: 500, icon: 1},function(){
 						window.parent.location="${pageContext.request.contextPath}/admin/playSoft_list.jsp";
 						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 	                    parent.layer.close(index);
 					});
+					
+                    
 				}else{
-					parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
+					parent.layer.msg('修改失败',{time: 300}, {icon: 2},function(){
 						window.parent.location="${pageContext.request.contextPath}/admin/playSoft_list.jsp";
 						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 	                    parent.layer.close(index);
@@ -236,6 +270,44 @@ $(function(){
 		}
 	});
 });
+//绑定学院
+function college(){
+	var selDom = $("#softCollege");
+	selDom.empty();
+	selDom.append("<option value='0'>请选择学院</option>");
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getStudySoftB.do",function(data){
+ 		$.each(data,function(i,e){
+ 			selDom.append("<option value="+data[i].id+">"+data[i].titleBName+"</option>");
+ 		});
+ 	});
+}
+//绑定专业
+$("#softCollege").change(function(){
+	var college_selected_index = $("#softCollege").find("option:selected").val();
+	var selDom = $("#softMajor");
+	selDom.empty();
+	selDom.append("<option value='0'>请选择专业</option>");
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getStudySoftS.do",{titleS_to_titleB:college_selected_index},function(data){
+ 		$.each(data,function(i,e){
+ 			selDom.append("<option value="+data[i].id+">"+data[i].titleSName+"</option>");
+ 		});
+ 	});
+});
+function sub(s){
+	var length = s.length;
+	var ss = "";
+	for(var i = 0; i < length; i ++){
+		
+		if(s.substring(s.length-i-1,s.length-i) != "/"){
+			ss = s.substring(s.length-i-1,s.length-i) + ss;
+		}else{
+			return ss;
+		}
+	}
+	
+}
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

@@ -13,4 +13,8 @@ public interface PlaySoftMapper {
 	public ArrayList<PlaySoft> getAllPlaySoft();
 	public ArrayList<PlaySoft> checkPlaySoftName(String softName);
 	public void addPlaySoft(PlaySoft playSoft);
+	public void updatePlaySoft(PlaySoft playSoft);
+	public void deletePlaySoft(int id);
+	
+	
 }

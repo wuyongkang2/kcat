@@ -29,5 +29,13 @@
 	<insert id="addPlaySoft" parameterType="model.PlaySoft">
 		insert into ylSoftware (softName,softType,softImage,soft_to_title,soft_jianjie,soft_jietu,softUrl,soft_date,soft_version,soft_pw) values (#{softName},#{softType},#{softImage},#{soft_to_title},#{soft_jianjie},#{soft_jietu},#{softUrl},#{soft_date},#{soft_version},#{soft_pw})   
 	</insert>
+	
+	<select id="deletePlaySoft" parameterType="int" resultType="model.PlaySoft">
+		delete from ylSoftware where id=#{id}
+	</select>
+	
+	<select id="updatePlaySoft" parameterType="model.PlaySoft" resultType="model.PlaySoft">
+		update ylSoftware set softName=#{softName},softType=#{softType},softImage=#{softImage},soft_to_title=#{soft_to_title},soft_jianjie=#{soft_jianjie},soft_jietu=#{soft_jietu},softUrl=#{softUrl},soft_date=#{soft_date},soft_version=#{soft_version},soft_pw=#{soft_pw} where id=#{id}
+	</select>
 
 </mapper>
