@@ -142,12 +142,12 @@ function soft_edit(object){
 	var id = path.eq(1).text();
 	var softName = encodeURI(encodeURI(path.eq(2).text()));
 	var softType = encodeURI(encodeURI(path.eq(3).text()));
-	var time_name1 = encodeURI(encodeURI(path.eq(4).children()[0].src));
+	var ico = encodeURI(encodeURI(path.eq(4).children()[0].src));
 	var soft_jianjie = encodeURI(encodeURI(path.eq(5).children()[0].title));
-	var time_name2 = encodeURI(encodeURI(path.eq(6).children().children()[0].src));
+	var jpg = encodeURI(encodeURI(path.eq(6).children().children()[0].src));
 	var softUrl = encodeURI(encodeURI(path.eq(7).children()[0].title));
 	var soft_pw = encodeURI(encodeURI(path.eq(8).text()));
-	member_edit('编辑软件','playSoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&time_name1='+time_name1+'&soft_jianjie='+soft_jianjie+'&time_name2='+time_name2+'&softUrl='+softUrl+'&soft_pw='+soft_pw+'','800','460');
+	member_edit('编辑软件','playSoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&ico='+ico+'&soft_jianjie='+soft_jianjie+'&jpg='+jpg+'&softUrl='+softUrl+'&soft_pw='+soft_pw+'','800','460');
 }
 /*软件-编辑*/
 function member_edit(title,url,w,h){

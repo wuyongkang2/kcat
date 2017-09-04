@@ -75,7 +75,7 @@ $(function(){
 			var datu_new = "'"+data[i].soft_jietu+"'";
 			html+="<td><a onclick='soft_jianjie("+"$(this)"+")' title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
 
-			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a onclick='soft_video("+"$(this)"+")' title='http://op86rjyxw.bkt.clouddn.com/video/"+data[i].soft_video+"' style='text-decoration:none;'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
+			html+="<td><a style='text-decoration:none;' href='http://kcat-1251241286.cosgz.myqcloud.com/"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe640;</i></a></td><td><a onclick='soft_video("+"$(this)"+")' title='http://op86rjyxw.bkt.clouddn.com/"+data[i].soft_video+"' style='text-decoration:none;'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
 			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='soft_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
@@ -142,12 +142,12 @@ function soft_edit(object){
 	var id = path.eq(1).text();
 	var softName = encodeURI(encodeURI(path.eq(2).text()));
 	var softType = encodeURI(encodeURI(path.eq(3).text()));
-	var time_name1 = encodeURI(encodeURI(path.eq(4).children()[0].src));
+	var ico = encodeURI(encodeURI(path.eq(4).children()[0].src));
 	var soft_jianjie = encodeURI(encodeURI(path.eq(5).children()[0].title));
-	var time_name2 = encodeURI(encodeURI(path.eq(6).children().children()[0].src));
-	var time_name3 = encodeURI(encodeURI(path.eq(7).children()[0].href));
-	var videoName = encodeURI(encodeURI(path.eq(8).children()[0].title));
-	member_edit('编辑软件','studySoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&time_name1='+time_name1+'&soft_jianjie='+soft_jianjie+'&time_name2='+time_name2+'&time_name3='+time_name3+'&videoName='+videoName+'','800','460');
+	var jpg = encodeURI(encodeURI(path.eq(6).children().children()[0].src));
+	var soft = encodeURI(encodeURI(path.eq(7).children()[0].href));
+	var video_Name = encodeURI(encodeURI(path.eq(8).children()[0].title));
+	member_edit('编辑软件','studySoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&ico='+ico+'&soft_jianjie='+soft_jianjie+'&jpg='+jpg+'&soft='+soft+'&video_Name='+video_Name+'','800','460');
 }
 /*软件-编辑*/
 function member_edit(title,url,w,h){

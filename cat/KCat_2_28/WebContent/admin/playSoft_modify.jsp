@@ -113,9 +113,9 @@ $(function(){
 	var softName = decodeURI("<%=request.getParameter("softName")%>");
 	var softName_df = decodeURI("<%=request.getParameter("softName")%>");
 	var softType = decodeURI("<%=request.getParameter("softType")%>");
-	var time_name1 = decodeURI("<%=request.getParameter("time_name1")%>");
+	var ico = decodeURI("<%=request.getParameter("ico")%>");
 	var soft_jianjie = decodeURI("<%=request.getParameter("soft_jianjie")%>");
-	var time_name2 = decodeURI("<%=request.getParameter("time_name2")%>");
+	var jpg = decodeURI("<%=request.getParameter("jpg")%>");
 	var softUrl = decodeURI("<%=request.getParameter("softUrl")%>");
 	var soft_pw = decodeURI("<%=request.getParameter("soft_pw")%>");
 	$("#softName").val(softName);
@@ -124,12 +124,13 @@ $(function(){
 	    if($(this).text()==softType){   
 	    $("#softType").val($(this).val())  
 	 }});  
-	
-	$("#result1").val(sub(time_name1));
-	$("#uploadFile_img1").attr('src',time_name1); 
+	time_name1 = sub(ico);
+	$("#result1").val(sub(ico));
+	$("#uploadFile_img1").attr('src',ico); 
 	ico_flag = true;
-	$("#result2").val(sub(time_name2));
-	$("#uploadFile_img2").attr('src',time_name2); 
+	time_name2 = sub(jpg);
+	$("#result2").val(sub(jpg));
+	$("#uploadFile_img2").attr('src',jpg); 
 	jpg_flag = true;
 	$("#softContent").val(soft_jianjie);
 	$("#softUrl").val(softUrl);
@@ -249,7 +250,7 @@ $(function(){
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$.post("${pageContext.request.contextPath}/updatePlaySoft.do",{id:id,softName:$("#softName").val(),softType:$('#softType option:selected').text(),softImage:sub(time_name1),soft_to_title:$('#softType option:selected').val(),soft_jietu:sub(time_name2),softUrl:$("#softUrl").val(),soft_jianjie:$('#softContent').val(),soft_pw:$('#softPw').val(),soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data){
+			$.post("${pageContext.request.contextPath}/updatePlaySoft.do",{id:id,softName:$("#softName").val(),softType:$('#softType option:selected').text(),softImage:time_name1,soft_to_title:$('#softType option:selected').val(),soft_jietu:time_name2,softUrl:$("#softUrl").val(),soft_jianjie:$('#softContent').val(),soft_pw:$('#softPw').val(),soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data){
 				if(data){
 					parent.layer.msg(
 							'修改成功',{time: 500, icon: 1},function(){
