@@ -168,7 +168,7 @@ $(function(){
 	$("#uploadFile_soft").attr('href',soft); 
 	soft_flag = true;
 	$("#softContent").val(soft_jianjie);
-	videoName = video_Name;
+	videoName = sub(video_Name);
 	
 	
 	
