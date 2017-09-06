@@ -11,5 +11,8 @@
 	<select id="getHomework_All" parameterType="int" resultType="model.Homework">
 		SELECT * FROM zuoyefuzhu WHERE cid=#{cid} ORDER BY cid ASC , id DESC
 	</select>
+	<select id="getAllHomework" resultType="model.Homework">
+		SELECT * FROM zuoyefuzhu
+	</select>
 	
 </mapper>

@@ -22,16 +22,4 @@
 	<div class="easyui-panel" style="padding:5px">
 		<ul id="tt" class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,checkbox:true"></ul>
 	</div>
-	<script type="text/javascript">
-		function getChecked(){
-			var nodes = $('#tt').tree('getChecked');
-			var s = '';
-			for(var i=0; i<nodes.length; i++){
-				if (s != '') s += ',';
-				s += nodes[i].text;
-			}
-			alert(s);
-		}
-	</script>
-</body>
-</html>
+	                                                                                       

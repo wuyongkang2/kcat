@@ -110,11 +110,7 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 作业辅助<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="studySoft_list.jsp" data-title="专业软件" href="javascript:void(0)">专业软件</a></li>
-					<li><a data-href="playSoft_list.jsp" data-title="娱乐软件" href="javascript:void(0)">娱乐软件</a></li>
-					<li><a data-href="homework_list.jsp" data-title="作业辅助" href="javascript:void(0)">作业辅助</a></li>
-					<li><a data-href="bangbangbang_list.jsp" data-title="帮帮帮" href="javascript:void(0)">帮帮帮</a></li>
-					<li><a data-href="tel_list.jsp" data-title="校园电话" href="javascript:void(0)">校园电话</a></li>
+					<li><a data-href="homework_list.jsp" data-title="查看列表" href="javascript:void(0)">查看列表</a></li>
 				</ul>
 			</dd>
 		</dl>
