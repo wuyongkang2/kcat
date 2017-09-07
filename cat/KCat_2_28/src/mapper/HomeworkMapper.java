@@ -8,4 +8,5 @@ public interface HomeworkMapper {
 	public int getCid();
 	public ArrayList<Homework> getHomework(int cid);
 	public ArrayList<Homework> getHomework_All(int cid);
+	public ArrayList<Homework> getAllHomework();
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import constan.Global;
 import dao.HomeworkDAO;
@@ -52,7 +53,7 @@ public class HomeworkController {
 		return;    //跳转到bang.jsp页面，jsp已经补全
 	}
 	
-	//获取指定分类的所有字段
+		//获取指定分类的所有字段
 		@RequestMapping("/getHomework_All.do")
 		public void getHomework_All(Homework homework,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 			
@@ -62,4 +63,14 @@ public class HomeworkController {
 			request.getRequestDispatcher("/visitor/zyfz_cg.jsp").forward(request, response);
 			return;    //跳转到bang.jsp页面，jsp已经补全
 		}
+		
+	
+		@RequestMapping("/getAllHomework.do")
+		@ResponseBody
+		public ArrayList<Homework> getAllHomework(){
+			ArrayList<Homework> list=homeworkDAO.getAllHomework();
+			return list;
+		}
+		
+		
 }

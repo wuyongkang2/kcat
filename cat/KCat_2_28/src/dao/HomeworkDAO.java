@@ -38,4 +38,9 @@ public class HomeworkDAO {
 		ArrayList<Homework> list=homeworkMapper.getHomework_All(cid);
 		return list;
 	}
+	
+	public ArrayList<Homework> getAllHomework(){
+		return homeworkMapper.getAllHomework();
+		
+	}
 }

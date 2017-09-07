@@ -24,7 +24,7 @@
 <title>KCat-Admin</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 娱乐软件 <span class="c-gray en">&gt;</span> 软件列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 作业辅助 <span class="c-gray en">&gt;</span> 查看列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="soft_add('添加软件','playSoft_add.jsp','800','460')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a> </span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
@@ -33,12 +33,10 @@
 				<tr class="text-c">
 					<th width="40"><input name="" type="checkbox" value=""></th>
 					<th width="50">ID</th>
-					<th width="150">名字</th>
-					<th width="50">类型</th>
-					<th width="100">图标</th>
-					<th width="150">软件简介</th>
-					<th width="150">大图</th>
-					<th width="50">云盘链接</th>
+					<th width="150">分类</th>
+					<th width="50">标题</th>
+					<th width="100">图片</th>
+					<th width="50">链接</th>
 					<th width="70">密码</th>
 					<th width="80">操作</th>
 				</tr>
@@ -65,17 +63,10 @@
 $(function(){
 	var html="";
 	$.ajaxSetup({async:false});
- 	$.post("${pageContext.request.contextPath}/getAllPlaySoft.do",function(data){
+ 	$.post("${pageContext.request.contextPath}/getAllHomework.do",function(data){
  		$("#soft_count").text(data.length);
 		$.each(data,function(i,e){
-			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].softName+"</u></td>"
-			html+="<td>"+data[i].softType+"</td><td><img style='width:60px;height:60px;border-radius:100px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].softImage+"'</td>"
-			var jianjie = data[i].soft_jianjie.substring(0,30)+"...";
-			data[i].soft_jianjie = data[i].soft_jianjie.replace(/ /g,'_');
-			var datu_new = "'"+data[i].soft_jietu+"'";
-			html+="<td><a onclick='soft_jianjie("+"$(this)"+")' title="+data[i].soft_jianjie+">"+jianjie+"</a></td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].soft_jietu+"'</a></td>"
-
-			html+="<td><a onclick='yunpan("+"$(this)"+")' style='text-decoration:none;' title='"+data[i].softUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6b1;</i></a></td><td>"+data[i].soft_pw+"</td>"
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].category+"</td><td>"+data[i].title+"</td><td>"+data[i].images+"</td><td>"+data[i].link+"</td><td>"+data[i].pw+"</td>"
 			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='soft_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
@@ -86,51 +77,10 @@ $(function(){
 		"bStateSave": true,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,4,5,6,7,8,9]}// 制定列不参与排序
+		  {"orderable":false,"aTargets":[0,2,3,4,5]}// 制定列不参与排序
 		]
 	});
 });
-/*大图放大显示*/
-function datu(object){
-	var datu_src = "datu.jsp?src="+object[0].getElementsByTagName('img')[0].src;
-	var path = "datu.jsp?src=";
-	//iframe层-多媒体
-	layer.open({
-	  type: 2,
-	  title: false,
-	  area: ['621px', '390px'],
-	  shade: 0.8,
-	  closeBtn: 0,
-	  shadeClose: true,
-	  content: datu_src
-	});
-	
-}
-/*软件简介详细显示*/
-function soft_jianjie(object){
-	layer.open({
-		type: 1,
-		area: ['300px','200px'],
-		fix: false, //不固定
-		maxmin: true,
-		shade:0.4,
-		title: '软件简介',
-		content: object[0].title
-	});
-}
-/*视频播放*/
-function yunpan(object){
-	//iframe层-多媒体
-	layer.open({
-	  type: 2,
-	  title: false,
-	  area: ['900px', '450px'],
-	  shade: 0.8,
-	  closeBtn: 0,
-	  shadeClose: true,
-	  content: object[0].title
-	});
-}
 /*软件-添加*/
 function soft_add(title,url,w,h){
 	layer_show(title,url,w,h);
