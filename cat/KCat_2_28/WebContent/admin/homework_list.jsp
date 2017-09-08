@@ -66,7 +66,7 @@ $(function(){
  	$.post("${pageContext.request.contextPath}/getAllHomework.do",function(data){
  		$("#soft_count").text(data.length);
 		$.each(data,function(i,e){
-			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].category+"</td><td>"+data[i].title+"</td><td>"+data[i].images+"</td><td>"+data[i].link+"</td><td>"+data[i].pw+"</td>"
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].category+"</td><td>"+data[i].title+"</td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].images+"'</a></td><td><a onclick='yunpan("+"$(this)"+")' style='text-decoration:none;' title='"+data[i].link+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6b1;</i></a></td><td>"+data[i].pw+"</td>"
 			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='soft_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
@@ -81,6 +81,34 @@ $(function(){
 		]
 	});
 });
+/*大图放大显示*/
+function datu(object){
+	var datu_src = "datu.jsp?src="+object[0].getElementsByTagName('img')[0].src;
+	var path = "datu.jsp?src=";
+	//iframe层-多媒体
+	layer.open({
+	  type: 2,
+	  title: false,
+	  area: ['621px', '390px'],
+	  shade: 0.8,
+	  closeBtn: 0,
+	  shadeClose: true,
+	  content: datu_src
+	});
+}
+/*视频播放*/
+function yunpan(object){
+	//iframe层-多媒体
+	layer.open({
+	  type: 2,
+	  title: false,
+	  area: ['900px', '450px'],
+	  shade: 0.8,
+	  closeBtn: 0,
+	  shadeClose: true,
+	  content: object[0].title
+	});
+}
 /*软件-添加*/
 function soft_add(title,url,w,h){
 	layer_show(title,url,w,h);
@@ -165,7 +193,6 @@ function datadel(){
 		}
 	});
 }
-
 </script>
 </body>
 </html>
