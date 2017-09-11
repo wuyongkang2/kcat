@@ -9,4 +9,7 @@ public interface HomeworkMapper {
 	public ArrayList<Homework> getHomework(int cid);
 	public ArrayList<Homework> getHomework_All(int cid);
 	public ArrayList<Homework> getAllHomework();
+	public void addHomework(Homework homework);
+	public void deleteHomework(int id);
+	public void updateHomework(Homework homework);
 }

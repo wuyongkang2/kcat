@@ -15,4 +15,17 @@
 		SELECT * FROM zuoyefuzhu
 	</select>
 	
+	<insert id="addHomework" parameterType="model.Homework">
+		insert into zuoyefuzhu (cid,category,title,images,link,pw) values (#{cid},#{category},#{title},#{images},#{link},#{pw})   
+	</insert>
+	
+	<select id="deleteHomework" parameterType="int" resultType="model.Homework">
+		delete from zuoyefuzhu where id=#{id}
+	</select>
+	
+	<select id="updateHomework" parameterType="model.Homework" resultType="model.Homework">
+		update zuoyefuzhu set cid=#{cid},category=#{category},title=#{title},images=#{images},link=#{link},pw=#{pw} where id=#{id}
+	</select>
+	
+	
 </mapper>

@@ -43,4 +43,16 @@ public class HomeworkDAO {
 		return homeworkMapper.getAllHomework();
 		
 	}
+	
+	public void addHomework(Homework homework){
+		homeworkMapper.addHomework(homework);
+	}
+	
+	public void deleteHomework(int id){
+		homeworkMapper.deleteHomework(id);
+	}
+	
+	public void updateHomework(Homework homework){
+		homeworkMapper.updateHomework(homework);
+	}
 }

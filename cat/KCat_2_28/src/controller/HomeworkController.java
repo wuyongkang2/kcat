@@ -72,5 +72,26 @@ public class HomeworkController {
 			return list;
 		}
 		
+		@RequestMapping("/addHomework.do")
+		@ResponseBody
+		public boolean addHomework(Homework homework){
+			homeworkDAO.addHomework(homework);;
+			return true;
+		}
+		
+		@RequestMapping("/deleteHomework.do")
+		@ResponseBody
+		public boolean deleteHomework(int id){
+			homeworkDAO.deleteHomework(id);;
+			return true;
+		}
+		
+		@RequestMapping("/updateHomework.do")
+		@ResponseBody
+		public boolean updateHomework(Homework homework){
+			homeworkDAO.updateHomework(homework);;
+			return true;
+		}
+		
 		
 }

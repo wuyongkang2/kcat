@@ -26,7 +26,7 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 作业辅助 <span class="c-gray en">&gt;</span> 查看列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="soft_add('添加','playSoft_add.jsp','800','460')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a> </span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="soft_add('添加','homework_add.jsp','800','460')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a> </span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
@@ -36,7 +36,7 @@
 					<th width="150">分类</th>
 					<th width="50">标题</th>
 					<th width="100">图片</th>
-					<th width="50">链接</th>
+					<th width="50">云盘链接</th>
 					<th width="70">密码</th>
 					<th width="80">操作</th>
 				</tr>
@@ -118,14 +118,12 @@ function soft_edit(object){
 	
 	var path = object.parent().parent().children();
 	var id = path.eq(1).text();
-	var softName = encodeURI(encodeURI(path.eq(2).text()));
-	var softType = encodeURI(encodeURI(path.eq(3).text()));
-	var ico = encodeURI(encodeURI(path.eq(4).children()[0].src));
-	var soft_jianjie = encodeURI(encodeURI(path.eq(5).children()[0].title));
-	var jpg = encodeURI(encodeURI(path.eq(6).children().children()[0].src));
-	var softUrl = encodeURI(encodeURI(path.eq(7).children()[0].title));
-	var soft_pw = encodeURI(encodeURI(path.eq(8).text()));
-	member_edit('编辑软件','playSoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&ico='+ico+'&soft_jianjie='+soft_jianjie+'&jpg='+jpg+'&softUrl='+softUrl+'&soft_pw='+soft_pw+'','800','460');
+	var category = encodeURI(encodeURI(path.eq(2).text()));
+	var title = encodeURI(encodeURI(path.eq(3).text()));
+	var images = encodeURI(encodeURI(path.eq(4).children().children()[0].src));
+	var link = encodeURI(encodeURI(path.eq(5).children()[0].title));
+	var pw = encodeURI(encodeURI(path.eq(6).text()));
+	member_edit('编辑','homework_modify.jsp?id='+id+'&category='+category+'&title='+title+'&images='+images+'&link='+link+'&pw='+pw+'','800','460');
 }
 /*软件-编辑*/
 function member_edit(title,url,w,h){
@@ -148,7 +146,7 @@ function member_del(id){
 	        },  
 	        async : false, 
 	        cache : false, 
-	        url : "${pageContext.request.contextPath}/deletePlaySoft.do",  
+	        url : "${pageContext.request.contextPath}/deleteHomework.do",  
 			success: function(data){
 				layer.msg('已删除!',{icon:1,time:1000});
 				location.replace(location.href);
@@ -169,7 +167,7 @@ function datadel(){
 			num++;
 		}
 	}
-	layer.confirm('您当前选中了'+num+'个软件，确认要全部删除吗？',function(index){
+	layer.confirm('您当前选中了'+num+'个信息，确认要全部删除吗？',function(index){
 		for(var i = 0; i < user_checked.length; i++){
 			if(user_checked[i].getElementsByTagName("td")[1] !=undefined){
 				$.ajax({
@@ -180,7 +178,7 @@ function datadel(){
 			        },  
 			        async : false, 
 			        cache : false, 
-			        url : "${pageContext.request.contextPath}/deletePlaySoft.do",  
+			        url : "${pageContext.request.contextPath}/deleteHomework.do",  
 					success: function(data){
 						layer.msg('已删除!',{icon:1,time:1000});
 						location.replace(location.href);
