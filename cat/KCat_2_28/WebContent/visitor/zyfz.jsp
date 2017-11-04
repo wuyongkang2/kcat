@@ -12,31 +12,8 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/jquery.js"></script>
        	<script type="text/javascript" src="${pageContext.request.contextPath}/layer/layer.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/clipboard.min.js"></script>
-        <script type="text/javascript">
-			$(function(){
-				
-				
-				$('.url').on('click',function(){
-					var url=$(this).find(".lianjie").attr("value");   //获取下载链接
-					var pw=$(this).find(".mima").attr("value");   //获取密码
-					var clipboard = new Clipboard('.url');
-					layer.open({
-					  type: 2 //Page层类型
-					  ,area: ['1200px', '600px']
-					  ,title: '百度云下载'
-					  ,shade: 0.6 //遮罩透明度
-					  ,maxmin: true //允许全屏最小化
-					  ,anim: 1 //0-6的动画形式，-1不开启
-					  ,content: [url,false]
-					});
-					layer.confirm('提取密码：'+pw, {
-					  btn: ['复制'] //按钮
-					}, function(){
-					  layer.msg('复制成功', {icon: 1});
-					});
-				});
-			});
-		</script>
+		<script type="text/javascript" src="http://lib.h-ui.net/jquery/1.9.1/jquery.min.js"></script> 
+		<script type="text/javascript" src="http://lib.h-ui.net/jquery.SuperSlide/2.1.1/jquery.SuperSlide.min.js"></script>
 </head>
 <body>
 
@@ -49,58 +26,96 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/script/e.js"></script>
 
 <!--banner开始  -->
-<div class="banner" id="banner">
-	<div class="banner_cont effect_bd">
-    	<div class="tempWrap">
-      		<ul>
-        		<li class="clone" style="float: left; width: 100%;"><a style="display:block;background:url(${pageContext.request.contextPath}/images/zyfz/02.jpg) 50% 50% no-repeat;"></a></li>
-        		<li style="float: left; width: 100%;"><a  style="display:block;background:url(${pageContext.request.contextPath}/images/zyfz/01.jpg) center center no-repeat"></a></li>
-        		<li style="float: left; width: 100%;"><a  style="display:block;background:url(${pageContext.request.contextPath}/images/zyfz/03.jpg) center center no-repeat"></a></li>
-        		<li style="float: left; width: 100%;"><a  style="display:block;background:url(${pageContext.request.contextPath}/images/zyfz/01.jpg) center center no-repeat"></a></li>
-      		</ul>
-    	</div>
-  	</div>
-	<div class="btn_tit effect_hd" style="display: block;"> <span class=""></span><span class=""></span><span class=""></span><span class="on"></span> </div>
-	<div class="fy_box"> 
-    <!--左右翻页按钮，可以不用--> 
-    <a class="prev" href="javascript:void(0)" style="display: inline;"><img src="${pageContext.request.contextPath}/images/zyfz/01.png" /></a> <a class="next" href="javascript:void(0)" style="display: inline;"><img src="${pageContext.request.contextPath}/images/zyfz/02.png" /></a> </div>
+<div class="fullSlide" style="margin-top:58px;">
+	<div class="bd">
+
+	</div>
+	<div class="hd">
+		<ul></ul>
+	</div>
+	<span class="prev"></span> <span class="next"></span>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/script/banner.js"></script>
 <!-- banner结束  --> 
 
 <!-- 作业辅助开始 -->
-<c:set value="0" var="a"/><!-- 定义一个变量a，初次赋值为0 -->
-<c:forEach items="${HOMEWORK_DATA}" var="d">
+<div class="data">
 
-<c:if test="${d.cid > a}"><!-- 判断cid的值比a大才执行，为了实现分类名字只输出一次 -->
-	<div class="blank10"></div>
-	<div class="index_m index_new">
-		<div class="wrap">
-		<h3 class="index_title type_3_title">${d.category}&nbsp;&nbsp;&nbsp;<a href="getHomework_All.do?cid=${d.cid}">&gt;&gt;查看更多</h3></a>
-			<div class="blank0"></div>
-			<div id="pin_box">
-		<c:set value="${d.cid}" var="a" /><!-- 输完一次分类名就把当前的cid赋值给a -->
+</div>
 
-</c:if>
-			
-			
-     		<div class="nav_item nav_item2">
-     		<a data-clipboard-text=${d.pw} class="url">
-      			<div class="project_image"> <img src="images/zyfz/${d.images}">
-          		<div class="blank0"></div>
-        			</div>
-        			<div class="project_text">
-        			<span class="project_title">${d.title }</span>
-          			<div class="project_schedule">
-            				<div class="blank10"></div>
-            				<div class="blank0"></div>
-            				<p class="lianjie" hidden="hidden" value=${d.link }></p>
-							<p class="mima" hidden="hidden" value=${d.pw }></p>
-          			</div>
-       				</div>
-      			</a>
-      		</div>
-  </c:forEach>
+<script type="text/javascript">
+var html="";
+$.ajaxSetup({async:false});
+
+html="<ul>";
+$.post("${pageContext.request.contextPath}/getHomework_b.do",function(data){
+	$.each(data,function(i,e){	
+		html+="<li style='background-repeat:no-repeat;background-position:center;background-size: auto 100%;' _src='url(http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].jpg+")'></li>";
+	});
+	html+="</ul>";
+	$(".bd").append(html);
+});
+
+	
+jQuery(".fullSlide").hover(function(){
+	jQuery(this).find(".prev,.next").stop(true, true).fadeTo("show", 0.5)}, function() {
+	jQuery(this).find(".prev,.next").fadeOut()
+});
+jQuery(".fullSlide").slide({
+	titCell : ".hd ul",
+	mainCell : ".bd ul",
+	effect : "fold",
+	autoPlay : true,
+	autoPage : true,
+	trigger : "click",
+	startFun : function(i) {
+		var curLi = jQuery(".fullSlide .bd li").eq(i);
+		if (!!curLi.attr("_src")) {
+			curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
+		}1
+	}
+});
+$(function(){
+	html="";
+	$.ajaxSetup({async:false});
+	$.post("${pageContext.request.contextPath}/getHomework_Type.do",function(data){  //循环小标题
+		$.each(data,function(i,f){
+			html+="<div class='blank10'></div><div class='index_m index_new'><div class='wrap'><h3 class='index_title type_3_title'>"+data[i].category+"&nbsp;&nbsp;&nbsp;<a href='getHomework_All.do?cid="+data[i].id+"'>&gt;&gt;查看更多</h3></a><div class='blank0'></div><div id='pin_box'>";
+			$.post("${pageContext.request.contextPath}/getHomework.do",{cid:data[i].id},function(data_2){  //循环软件内容
+				$.each(data_2,function(j,g){
+					html+="<div class='nav_item nav_item2'><a data-clipboard-text="+data_2[j].pw+" class='url'><div class='project_image'> <img src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data_2[j].images+"'><div class='blank0'></div></div><div class='project_text'><span class='project_title'>"+data_2[j].title+"</span><div class='project_schedule'><div class='blank10'></div><div class='blank0'></div><p class='lianjie' hidden='hidden' value="+data_2[j].link+"></p><p class='mima' hidden='hidden' value="+data_2[j].pw+"></p></div></div></a></div>";
+				});
+			});
+			html+="</div>"
+		});
+	$(".data").append(html);
+	});
+});
+
+$(function(){
+	$('.url').on('click',function(){
+		var url=$(this).find(".lianjie").attr("value");   //获取下载链接
+		var pw=$(this).find(".mima").attr("value");   //获取密码
+		var clipboard = new Clipboard('.url');
+		layer.open({
+		  type: 2 //Page层类型
+		  ,area: ['1200px', '600px']
+		  ,title: '百度云下载'
+		  ,shade: 0.6 //遮罩透明度
+		  ,maxmin: true //允许全屏最小化
+		  ,anim: 1 //0-6的动画形式，-1不开启
+		  ,content: [url,false]
+		});
+		layer.confirm('提取密码：'+pw, {
+		  btn: ['复制'] //按钮
+		}, function(){
+		  layer.msg('复制成功', {icon: 1});
+		});
+	});
+});
+</script>
+
+
   <!--作业辅助结束--> 
   
 <!--尾部部分start-->

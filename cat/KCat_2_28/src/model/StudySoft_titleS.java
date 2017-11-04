@@ -1,9 +1,10 @@
 package model;
 
 public class StudySoft_titleS {
-	  private int id;
-	  private String titleSName;
-	  private int titleS_to_titleB;
+	private int id;
+	private String titleSName;
+	private String titleBName;
+	private int titleS_to_titleB;
 	public int getId() {
 		return id;
 	}
@@ -16,6 +17,12 @@ public class StudySoft_titleS {
 	public void setTitleSName(String titleSName) {
 		this.titleSName = titleSName;
 	}
+	public String getTitleBName() {
+		return titleBName;
+	}
+	public void setTitleBName(String titleBName) {
+		this.titleBName = titleBName;
+	}
 	public int getTitleS_to_titleB() {
 		return titleS_to_titleB;
 	}
@@ -24,8 +31,9 @@ public class StudySoft_titleS {
 	}
 	@Override
 	public String toString() {
-		return "StudySoft_titleS [id=" + id + ", titleSName=" + titleSName + ", titleS_to_titleB=" + titleS_to_titleB
-				+ "]";
+		return "StudySoft_titleS [id=" + id + ", titleSName=" + titleSName + ", titleBName=" + titleBName
+				+ ", titleS_to_titleB=" + titleS_to_titleB + "]";
 	}
+	  
 	  
 }

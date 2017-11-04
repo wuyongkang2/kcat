@@ -62,14 +62,14 @@
 	<div class="blank10"></div>
 	<div class="index_m index_new">
 		<div class="wrap">
-		<h3 class="index_title type_3_title">${d.category}&nbsp;&nbsp;&nbsp;<a href="getHomework.do">&lt;&lt;返回</h3></a>
+		<h3 class="index_title type_3_title">${d.category}&nbsp;&nbsp;&nbsp;<a href="homework.do">&lt;&lt;返回</h3></a>
 			<div class="blank0"></div>
 			<div id="pin_box">
 		<c:set value="${d.cid}" var="a" /><!-- 输完一次分类名就把当前的cid赋值给a -->
 </c:if>
         		<div class="nav_item nav_item2">
         			<a data-clipboard-text=${d.pw} class="url">
-	        			<div class="project_image"> <img src="images/zyfz/${d.images}">
+	        			<div class="project_image"> <img src="http://kcat-1251241286.cosgz.myqcloud.com/images/${d.images}">
 	            		<div class="blank0"></div>
 	          			</div>
 	          			<div class="project_text">

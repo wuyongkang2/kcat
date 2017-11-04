@@ -5,5 +5,39 @@
 	<select id="getTel" resultType="model.Tel">
 		SELECT * FROM xiaoyuandianhua ORDER BY cid ASC
 	</select>
+	<select id="getAllTel" resultType="model.Tel">
+		SELECT * from xiaoyuandianhua 
+	</select>
+	<insert id="addTel" parameterType="model.Tel">
+		insert into xiaoyuandianhua (cid,category,name,images,tel) values (#{cid},#{category},#{name},#{images},#{tel})   
+	</insert>
+	
+	<select id="deleteTel" parameterType="int" resultType="model.Tel">
+		delete from xiaoyuandianhua where id=#{id}
+	</select>
+	
+	<select id="updateTel" parameterType="model.Tel" resultType="model.Tel">
+		update xiaoyuandianhua set cid=#{cid},category=#{category},name=#{name},images=#{images},tel=#{tel} where id=#{id}
+	</select>
+	
+	<select id="getTel_Type" resultType="model.Tel">
+		SELECT * FROM xiaoyuandianhua_cg order by id asc
+	</select>
+	
+	<select id="addTel_Type" parameterType="model.Tel" resultType="model.Tel">
+		insert into xiaoyuandianhua_cg (category) VALUES (#{category})
+	</select>
+	
+	<select id="delTel_Type" parameterType="model.Tel" resultType="model.Tel">
+		delete from xiaoyuandianhua_cg where id=#{id}
+	</select>
+	
+	<select id="updateTel_Type" parameterType="model.Tel" resultType="model.Tel">
+		update xiaoyuandianhua_cg set category=#{0} where id=#{1}
+	</select>
+	
+	<select id="getTel_Type_title" parameterType="model.Tel" resultType="model.Tel">
+		SELECT id FROM xiaoyuandianhua where cid = #{cid}
+	</select>
 	
 </mapper>

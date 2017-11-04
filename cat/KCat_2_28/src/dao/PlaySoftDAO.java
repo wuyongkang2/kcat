@@ -66,4 +66,20 @@ public class PlaySoftDAO {
 	public void deletePlaySoft(int id){
 		playSoftMapper.deletePlaySoft(id);
 	}
+	
+	public void addPlaysoft_Type(String titleName){
+		playSoftMapper.addPlaysoft_Type(titleName);
+	}
+	public void delPlaysoft_Type(int id){
+		playSoftMapper.delPlaysoft_Type(id);
+	}
+	public void updatePlaysoft_Type(String titleName,int id){
+		playSoftMapper.updatePlaysoft_Type(titleName, id);
+	}
+	public ArrayList<PlaySoft_title> getPlaysoft_Type(){
+		return playSoftMapper.getPlaysoft_Type();
+	}
+	public ArrayList<PlaySoft> getPlaysoft_Type_soft(int soft_to_title){
+		return playSoftMapper.getPlaysoft_Type_soft(soft_to_title);
+	}
 }

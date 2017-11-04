@@ -112,4 +112,62 @@ public class StudySoftDAO {
 		studySoftMapper.updateStudySoft(studySoft);
 	}
 	
+	public ArrayList<StudySoft_titleB> getCollege(){
+		return studySoftMapper.getCollege();
+		
+	}
+	public ArrayList<StudySoft_titleS> getMajor_college(int titleS_to_titleB){
+		return studySoftMapper.getMajor_college(titleS_to_titleB);
+	}
+	public ArrayList<StudySoft_titleS> getMajor(){
+		return studySoftMapper.getMajor();
+		
+	}
+	public ArrayList<StudySoft> getAllot_major(int soft_to_titleS){
+		return studySoftMapper.getAllot_major(soft_to_titleS);
+	}
+	public ArrayList<StudySoft> getAllot_name(String softName){
+		return studySoftMapper.getAllot_name(softName);
+	}
+	public ArrayList<StudySoft> getType(){
+		return studySoftMapper.getType();
+		
+	}
+	public ArrayList<StudySoft> getSoft_Type(int cid){
+		return studySoftMapper.getSoft_Type(cid);
+	}
+	
+	public void addCollege(String titleBName){
+		studySoftMapper.addCollege(titleBName);
+	}
+	public void delCollege(int id){
+		studySoftMapper.delCollege(id);
+	}
+	public void addMajor(String titleSName,int titleS_to_titleB){
+		studySoftMapper.addMajor(titleSName, titleS_to_titleB);
+	}
+	public void delMajor(int id){
+		studySoftMapper.delMajor(id);
+	}
+	public void addType(String softType){
+		studySoftMapper.addType(softType);
+	}
+	public void delType(int id){
+		studySoftMapper.delType(id);
+	}
+	public void updateCollege(String titleBName,int id){
+		studySoftMapper.updateCollege(titleBName, id);
+	}
+	public void updateMajor(String titleSName,int id){
+		studySoftMapper.updateMajor(titleSName, id);
+	}
+	public void updateType(String softType,int id){
+		studySoftMapper.updateType(softType, id);
+	}
+	public ArrayList<StudySoft> getStudySoft_b(){
+		return studySoftMapper.getStudySoft_b();
+	}
+	public void updateStudySoft_b(String ico,String jpg,int id){
+		studySoftMapper.updateStudySoft_b(ico, jpg, id);
+	}
 }

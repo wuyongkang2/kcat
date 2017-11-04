@@ -39,10 +39,7 @@
 		<div class="formControls col-xs-8 col-sm-9">
 			<select class="select" id="softType" name="softType" size="1">
 				<option value="0">请选择软件类型</option>
-				<option value="1">影音工具</option>
-				<option value="2">网络工具</option>
-				<option value="3">系统工具</option>
-				<option value="4">游戏娱乐</option>
+				<option value="0">加载中</option>
 			</select>
 		</div>
 	</div>
@@ -107,6 +104,7 @@
 <script type="text/javascript" src="../dist/sdk2.js"></script>
 <script type="text/javascript" src="../dist/sdk3.js"></script>
 <script type="text/javascript">
+softType();
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -236,6 +234,18 @@ $(function(){
 		}
 	});
 });
+//绑定类型
+function softType(){
+	var selDom = $("#softType");
+	selDom.empty();
+	selDom.append("<option value='0'>请选择软件类型</option>");
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getPlaysoft_Type.do",function(data){
+ 		$.each(data,function(i,e){
+ 			selDom.append("<option value="+data[i].id+">"+data[i].titleName+"</option>");
+ 		});
+ 	});
+}
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

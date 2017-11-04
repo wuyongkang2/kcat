@@ -134,6 +134,42 @@ public class PlaySoftController {
 		return true;
 	}
 	
+	@RequestMapping("/addPlaysoft_Type.do")
+	@ResponseBody
+	public boolean addPlaysoft_Type(String titleName){
+		playSoftDAO.addPlaysoft_Type(titleName);
+		return true;
+	}
+	
+	@RequestMapping("/delPlaysoft_Type.do")
+	@ResponseBody
+	public boolean delPlaysoft_Type(int id){
+		playSoftDAO.delPlaysoft_Type(id);
+		return true;
+	}
+	
+	@RequestMapping("/updatePlaysoft_Type.do")
+	@ResponseBody
+	public boolean updatePlaysoft_Type(String titleName,int id){
+		playSoftDAO.updatePlaysoft_Type(titleName, id);
+		return true;
+	}
+	
+	@RequestMapping("/getPlaysoft_Type.do")
+	@ResponseBody
+	public ArrayList<PlaySoft_title> getPlaysoft_Type(){
+		return playSoftDAO.getPlaysoft_Type();
+	}
+	
+	@RequestMapping("/getPlaysoft_Type_soft.do")
+	@ResponseBody
+	public boolean getPlaysoft_Type_soft(int soft_to_title){
+		ArrayList<PlaySoft> list=playSoftDAO.getPlaysoft_Type_soft(soft_to_title);
+		if(list.size()>0){    
+			return false;    
+		}
+		return true;
+	}
 	
 	
 	

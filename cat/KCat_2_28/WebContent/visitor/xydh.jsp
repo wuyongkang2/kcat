@@ -41,7 +41,7 @@
         
           <!-- box begin -->
           <div class="hotline_list_box ">
-            <div class="hotline_list_logo"> <img style="width:148px; height:55px;" src="http://kcat-1251241286.cosgz.myqcloud.com/images/xydh/${d.images }"> </div>
+            <div class="hotline_list_logo"> <img style="width:148px; height:55px;" src="http://kcat-1251241286.cosgz.myqcloud.com/images/${d.images }"> </div>
             <div class="hotline_list_text">
               <p class="hotline_list_shopname">${d.name }</p>
               <div class="hotline_tels ">

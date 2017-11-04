@@ -10,12 +10,76 @@
 <link rel="Shortcut Icon" href="${pageContext.request.contextPath}/images/tubiao.ico">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/bang.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/normalize.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CSS/htmleaf-demo.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/app.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/jquery1.42.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/jquery.js"></script>
-       	<script type="text/javascript" src="${pageContext.request.contextPath}/layer/layer.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/clipboard.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/layer/layer.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/clipboard.min.js"></script>
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/bang.js"></script>
  --%>
+</head>
+
+<body>
+<!--导航部分-->
+	<%@ include file="../visitor/pageheader_top.jsp" %>
+	<%@ include file="../visitor/pageheader_centenr.jsp" %>
+	<%@ include file="../visitor/pageheader_bottom.jsp" %>
+<!--导航部分end-->
+<div class="slider">
+	<div class="slider-img">
+	  <ul class="slider-img-ul">
+	  </ul>
+	</div>
+</div>
+
+<div class="rightNav">
+	<a id="elevator" style="right: -110px;"><em>^</em>回到顶部</a>
+</div>
+<!--专业栏start-->
+
+
+
+<!--主体部分start-->
+<div class="main"></div>
+
 <script type="text/javascript">
+var html="";
+$.ajaxSetup({async:false});
+$.post("${pageContext.request.contextPath}/getBang_b.do",function(data){
+	html+="<li><img src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[data.length-1].jpg+"'></li>";
+	$.each(data,function(i,e){	
+		html+="<li><img src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].jpg+"'></li>";
+	});
+	html+="<li><img src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[0].jpg+"'></li>";
+	$(".slider-img-ul").append(html);
+});
+</script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>');</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/xSlider.js"></script>
+<script type="text/javascript">
+//右侧导航
+var btb=$(".rightNav");
+var tempS;
+$(".rightNav").hover(function(){
+		var thisObj = $(this);
+		tempS = setTimeout(function(){
+		thisObj.find("a").each(function(i){
+			var tA=$(this);
+			setTimeout(function(){ tA.animate({right:"0"},200);},50*i);
+		});
+	},200);
+
+},function(){
+	if(tempS){ clearTimeout(tempS); }
+	$(this).find("a").each(function(i){
+		var tA=$(this);
+		setTimeout(function(){ tA.animate({right:"-110"},200,function(){
+		});},50*i);
+	});
+
+});
 $(function(){
 	$.ajaxSetup({async:false});
 	var html="";
@@ -34,8 +98,18 @@ $(function(){
 		$(".main").append(html);
 
 	});
+	
+	html="";
+	$.post("${pageContext.request.contextPath}/getTitle.do",function(data){  //循环标题
+		$.each(data,function(i,e){	
+			html+="<a class='active_gun' id='active"+data[i].id+"' style='right: -110px;'><em>"+data[i].titleName.substring(0,1)+"</em>"+data[i].titleName+"</a>";
+		});
+		$(".rightNav").append(html);
+
+	});
 });
 $(function(){
+	
 	$('.xia').on('click',function(){
 		var lianjie=$(this).find(".lianjie").attr("value");
 		layer.open({
@@ -49,51 +123,15 @@ $(function(){
 		});
 	});
 });
+$("#elevator").click(function(){
+	$("html,body").animate({scrollTop: 0}, 500);	
+});
+$(function() {	
+	 $(".active_gun").click(function(){
+		 $("html,body").animate({scrollTop:$("#ac"+this.id.substring(6)).offset().top}, 800);
+	});
+});
 </script>
-
-<script type="text/javascript"> 
-jQuery(document).ready(function($){ 
-$('.active_1').click(function(){$('html,body').animate({scrollTop:$('#ac1').offset().top}, 800);}); 
-$('.active_2').click(function(){$('html,body').animate({scrollTop:$('#ac2').offset().top}, 800);});  
-$('.active_3').click(function(){$('html,body').animate({scrollTop:$('#ac3').offset().top}, 800);}); 
-$('.active_4').click(function(){$('html,body').animate({scrollTop:$('#ac4').offset().top}, 800);});
-$('.active_5').click(function(){$('html,body').animate({scrollTop:$('#ac5').offset().top}, 800);});
-}); 
-jQuery(document).ready(function($){ 
-$('.top_img').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});}) 
-</script> 
-
-
-</head>
-
-<body>
-<!--导航部分-->
-	<%@ include file="../visitor/pageheader_top.jsp" %>
-	<%@ include file="../visitor/pageheader_centenr.jsp" %>
-	<%@ include file="../visitor/pageheader_bottom.jsp" %>
-<!--导航部分end-->
-
-<!--专业栏start-->
-    <div class="nav_b">
-        <ul>
-           <!--  <li><a style="cursor:pointer; width:400px; cursor:default"></a></li> -->
-            <li><a style="cursor:pointer" class="active_1">计算机应用</a></li>
-            <li><a style="cursor:pointer" class="active_2">云计算</a></li>
-            <li><a style="cursor:pointer" class="active_3">电子商务</a></li>
-            <li><a style="cursor:pointer" class="active_3">电子信息工程</a></li>
-            <li><a style="cursor:pointer" class="active_4">动漫设计与制作</a></li>
-        </ul>
-    </div>
-
-<!--轮播内容:暂时为空-->
-
-
-<!--主体部分start-->
-<div class="main"></div>
-
-
-<!--尾部内容-->
-
 
 </body>
 </html>

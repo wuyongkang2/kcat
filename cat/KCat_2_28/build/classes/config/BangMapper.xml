@@ -8,5 +8,47 @@
 	<select id="getTitle" resultType="model.BangTitle">
 		select * from bang_title
 	</select>
+	<select id="getAllBang" resultType="model.Bang">
+		SELECT bang.id,bang.videoName,bang_title.titleName,bang.videoUrl,bang.videoImage,bang.videoExplain,bang_title.titleName FROM bang INNER JOIN bang_title ON bang.videoType = bang_title.id
+	</select>
+	<insert id="addBang" parameterType="model.Bang">
+		insert into bang (videoName,videoType,videoUrl,videoImage,videoExplain) values (#{videoName},#{videoType},#{videoUrl},#{videoImage},#{videoExplain})   
+	</insert>
+	
+	<select id="deleteBang" parameterType="int" resultType="model.Bang">
+		delete from bang where id=#{id}
+	</select>
+	
+	<select id="updateBang" parameterType="model.Bang" resultType="model.Bang">
+		update bang set videoName=#{videoName},videoType=#{videoType},videoUrl=#{videoUrl},videoImage=#{videoImage},videoExplain=#{videoExplain} where id=#{id}
+	</select>
+	
+	<select id="getBang_Type" resultType="model.Bang">
+		SELECT * FROM bang_title order by id asc
+	</select>
+	
+	<select id="addBang_Type" parameterType="model.Bang" resultType="model.Bang">
+		insert into bang_title (titleName) VALUES (#{titleName})
+	</select>
+	
+	<select id="delBang_Type" parameterType="model.Bang" resultType="model.Bang">
+		delete from bang_title where id=#{id}
+	</select>
+	
+	<select id="updateBang_Type" parameterType="model.Bang" resultType="model.Bang">
+		update bang_title set titleName=#{0} where id=#{1}
+	</select>
+	
+	<select id="getBang_Type_title" parameterType="model.Bang" resultType="model.Bang">
+		SELECT id FROM bang where videoType = #{videoType}
+	</select>
+	
+	<select id="getBang_b" parameterType="model.Bang" resultType="model.Bang">
+		SELECT * from bang_b
+	</select>
+	
+	<select id="updateBang_b" parameterType="model.Bang" resultType="model.Bang">
+		update bang_b set jpg=#{0} where id=#{1}
+	</select>
 
 </mapper>

@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">   <!--中文语言-->
@@ -17,6 +17,8 @@
 <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="../dist/main.css">
+<link rel="stylesheet" href="../dist/highlight.css">
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -24,162 +26,159 @@
 <title>KCat-Admin</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 图片管理 <span class="c-gray en">&gt;</span> 图片列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-<div class="page-container">
-	<div class="text-c"> 日期范围：
-		<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">
-		-
-		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;">
-		<input type="text" name="" id="" placeholder=" 图片名称" style="width:250px" class="input-text">
-		<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜图片</button>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-admin-add">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频名字：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="" placeholder="" id="videoName" name="videoName">
+		</div>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="picture_add('添加图片','picture-add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加图片</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
-	<div class="mt-20">
-		<table class="table table-border table-bordered table-bg table-hover table-sort">
-			<thead>
-				<tr class="text-c">
-					<th width="40"><input name="" type="checkbox" value=""></th>
-					<th width="80">ID</th>
-					<th width="100">分类</th>
-					<th width="100">封面</th>
-					<th>图片名称</th>
-					<th width="150">Tags</th>
-					<th width="150">更新时间</th>
-					<th width="60">发布状态</th>
-					<th width="100">操作</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="text-c">
-					<td><input name="" type="checkbox" value=""></td>
-					<td>001</td>
-					<td>分类名称</td>
-					<td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="210" class="picture-thumb" src="temp/200x150.jpg"></a></td>
-					<td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">现代简约 白色 餐厅</a></td>
-					<td class="text-c">标签</td>
-					<td>2014-6-11 11:11:42</td>
-					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<select class="select" id="videoType" name="videoType" size="1">
+				<option value="0">请选择分类</option>
+				<option value="0">加载中</option>
+			</select>
+		</div>
 	</div>
-</div>
+	<div class="row cl" style="margin-top:10px;">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频图片：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input style="width:190px;" type="text" id="result2" name="jpg_flag" class="input-text" placeholder="请选择要上传的视频图片" />
+			<input id="uploadFile2" class="btn btn-secondary radius" type="button" value="&nbsp;&nbsp;选择视频图片并上传&nbsp;&nbsp;" /><br />
+			<img src="../images/upload_df.png" id="uploadFile_img2" class="img-rounded mar_b15" style="width: 300px; height: 200px;margin:10px 0;"/>
+		</div>
+	        <input id="js-file2" type="file" style="display:none;"/>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频简介：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<textarea class="textarea" value="" placeholder="" id="videoExplain" name="videoExplain"></textarea>
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>视频链接：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<input type="text" class="input-text" value="" placeholder="" id="videoUrl" name="videoUrl">
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
 
-<!--_footer 作为公共模版分离出去-->
+<!--_footer 作为公共模版分离出去--> 
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
-
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script> 
-<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
-<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="../dist/crypto.js"></script>
+<script type="text/javascript" src="../dist/cos-js-sdk-v4.js"></script>
+<script type="text/javascript" src="../dist/sdk1.js"></script>
+<script type="text/javascript" src="../dist/sdk2.js"></script>
+<script type="text/javascript" src="../dist/sdk3.js"></script>
 <script type="text/javascript">
-$('.table-sort').dataTable({
-	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-	"bStateSave": true,//状态保存
-	"aoColumnDefs": [
-	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,8]}// 制定列不参与排序
-	]
+softType();
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	//检查select是否选中
+	$.validator.addMethod("checkSelect",function(value,element,params){
+		 var flagTemp = false;
+		 if($('#'+element.id).prop('selectedIndex') != 0){
+			flagTemp = true;
+		 }
+		 return flagTemp;
+	},"这是必选选项");
+	
+	//检查大图上传是否成功
+	$.validator.addMethod("checkUpload2",function(value,element,params){
+		 var flagTemp = false;
+		 if(jpg_flag == true){
+			flagTemp = true;
+		 }
+		 return flagTemp;
+	},"你尚未上传，或者上传未完毕");
+	
+	$("#form-admin-add").validate({
+		rules:{
+			videoName:{
+				required:true,
+			},
+			videoType:{
+				checkSelect:true,
+			},
+			jpg_flag:{
+				checkUpload2:true,
+			},
+			videoExplain:{
+				required:true,
+			},
+			videoUrl:{
+				required:true,
+			},		
+		},
+		onkeyup:false,
+		focusCleanup:false,
+		success:"valid",
+		submitHandler:function(form){
+			$.post("${pageContext.request.contextPath}/addBang.do",{videoName:$("#videoName").val(),videoType:$('#videoType option:selected').val(),videoImage:time_name2,videoExplain:$("#videoExplain").val(),videoUrl:$('#videoUrl').val()},function(data){
+				if(data){
+					parent.layer.msg('添加成功',{time: 500, icon: 1},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/bang_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+				}else{
+					parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/bang_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+				}
+			});
+		}
+	});
 });
-
-/*图片-添加*/
-function picture_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
+function sub(s){
+	var length = s.length;
+	var ss = "";
+	for(var i = 0; i < length; i ++){
+		
+		if(s.substring(s.length-i-1,s.length-i) != "/"){
+			ss = s.substring(s.length-i-1,s.length-i) + ss;
+		}else{
+			return ss;
+		}
+	}
+	
 }
-
-/*图片-查看*/
-function picture_show(title,url,id){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
+//绑定类型
+function softType(){
+	var selDom = $("#videoType");
+	selDom.empty();
+	selDom.append("<option value='0'>请选择分类</option>");
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getBang_Type.do",function(data){
+ 		$.each(data,function(i,e){
+ 			selDom.append("<option value="+data[i].id+">"+data[i].titleName+"</option>");
+ 		});
+ 	});
 }
-
-/*图片-审核*/
-function picture_shenhe(obj,id){
-	layer.confirm('审核文章？', {
-		btn: ['通过','不通过'], 
-		shade: false
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="picture_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布', {icon:6,time:1000});
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="picture_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-		$(obj).remove();
-    	layer.msg('未通过', {icon:5,time:1000});
-	});	
-}
-
-/*图片-下架*/
-function picture_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
-	});
-}
-
-/*图片-发布*/
-function picture_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布!',{icon: 6,time:1000});
-	});
-}
-
-/*图片-申请上线*/
-function picture_shenqing(obj,id){
-	$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-	$(obj).parents("tr").find(".td-manage").html("");
-	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
-}
-
-/*图片-编辑*/
-function picture_edit(title,url,id){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-
-/*图片-删除*/
-function picture_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-	});
-}
-</script>
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>

@@ -7,6 +7,8 @@ public class Bang {
 	private String videoUrl;
 	private String videoImage;
 	private String videoExplain;
+	private String titleName;
+	private String jpg;
 	public int getId() {
 		return id;
 	}
@@ -43,11 +45,27 @@ public class Bang {
 	public void setVideoExplain(String videoExplain) {
 		this.videoExplain = videoExplain;
 	}
+	public String getTitleName() {
+		return titleName;
+	}
+	public void setTitleName(String titleName) {
+		this.titleName = titleName;
+	}
+	public String getJpg() {
+		return jpg;
+	}
+	public void setJpg(String jpg) {
+		this.jpg = jpg;
+	}
 	@Override
 	public String toString() {
 		return "Bang [id=" + id + ", videoName=" + videoName + ", videoType=" + videoType + ", videoUrl=" + videoUrl
-				+ ", videoImage=" + videoImage + ", videoExplain=" + videoExplain + "]";
+				+ ", videoImage=" + videoImage + ", videoExplain=" + videoExplain + ", titleName=" + titleName
+				+ ", jpg=" + jpg + "]";
 	}
+	
+	
+	
 
 
 }

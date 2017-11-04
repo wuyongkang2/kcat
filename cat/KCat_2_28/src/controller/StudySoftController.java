@@ -215,4 +215,143 @@ public class StudySoftController {
 		return true;
 	}
 	
+	
+	@RequestMapping("/getCollege.do")
+	@ResponseBody
+	public ArrayList<StudySoft_titleB> getCollege(){
+		return studySoftDAO.getCollege();
+		
+	}
+	
+	@RequestMapping("/getMajor_college.do")
+	@ResponseBody
+	public boolean getMajor_college(int titleS_to_titleB){
+		
+		ArrayList<StudySoft_titleS> list=studySoftDAO.getMajor_college(titleS_to_titleB);
+		if(list.size()>0){    
+			return false;    
+		}
+		return true;
+	}
+	
+	@RequestMapping("/getMajor.do")
+	@ResponseBody
+	public ArrayList<StudySoft_titleS> getMajor(){
+		return studySoftDAO.getMajor();
+		
+	}
+	
+	@RequestMapping("/getAllot_major.do")
+	@ResponseBody
+	public boolean getAllot_major(int soft_to_titleS){
+		ArrayList<StudySoft> list=studySoftDAO.getAllot_major(soft_to_titleS);
+		if(list.size()>0){    
+			return false;    
+		}
+		return true;
+	}
+	
+	@RequestMapping("/getAllot_name.do")
+	@ResponseBody
+	public boolean getAllot_name(String softName){
+		ArrayList<StudySoft> list=studySoftDAO.getAllot_name(softName);
+		if(list.size()>0){    
+			return false;    
+		}
+		return true;
+	}
+	
+	@RequestMapping("/getType.do")
+	@ResponseBody
+	public ArrayList<StudySoft> getType(){
+		return studySoftDAO.getType();
+		
+	}
+	
+	@RequestMapping("/getSoft_Type.do")
+	@ResponseBody
+	public boolean getSoft_Type(int cid){
+		ArrayList<StudySoft> list=studySoftDAO.getSoft_Type(cid);
+		if(list.size()>0){    
+			return false;    
+		}
+		return true;
+	}
+	
+	@RequestMapping("/addCollege.do")
+	@ResponseBody
+	public boolean addCollege(String titleBName){
+		studySoftDAO.addCollege(titleBName);
+		return true;
+	}
+	
+	@RequestMapping("/delCollege.do")
+	@ResponseBody
+	public boolean delCollege(int id){
+		studySoftDAO.delCollege(id);
+		return true;
+	}
+	
+	@RequestMapping("/addMajor.do")
+	@ResponseBody
+	public boolean addMajor(String titleSName,int titleS_to_titleB){
+		studySoftDAO.addMajor(titleSName, titleS_to_titleB);
+		return true;
+	}
+	
+	@RequestMapping("/delMajor.do")
+	@ResponseBody
+	public boolean delMajor(int id){
+		studySoftDAO.delMajor(id);
+		return true;
+	}
+	
+	@RequestMapping("/addType.do")
+	@ResponseBody
+	public boolean addType(String softType){
+		studySoftDAO.addType(softType);
+		return true;
+	}
+	
+	@RequestMapping("/delType.do")
+	@ResponseBody
+	public boolean delType(int id){
+		studySoftDAO.delType(id);
+		return true;
+	}
+	
+	@RequestMapping("/updateCollege.do")
+	@ResponseBody
+	public boolean updateCollege(String titleBName,int id){
+		studySoftDAO.updateCollege(titleBName, id);
+		return true;
+	}
+	
+	@RequestMapping("/updateMajor.do")
+	@ResponseBody
+	public boolean updateMajor(String titleSName,int id){
+		studySoftDAO.updateMajor(titleSName, id);
+		return true;
+	}
+	
+	@RequestMapping("/updateType.do")
+	@ResponseBody
+	public boolean updateType(String softType,int id){
+		studySoftDAO.updateType(softType, id);
+		return true;
+	}
+	
+	@RequestMapping("/getStudySoft_b.do")
+	@ResponseBody
+	public ArrayList<StudySoft> getStudySoft_b(){
+		return studySoftDAO.getStudySoft_b();
+	}
+	
+	@RequestMapping("/updateStudySoft_b.do")
+	@ResponseBody
+	public boolean updateStudySoft_b(String ico,String jpg,int id){
+		studySoftDAO.updateStudySoft_b(ico, jpg, id);
+		return true;
+	}
+	
 }

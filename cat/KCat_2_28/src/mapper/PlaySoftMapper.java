@@ -15,6 +15,12 @@ public interface PlaySoftMapper {
 	public void addPlaySoft(PlaySoft playSoft);
 	public void updatePlaySoft(PlaySoft playSoft);
 	public void deletePlaySoft(int id);
+	public void addPlaysoft_Type(String titleName);
+	public void delPlaysoft_Type(int id);
+	public void updatePlaysoft_Type(String titleName,int id);
+	public ArrayList<PlaySoft_title> getPlaysoft_Type();
+	public ArrayList<PlaySoft> getPlaysoft_Type_soft(int soft_to_title);
+	
 	
 	
 }

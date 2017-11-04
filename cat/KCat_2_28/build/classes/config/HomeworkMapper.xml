@@ -27,5 +27,32 @@
 		update zuoyefuzhu set cid=#{cid},category=#{category},title=#{title},images=#{images},link=#{link},pw=#{pw} where id=#{id}
 	</select>
 	
+	<select id="getHomework_Type" resultType="model.Homework">
+		select * from zuoyefuzhu_cg order by id asc
+	</select>
+	
+	<select id="addHomework_Type" parameterType="model.Homework" resultType="model.Homework">
+		insert into zuoyefuzhu_cg (category) VALUES (#{category})
+	</select>
+	
+	<select id="delHomework_Type" parameterType="model.Homework" resultType="model.Homework">
+		delete from zuoyefuzhu_cg where id=#{id}
+	</select>
+	
+	<select id="updateHomework_Type" parameterType="model.Homework" resultType="model.Homework">
+		update zuoyefuzhu_cg set category=#{0} where id=#{1}
+	</select>
+	
+	<select id="getHomework_Type_title" parameterType="model.Homework" resultType="model.Homework">
+		SELECT id FROM zuoyefuzhu where cid = #{cid}
+	</select>
+	
+	<select id="getHomework_b" parameterType="model.Homework" resultType="model.Homework">
+		SELECT * from zuoyefuzhu_b
+	</select>
+	
+	<select id="updateHomework_b" parameterType="model.Homework" resultType="model.Homework">
+		update zuoyefuzhu_b set jpg=#{0} where id=#{1}
+	</select>
 	
 </mapper>

@@ -17,7 +17,7 @@
 				var clipboard = new Clipboard('#url');
 				var url=$("#lianjie").attr("value");   //获取下载链接
 				var pw=$("#mima").attr("value");   //获取密码
-				var shipin="http://op86rjyxw.bkt.clouddn.com/video/"+$("#shipin").attr("value");   //获取密码
+				var shipin="http://op86rjyxw.bkt.clouddn.com/"+$("#shipin").attr("value");   //获取密码
 				$("#lianjie").text("");
 				$("#mima").text("");
 				$('#url').on('click',function(){
@@ -60,7 +60,7 @@
 				<p id="name">${d.softName }</p>
 			</div>
 			<div style="clear:both;"></div>
-			<button data-clipboard-text=${d.soft_pw } style="margin-top:20px;margin-left:60px;border-radius:5px;background-color:#d2d2d2;" id="url" class="layui-btn-small layui-btn-primary"
+			<button style='margin-top:20px;margin-left:60px;border-radius:5px;background-color:#d2d2d2;' id="url" class="layui-btn-small layui-btn-primary"
 >获取▼</button>
 			<div style="clear:both;"></div>
 			<p id="description" class="jiesao">${d.soft_jianjie }

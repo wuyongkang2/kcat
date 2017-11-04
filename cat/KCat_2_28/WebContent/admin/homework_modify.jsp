@@ -32,12 +32,8 @@
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<select class="select" id="category" name="category" size="1">
-				<option value="0">请选择类型</option>
-				<option value="1">推荐专题</option>
-				<option value="2">高端精品</option>
-				<option value="3">精品PPT模板，高端大气上档次</option>
-				<option value="4">最受欢迎的ppt模板</option>
-				<option value="5">K-Cat最新上传了</option>
+				<option value="0">请选择分类</option>
+				<option value="0">加载中</option>
 			</select>
 		</div>
 	</div>
@@ -91,6 +87,7 @@
 <script type="text/javascript" src="../dist/sdk2.js"></script>
 <script type="text/javascript" src="../dist/sdk3.js"></script>
 <script type="text/javascript">
+softType();
 $(function(){
 	//获取list页面传来当前的id
 	var id = "<%=request.getParameter("id")%>";
@@ -189,6 +186,18 @@ function sub(s){
 		}
 	}
 	
+}
+//绑定类型
+function softType(){
+	var selDom = $("#category");
+	selDom.empty();
+	selDom.append("<option value='0'>请选择分类</option>");
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getHomework_Type.do",function(data){
+ 		$.each(data,function(i,e){
+ 			selDom.append("<option value="+data[i].id+">"+data[i].category+"</option>");
+ 		});
+ 	});
 }
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->

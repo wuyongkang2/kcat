@@ -8,6 +8,7 @@ public class Homework {
 	private String images;
 	private String link;
 	private String pw;
+	private String jpg;
 	public int getId() {
 		return id;
 	}
@@ -50,11 +51,18 @@ public class Homework {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
+	public String getJpg() {
+		return jpg;
+	}
+	public void setJpg(String jpg) {
+		this.jpg = jpg;
+	}
 	@Override
 	public String toString() {
 		return "Homework [id=" + id + ", cid=" + cid + ", category=" + category + ", title=" + title + ", images="
-				+ images + ", link=" + link + ", pw=" + pw + "]";
+				+ images + ", link=" + link + ", pw=" + pw + ", jpg=" + jpg + "]";
 	}
+	
 	
 	
 

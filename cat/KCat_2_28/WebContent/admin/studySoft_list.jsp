@@ -26,12 +26,11 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 专业软件 <span class="c-gray en">&gt;</span> 软件列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="soft_add('添加软件','studySoft_add.jsp','800','460')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a> </span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a class="btn btn-primary radius" onclick="soft_add('添加软件','studySoft_add.jsp','800','460')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加软件</a> </span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
 				<tr class="text-c">
-					<th width="40"><input name="" type="checkbox" value=""></th>
 					<th width="50">ID</th>
 					<th width="150">名字</th>
 					<th width="50">类型</th>
@@ -68,7 +67,7 @@ $(function(){
  	$.post("${pageContext.request.contextPath}/getAllSoftName.do",function(data){
  		$("#soft_count").text(data.length);
 		$.each(data,function(i,e){
-			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].softName+"</u></td>"
+			html+="<tr class='text-c'><td>"+data[i].id+"</td><td>"+data[i].softName+"</u></td>"
 			html+="<td>"+data[i].softType+"</td><td><img style='width:60px;height:60px;border-radius:100px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].softImage+"'</td>"
 			var jianjie = data[i].soft_jianjie.substring(0,30)+"...";
 			data[i].soft_jianjie = data[i].soft_jianjie.replace(/ /g,'_');
@@ -82,11 +81,11 @@ $(function(){
  	});
  	$(".Soft_list").append(html);
 	$('.table-sort').dataTable({
-		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-		"bStateSave": true,//状态保存
+		"aaSorting": [[ 0, "desc" ]],//默认第几个排序
+		"bStateSave": false,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,4,5,6,7,8,9]}// 制定列不参与排序
+		  {"orderable":false,"aTargets":[3,4,5,6,7,8]}// 制定列不参与排序
 		]
 	});
 });
@@ -104,7 +103,6 @@ function datu(object){
 	  shadeClose: true,
 	  content: datu_src
 	});
-	
 }
 /*软件简介详细显示*/
 function soft_jianjie(object){
@@ -139,14 +137,14 @@ function soft_add(title,url,w,h){
 function soft_edit(object){
 	
 	var path = object.parent().parent().children();
-	var id = path.eq(1).text();
-	var softName = encodeURI(encodeURI(path.eq(2).text()));
-	var softType = encodeURI(encodeURI(path.eq(3).text()));
-	var ico = encodeURI(encodeURI(path.eq(4).children()[0].src));
-	var soft_jianjie = encodeURI(encodeURI(path.eq(5).children()[0].title));
-	var jpg = encodeURI(encodeURI(path.eq(6).children().children()[0].src));
-	var soft = encodeURI(encodeURI(path.eq(7).children()[0].href));
-	var video_Name = encodeURI(encodeURI(path.eq(8).children()[0].title));
+	var id = path.eq(0).text();
+	var softName = encodeURI(encodeURI(path.eq(1).text()));
+	var softType = encodeURI(encodeURI(path.eq(2).text()));
+	var ico = encodeURI(encodeURI(path.eq(3).children()[0].src));
+	var soft_jianjie = encodeURI(encodeURI(path.eq(4).children()[0].title));
+	var jpg = encodeURI(encodeURI(path.eq(5).children().children()[0].src));
+	var soft = encodeURI(encodeURI(path.eq(6).children()[0].href));
+	var video_Name = encodeURI(encodeURI(path.eq(7).children()[0].title));
 	member_edit('编辑软件','studySoft_modify.jsp?id='+id+'&softName='+softName+'&softType='+softType+'&ico='+ico+'&soft_jianjie='+soft_jianjie+'&jpg='+jpg+'&soft='+soft+'&video_Name='+video_Name+'','800','460');
 }
 /*软件-编辑*/
@@ -156,66 +154,51 @@ function member_edit(title,url,w,h){
 /*用户-删除*/
 function soft_del(object){
 	var path = object.parent().parent().children();
-	var id = path.eq(1).text();
-	member_del(id);
+	var id = path.eq(0).text();
+	var name = path.eq(1).text();
+	member_del(id,name);
 }
 /*用户-删除*/
-function member_del(id){
+function member_del(id,name){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
 			type : "post",  
 	        dataType : "json",  
 	        data : {  
-	        	id : id
+	        	softName : name
 	        },  
 	        async : false, 
 	        cache : false, 
-	        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
+	        url : "${pageContext.request.contextPath}/getAllot_name.do",  
 			success: function(data){
-				layer.msg('已删除!',{icon:1,time:1000});
-				location.replace(location.href);
+				if(data){
+					$.ajax({
+						type : "post",  
+				        dataType : "json",  
+				        data : {  
+				        	id : id
+				        },  
+				        async : false, 
+				        cache : false, 
+				        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
+						success: function(data){
+							layer.msg('已删除!',{icon:1,time:1000});
+							location.replace(location.href);
+						},
+						error:function(data) {
+							console.log(data.msg);
+						},
+					});
+				}else{
+					layer.msg('删除失败，原因：当前软件下存在软件分配',{icon: 2,time: 5000});
+				}
 			},
 			error:function(data) {
 				console.log(data.msg);
 			},
-		});		
+		});	
 	});
 }
-/*批量删除*/
-function datadel(){
-	
-	var user_checked = $(":checked").parent().parent();
-	var num = 0; //选中的人数
-	for(var i = 0; i < user_checked.length; i++){
-		if(user_checked[i].getElementsByTagName("td")[1] !=undefined){
-			num++;
-		}
-	}
-	layer.confirm('您当前选中了'+num+'个软件，确认要全部删除吗？',function(index){
-		for(var i = 0; i < user_checked.length; i++){
-			if(user_checked[i].getElementsByTagName("td")[1] !=undefined){
-				$.ajax({
-					type : "post",  
-			        dataType : "json",  
-			        data : {  
-			        	id : user_checked[i].getElementsByTagName("td")[1].innerText
-			        },  
-			        async : false, 
-			        cache : false, 
-			        url : "${pageContext.request.contextPath}/deleteStudySoft.do",  
-					success: function(data){
-						layer.msg('已删除!',{icon:1,time:1000});
-						location.replace(location.href);
-					},
-					error:function(data) {
-						console.log(data.msg);
-					},
-				});
-			}
-		}
-	});
-}
-
 </script>
 </body>
 </html>

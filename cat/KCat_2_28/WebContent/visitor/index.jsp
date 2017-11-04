@@ -93,7 +93,7 @@
             这里有海量的PPT模板素材，小白一秒变大神。<br>
             <br>
             科猫，只为更懂你。</p>
-          <p class="btnbar"><a class="btn-buy" href="${pageContext.request.contextPath}/getHomework.do" target="_parent"><span class="paddingW"></span>点击进入&gt;&gt;</a></p>
+          <p class="btnbar"><a class="btn-buy" href="${pageContext.request.contextPath}/homework.do" target="_parent"><span class="paddingW"></span>点击进入&gt;&gt;</a></p>
         </div>
       </div>
     </div>

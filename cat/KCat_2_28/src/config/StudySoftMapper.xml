@@ -12,11 +12,11 @@
 	</select>
 	
 	<select id="getStudySoft" parameterType="int" resultType="model.StudySoft">  <!--  这里可以只要显示的一部分，等待优化中 -->
-		SELECT a.id,a.softName,a.soft_to_titleS,b.softType,b.soft_jietu,b.softImage,b.soft_to_titleS,b.soft_jianjie,b.softUrl,b.soft_date,b.soft_version,b.soft_pw,b.soft_video FROM zysoftware AS a INNER JOIN soft AS b ON a.softName = b.softName WHERE a.soft_to_titleS =#{tidS} ORDER BY a.id ASC
+		SELECT zysoftware.id,zysoftware.soft_to_titleS,zysoftware.softName,a.softImage,a.soft_jianjie,a.soft_jietu,a.softUrl,a.soft_date,a.soft_version,a.soft_pw,a.soft_video,soft_cg.softType FROM zysoftware INNER JOIN soft AS a ON zysoftware.softName = a.softName INNER JOIN soft_cg ON a.cid = soft_cg.id WHERE zysoftware.soft_to_titleS = #{soft_to_titleS} ORDER BY ID ASC
 	</select>
 	
 	<select id="getStudySoft_All" parameterType="int" resultType="model.StudySoft" >
-		SELECT a.id,a.softName,a.soft_to_titleS,b.softType,b.soft_jietu,b.softImage,b.soft_to_titleS,b.soft_jianjie,b.softUrl,b.soft_date,b.soft_version,b.soft_pw,b.soft_video FROM zysoftware AS a INNER JOIN soft AS b ON a.softName = b.softName WHERE a.id =#{id} ORDER BY a.id ASC
+		SELECT a.id,a.softName,a.soft_to_titleS,b.soft_jietu,b.softImage,b.soft_jianjie,b.softUrl,b.soft_date,b.soft_version,b.soft_pw,b.soft_video,soft_cg.softType FROM zysoftware AS a INNER JOIN soft AS b ON a.softName = b.softName INNER JOIN soft_cg ON b.cid = soft_cg.id WHERE a.id =#{id} ORDER BY a.id ASC
 	</select>
 	
 	<select id="getStudySoft_id" parameterType="String" resultType="model.StudySoft" >
@@ -24,15 +24,15 @@
 	</select>
 	
 	<select id="getAllSoftName" resultType="model.StudySoft">
-		SELECT * FROM soft order by id asc
+		SELECT a.id,a.softName,a.softImage,a.soft_jianjie,a.soft_jietu,a.softUrl,a.soft_date,a.soft_version,a.soft_pw,a.soft_video,b.softType FROM soft AS a INNER JOIN soft_cg AS b ON a.cid = b.id ORDER BY a.id ASC
 	</select>
 	
 	<select id="addSoftName" parameterType="model.StudySoft" resultType="model.StudySoft">
-		insert into soft (softName, softType, softImage, soft_jietu, softUrl, soft_jianjie, soft_video, soft_date, soft_version) VALUES (#{softName},#{softType},#{softImage},#{soft_jietu},#{softUrl},#{soft_jianjie},#{soft_video},#{soft_date},#{soft_version})
+		insert into soft (softName, cid, softImage, soft_jietu, softUrl, soft_jianjie, soft_video, soft_date, soft_version) VALUES (#{softName},#{cid},#{softImage},#{soft_jietu},#{softUrl},#{soft_jianjie},#{soft_video},#{soft_date},#{soft_version})
 	</select>
 	
 	<select id="checkSoftName" parameterType="String" resultType="model.StudySoft">
-		SELECT id,softName,softType,softImage,soft_to_titleS,soft_jianjie,soft_jietu,softUrl,soft_date,soft_version,soft_pw,soft_video FROM soft AS a WHERE softName=#{softName}
+		SELECT id,softName FROM soft WHERE softName=#{softName}
 	</select>
 	
 	<select id="addStudySoft" parameterType="model.StudySoft" resultType="model.StudySoft">
@@ -40,7 +40,7 @@
 	</select>
 	
 	<select id="getAllSoft" resultType="model.StudySoft">
-		SELECT a.id,a.softName,b.softType,b.softImage,b.soft_jianjie,b.soft_jietu,b.softUrl,b.soft_date,b.soft_version,b.soft_pw,b.soft_video,d.titleBName,c.titleSName FROM zysoftware AS a INNER JOIN soft AS b ON a.softName = b.softName INNER JOIN zysoftware_titles AS c ON a.soft_to_titleS = c.id INNER JOIN zysoftware_titleb AS d ON c.titleS_to_titleB = d.id ORDER BY id DESC
+		SELECT a.softName,a.softImage,a.soft_jianjie,a.soft_jietu,a.softUrl,a.soft_date,a.soft_version,a.soft_pw,a.soft_video,b.softType,d.titleSName,e.titleBName,c.id FROM soft AS a INNER JOIN soft_cg AS b ON a.cid = b.id INNER JOIN zysoftware AS c ON c.softName = a.softName INNER JOIN zysoftware_titles AS d ON c.soft_to_titleS = d.id INNER JOIN zysoftware_titleb AS e ON d.titleS_to_titleB = e.id ORDER BY c.id ASC
 	</select>
 	
 	<select id="deleteStudySoftAllot" parameterType="model.StudySoft" resultType="model.StudySoft">
@@ -53,6 +53,78 @@
 	
 	<select id="updateStudySoft" parameterType="model.StudySoft" resultType="model.StudySoft">
 		update soft set softName=#{softName},softType=#{softType},softImage=#{softImage},soft_jietu=#{soft_jietu},softUrl=#{softUrl},soft_jianjie=#{soft_jianjie},soft_video=#{soft_video},soft_date=#{soft_date},soft_version=#{soft_version} where id=#{id}
+	</select>
+	
+	<select id="getCollege" resultType="model.StudySoft_titleB">
+		SELECT * FROM zysoftware_titleb ORDER BY id asc
+	</select>
+	
+	<select id="addCollege" parameterType="model.StudySoft_titleB" resultType="model.StudySoft_titleB">
+		insert into zysoftware_titleb (titleBName) VALUES (#{titleBName})
+	</select>
+	
+	<select id="delCollege" parameterType="model.StudySoft_titleB" resultType="model.StudySoft_titleB">
+		delete from zysoftware_titleb where id=#{id}
+	</select>
+	
+	<select id="updateCollege" parameterType="model.StudySoft_titleB" resultType="model.StudySoft_titleB">
+		update zysoftware_titleb set titleBName=#{0} where id=#{1}
+	</select>
+	
+	<select id="getMajor_college"  parameterType="model.StudySoft_titleS" resultType="model.StudySoft_titleS">
+		SELECT a.id,a.titleSName,a.titleS_to_titleB,b.titleBName FROM zysoftware_titles AS a INNER JOIN zysoftware_titleb AS b ON a.titleS_to_titleB = b.id where titleS_to_titleB = #{titleS_to_titleB} ORDER BY a.id ASC
+	</select>
+	
+	<select id="getMajor" resultType="model.StudySoft_titleS">
+		SELECT a.id,a.titleSName,a.titleS_to_titleB,b.titleBName FROM zysoftware_titles AS a INNER JOIN zysoftware_titleb AS b ON a.titleS_to_titleB = b.id ORDER BY a.id ASC
+	</select>
+	
+	<select id="addMajor" parameterType="model.StudySoft_titleS" resultType="model.StudySoft_titleS">
+		insert into zysoftware_titles (titleSName,titleS_to_titleB) VALUES (#{0},#{1})
+	</select>
+	
+	<select id="delMajor" parameterType="model.StudySoft_titleS" resultType="model.StudySoft_titleS">
+		delete from zysoftware_titles where id=#{id}
+	</select>
+	
+	<select id="updateMajor" parameterType="model.StudySoft_titleS" resultType="model.StudySoft_titleS">
+		update zysoftware_titles set titleSName=#{0} where id=#{1}
+	</select>
+	
+	<select id="getAllot_major" parameterType="model.StudySoft" resultType="model.StudySoft">
+		SELECT * FROM zysoftware where soft_to_titleS = #{soft_to_titleS}
+	</select>
+	
+	<select id="getAllot_name" parameterType="model.StudySoft" resultType="model.StudySoft">
+		SELECT softName FROM zysoftware WHERE softName = #{softName}
+	</select>
+	
+	<select id="getType" resultType="model.StudySoft">
+		SELECT * FROM soft_cg order by id asc
+	</select>
+	
+	<select id="addType" parameterType="model.StudySoft" resultType="model.StudySoft">
+		insert into soft_cg (softType) VALUES (#{softType})
+	</select>
+	
+	<select id="delType" parameterType="model.StudySoft" resultType="model.StudySoft">
+		delete from soft_cg where id=#{id}
+	</select>
+	
+	<select id="updateType" parameterType="model.StudySoft" resultType="model.StudySoft">
+		update soft_cg set softType=#{0} where id=#{1}
+	</select>
+	
+	<select id="getSoft_Type" parameterType="model.StudySoft" resultType="model.StudySoft">
+		SELECT * FROM soft where cid = #{cid}
+	</select>
+	
+	<select id="getStudySoft_b" parameterType="model.StudySoft" resultType="model.StudySoft">
+		SELECT * from zysoftware_b
+	</select>
+	
+	<select id="updateStudySoft_b" parameterType="model.StudySoft" resultType="model.StudySoft">
+		update zysoftware_b set ico=#{0},jpg=#{1} where id=#{2}
 	</select>
 	
 </mapper>

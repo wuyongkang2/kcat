@@ -24,9 +24,9 @@
 <title>KCat-Admin</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 作业辅助 <span class="c-gray en">&gt;</span> 查看列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 主页 <span class="c-gray en">&gt;</span> 内容管理 <span class="c-gray en">&gt;</span> 帮帮帮 <span class="c-gray en">&gt;</span> 查看列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="soft_add('添加','homework_add.jsp','800','460')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a> </span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="soft_add('添加','bang_add.jsp','800','460')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a> </span> <span class="r">共有数据：<strong id="soft_count">加载中...</strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
@@ -34,10 +34,10 @@
 					<th width="40"><input name="" type="checkbox" value=""></th>
 					<th width="50">ID</th>
 					<th width="150">视频名字</th>
-					<th width="50">所属专业</th>
-					<th width="100">视频图片</th>
+					<th width="50">分类</th>
+					<th width="50">视频图片</th>
 					<th width="70">视频简介</th>
-					<th width="50">视频链接</th>
+					<th width="30">视频链接</th>
 					<th width="80">操作</th>
 				</tr>
 			</thead>
@@ -63,10 +63,14 @@
 $(function(){
 	var html="";
 	$.ajaxSetup({async:false});
- 	$.post("${pageContext.request.contextPath}/getAllHomework.do",function(data){
+ 	$.post("${pageContext.request.contextPath}/getAllBang.do",function(data){
  		$("#soft_count").text(data.length);
 		$.each(data,function(i,e){
-			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td>"+data[i].category+"</td><td>"+data[i].title+"</td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].images+"'</a></td><td><a onclick='yunpan("+"$(this)"+")' style='text-decoration:none;' title='"+data[i].link+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6b1;</i></a></td><td>"+data[i].pw+"</td>"
+			var name = data[i].videoName.substring(0,30)+"...";
+			data[i].videoName = data[i].videoName.replace(/ /g,'_');
+			var jianjie = data[i].videoExplain.substring(0,30)+"...";
+			data[i].videoExplain = data[i].videoExplain.replace(/ /g,'_');
+			html+="<tr class='text-c'><td><input type='checkbox' value='1' name=''></td><td>"+data[i].id+"</td><td><a onclick='soft_jianjie1("+"$(this)"+")' title="+data[i].videoName+">"+name+"</a></td><td>"+data[i].titleName+"</td><td><a onclick='datu("+"$(this)"+")'><img style='width:60px;height:60px;' src='http://kcat-1251241286.cosgz.myqcloud.com/images/"+data[i].videoImage+"'</a></td><td><a onclick='soft_jianjie2("+"$(this)"+")' title="+data[i].videoExplain+">"+jianjie+"</a></td><td><a onclick='yunpan("+"$(this)"+")' style='text-decoration:none;' title='"+data[i].videoUrl+"'><i style='font-size:28px;' class='Hui-iconfont'>&#xe6e6;</i></a></td>"
 			html+="<td class='td-manage'><a title='编辑' href='javascript:;' onclick='soft_edit("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a title='删除' href='javascript:;' onclick='soft_del("+"$(this)"+")' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td></tr>";
 			
 		});
@@ -74,7 +78,7 @@ $(function(){
  	$(".Soft_list").append(html);
 	$('.table-sort').dataTable({
 		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-		"bStateSave": true,//状态保存
+		"bStateSave": false,//状态保存
 		"aoColumnDefs": [
 		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
 		  {"orderable":false,"aTargets":[0,2,3,4,5]}// 制定列不参与排序
@@ -109,6 +113,30 @@ function yunpan(object){
 	  content: object[0].title
 	});
 }
+/*详细显示*/
+function soft_jianjie1(object){
+	layer.open({
+		type: 1,
+		area: ['300px','200px'],
+		fix: false, //不固定
+		maxmin: true,
+		shade:0.4,
+		title: '视频名字',
+		content: object[0].title
+	});
+}
+/*详细显示*/
+function soft_jianjie2(object){
+	layer.open({
+		type: 1,
+		area: ['300px','200px'],
+		fix: false, //不固定
+		maxmin: true,
+		shade:0.4,
+		title: '视频简介',
+		content: object[0].title
+	});
+}
 /*软件-添加*/
 function soft_add(title,url,w,h){
 	layer_show(title,url,w,h);
@@ -118,12 +146,12 @@ function soft_edit(object){
 	
 	var path = object.parent().parent().children();
 	var id = path.eq(1).text();
-	var category = encodeURI(encodeURI(path.eq(2).text()));
-	var title = encodeURI(encodeURI(path.eq(3).text()));
-	var images = encodeURI(encodeURI(path.eq(4).children().children()[0].src));
-	var link = encodeURI(encodeURI(path.eq(5).children()[0].title));
-	var pw = encodeURI(encodeURI(path.eq(6).text()));
-	member_edit('编辑','homework_modify.jsp?id='+id+'&category='+category+'&title='+title+'&images='+images+'&link='+link+'&pw='+pw+'','800','460');
+	var videoName = encodeURI(encodeURI(path.eq(2).text()));
+	var videoType = encodeURI(encodeURI(path.eq(3).text()));
+	var videoImage = encodeURI(encodeURI(path.eq(4).children().children()[0].src));
+	var videoExplain = encodeURI(encodeURI(path.eq(5).text()));
+	var videoUrl = encodeURI(encodeURI(path.eq(6).children()[0].title));
+	member_edit('编辑','bang_modify.jsp?id='+id+'&videoName='+videoName+'&videoType='+videoType+'&videoImage='+videoImage+'&videoExplain='+videoExplain+'&videoUrl='+videoUrl+'','800','460');
 }
 /*软件-编辑*/
 function member_edit(title,url,w,h){
@@ -146,7 +174,7 @@ function member_del(id){
 	        },  
 	        async : false, 
 	        cache : false, 
-	        url : "${pageContext.request.contextPath}/deleteHomework.do",  
+	        url : "${pageContext.request.contextPath}/deleteBang.do",  
 			success: function(data){
 				layer.msg('已删除!',{icon:1,time:1000});
 				location.replace(location.href);
@@ -178,7 +206,7 @@ function datadel(){
 			        },  
 			        async : false, 
 			        cache : false, 
-			        url : "${pageContext.request.contextPath}/deleteHomework.do",  
+			        url : "${pageContext.request.contextPath}/deleteBang.do",  
 					success: function(data){
 						layer.msg('已删除!',{icon:1,time:1000});
 						location.replace(location.href);

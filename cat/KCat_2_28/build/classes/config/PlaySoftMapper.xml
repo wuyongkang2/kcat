@@ -37,5 +37,26 @@
 	<select id="updatePlaySoft" parameterType="model.PlaySoft" resultType="model.PlaySoft">
 		update ylSoftware set softName=#{softName},softType=#{softType},softImage=#{softImage},soft_to_title=#{soft_to_title},soft_jianjie=#{soft_jianjie},soft_jietu=#{soft_jietu},softUrl=#{softUrl},soft_date=#{soft_date},soft_version=#{soft_version},soft_pw=#{soft_pw} where id=#{id}
 	</select>
+	
+	<select id="getPlaysoft_Type" resultType="model.PlaySoft_title">
+		SELECT * FROM ylSoftware_title order by id asc
+	</select>
+	
+	<select id="addPlaysoft_Type" parameterType="model.PlaySoft_title" resultType="model.PlaySoft_title">
+		insert into ylSoftware_title (titleName) VALUES (#{titleName})
+	</select>
+	
+	<select id="delPlaysoft_Type" parameterType="model.PlaySoft_title" resultType="model.PlaySoft_title">
+		delete from ylSoftware_title where id=#{id}
+	</select>
+	
+	<select id="updatePlaysoft_Type" parameterType="model.PlaySoft_title" resultType="model.PlaySoft_title">
+		update ylSoftware_title set titleName=#{0} where id=#{1}
+	</select>
+	
+	<select id="getPlaysoft_Type_soft" parameterType="model.PlaySoft" resultType="model.PlaySoft">
+		SELECT id FROM ylsoftware where soft_to_title = #{soft_to_title}
+	</select>
+	
 
 </mapper>

@@ -3,6 +3,7 @@ package model;
 public class StudySoft {
 	  private int id;
 	  private String softName;
+	  private int cid;
 	  private String softType;
 	  private String softImage;
 	  private int soft_to_titleS;
@@ -15,6 +16,8 @@ public class StudySoft {
 	  private String soft_video;
 	  private String titleSName;
 	  private String titleBName;
+	  private String ico;
+	  private String jpg;
 	public int getId() {
 		return id;
 	}
@@ -26,6 +29,12 @@ public class StudySoft {
 	}
 	public void setSoftName(String softName) {
 		this.softName = softName;
+	}
+	public int getCid() {
+		return cid;
+	}
+	public void setCid(int cid) {
+		this.cid = cid;
 	}
 	public String getSoftType() {
 		return softType;
@@ -99,17 +108,27 @@ public class StudySoft {
 	public void setTitleBName(String titleBName) {
 		this.titleBName = titleBName;
 	}
+	public String getIco() {
+		return ico;
+	}
+	public void setIco(String ico) {
+		this.ico = ico;
+	}
+	public String getJpg() {
+		return jpg;
+	}
+	public void setJpg(String jpg) {
+		this.jpg = jpg;
+	}
 	@Override
 	public String toString() {
-		return "StudySoft [id=" + id + ", softName=" + softName + ", softType=" + softType + ", softImage=" + softImage
-				+ ", soft_to_titleS=" + soft_to_titleS + ", soft_jianjie=" + soft_jianjie + ", soft_jietu=" + soft_jietu
-				+ ", softUrl=" + softUrl + ", soft_date=" + soft_date + ", soft_version=" + soft_version + ", soft_pw="
-				+ soft_pw + ", soft_video=" + soft_video + ", titleSName=" + titleSName + ", titleBName=" + titleBName
-				+ "]";
+		return "StudySoft [id=" + id + ", softName=" + softName + ", cid=" + cid + ", softType=" + softType
+				+ ", softImage=" + softImage + ", soft_to_titleS=" + soft_to_titleS + ", soft_jianjie=" + soft_jianjie
+				+ ", soft_jietu=" + soft_jietu + ", softUrl=" + softUrl + ", soft_date=" + soft_date + ", soft_version="
+				+ soft_version + ", soft_pw=" + soft_pw + ", soft_video=" + soft_video + ", titleSName=" + titleSName
+				+ ", titleBName=" + titleBName + ", ico=" + ico + ", jpg=" + jpg + "]";
 	}
-	
-	
 	  
-	
+	  
 	
 }

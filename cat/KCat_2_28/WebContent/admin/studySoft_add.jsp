@@ -39,27 +39,7 @@
 		<div class="formControls col-xs-8 col-sm-9">
 			<select class="select" id="softType" name="softType" size="1">
 				<option value="0">请选择软件类型</option>
-				<option value="1">办公</option>
-				<option value="2">工具</option>
-				<option value="3">图形</option>
-				<option value="4">开发</option>
-			</select>
-		</div>
-	</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学院：</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softCollege" name="softCollege" size="1">
-				<option value="0">请选择学院</option>
 				<option value="0">加载中...</option>
-			</select>
-		</div>
-	</div>
-	<div class="row cl">
-		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：</label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<select class="select" id="softMajor" name="softMajor" size="1">
-				<option value="0">请选择专业</option>
 			</select>
 		</div>
 	</div>
@@ -155,7 +135,7 @@
 <script type="text/javascript" src="../dist/main.js"></script>
 <script type="text/javascript">
 $(function(){
-	college();
+	softType();
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
@@ -261,12 +241,6 @@ $(function(){
 			softType:{
 				checkSelect:true,
 			},
-			softCollege:{
-				checkSelect:true,
-			},
-			softMajor:{
-				checkSelect:true,
-			},
 			ico_flag:{
 				checkUpload1:true,
 			},
@@ -288,54 +262,39 @@ $(function(){
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$.post("${pageContext.request.contextPath}/addSoftName.do",{softName:$("#softName").val(),softType:$('#softType option:selected').text(),softImage:time_name1,soft_jietu:time_name2,softUrl:'soft/'+time_name3,soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data1){
-				$.post("${pageContext.request.contextPath}/addStudySoft.do",{softName:$("#softName").val(),soft_to_titleS:$("#softMajor").get(0).selectedIndex},function(data2){
-					if(data2){
-						parent.layer.msg(
-								'添加成功',{time: 500, icon: 1},function(){
-							window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
-							var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-		                    parent.layer.close(index);
-						});
-						
-	                    
-					}else{
-						parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
-							window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
-							var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-		                    parent.layer.close(index);
-						});
-					}
-				});
+			$.post("${pageContext.request.contextPath}/addSoftName.do",{softName:$("#softName").val(),cid:$('#softType option:selected').val(),softImage:time_name1,soft_jietu:time_name2,softUrl:'soft/'+time_name3,soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data){
+				if(data){
+					parent.layer.msg(
+							'添加成功',{time: 500, icon: 1},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+					
+                    
+				}else{
+					parent.layer.msg('添加失败',{time: 300}, {icon: 2},function(){
+						window.parent.location="${pageContext.request.contextPath}/admin/studySoft_list.jsp";
+						var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                    parent.layer.close(index);
+					});
+				}
 			});
 		}
 	});
 });
-//绑定学院
-function college(){
-	var selDom = $("#softCollege");
+//绑定类型
+function softType(){
+	var selDom = $("#softType");
 	selDom.empty();
-	selDom.append("<option value='0'>请选择学院</option>");
+	selDom.append("<option value='0'>请选择软件类型</option>");
 	$.ajaxSetup({async:false});
- 	$.post("${pageContext.request.contextPath}/getStudySoftB.do",function(data){
+ 	$.post("${pageContext.request.contextPath}/getType.do",function(data){
  		$.each(data,function(i,e){
- 			selDom.append("<option value="+data[i].id+">"+data[i].titleBName+"</option>");
+ 			selDom.append("<option value="+data[i].id+">"+data[i].softType+"</option>");
  		});
  	});
 }
-//绑定专业
-$("#softCollege").change(function(){
-	var college_selected_index = $("#softCollege").find("option:selected").val();
-	var selDom = $("#softMajor");
-	selDom.empty();
-	selDom.append("<option value='0'>请选择专业</option>");
-	$.ajaxSetup({async:false});
- 	$.post("${pageContext.request.contextPath}/getStudySoftS.do",{titleS_to_titleB:college_selected_index},function(data){
- 		$.each(data,function(i,e){
- 			selDom.append("<option value="+data[i].id+">"+data[i].titleSName+"</option>");
- 		});
- 	});
-});
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

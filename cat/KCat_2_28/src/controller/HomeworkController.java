@@ -17,6 +17,7 @@ import constan.Global;
 import dao.HomeworkDAO;
 
 import model.Homework;
+import model.PlaySoft;
 
 @Controller
 public class HomeworkController {
@@ -30,27 +31,28 @@ public class HomeworkController {
 		this.homeworkDAO = homeworkDAO;
 	}
 	
-
+	/**
+	 * 跳转到作业辅助
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/homework.do")
+	public void toAdminIndex(HttpServletRequest request,HttpServletResponse response){
+		try {
+			request.getRequestDispatcher("/visitor/zyfz.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	//获取所有字段
 	@RequestMapping("/getHomework.do")
-	public void getHomework(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-		
-		int type_count = homeworkDAO.getCid();    //板块的数量
-		ArrayList<Homework> list=new ArrayList<Homework>();
-		
-		ArrayList<Homework> list_2=new ArrayList<Homework>();
-		
-		for (int i = 1; i <=type_count ; i++) {
-			list=homeworkDAO.getHomework(i);
-			for(int j=0;j<list.size();j++){
-				list_2.add(list.get(j));
-				System.out.println(list_2);
-			}
-		}
-		System.out.println(list_2);
-		request.setAttribute(Global.HOMEWORK_DATA, list_2);
-		request.getRequestDispatcher("/visitor/zyfz.jsp").forward(request, response);
-		return;    //跳转到bang.jsp页面，jsp已经补全
+	@ResponseBody
+	public ArrayList<Homework> getHomework(int cid){
+		ArrayList<Homework> list=homeworkDAO.getHomework(cid);
+		return list;
 	}
 	
 		//获取指定分类的所有字段
@@ -90,6 +92,56 @@ public class HomeworkController {
 		@ResponseBody
 		public boolean updateHomework(Homework homework){
 			homeworkDAO.updateHomework(homework);;
+			return true;
+		}
+		
+		@RequestMapping("/getHomework_Type.do")
+		@ResponseBody
+		public ArrayList<Homework> getHomework_Type(){
+			return homeworkDAO.getHomework_Type();
+		}
+		
+		@RequestMapping("/addHomework_Type.do")
+		@ResponseBody
+		public boolean addHomework_Type(String category){
+			homeworkDAO.addHomework_Type(category);
+			return true;
+		}
+		
+		@RequestMapping("/delHomework_Type.do")
+		@ResponseBody
+		public boolean delHomework_Type(int id){
+			homeworkDAO.delHomework_Type(id);
+			return true;
+		}
+		
+		@RequestMapping("/updateHomework_Type.do")
+		@ResponseBody
+		public boolean updateHomework_Type(String category,int id){
+			homeworkDAO.updateHomework_Type(category, id);
+			return true;
+		}
+		
+		@RequestMapping("/getHomework_Type_title.do")
+		@ResponseBody
+		public boolean getHomework_Type_title(int cid){
+			ArrayList<Homework> list=homeworkDAO.getHomework_Type_title(cid);
+			if(list.size()>0){    
+				return false;    
+			}
+			return true;
+		}
+		
+		@RequestMapping("/getHomework_b.do")
+		@ResponseBody
+		public ArrayList<Homework> getHomework_b(){
+			return homeworkDAO.getHomework_b();
+		}
+		
+		@RequestMapping("/updateHomework_b.do")
+		@ResponseBody
+		public boolean updateHomework_b(String jpg,int id){
+			homeworkDAO.updateHomework_b(jpg, id);
 			return true;
 		}
 		

@@ -107,6 +107,7 @@
 <script type="text/javascript" src="../dist/sdk2.js"></script>
 <script type="text/javascript" src="../dist/sdk3.js"></script>
 <script type="text/javascript">
+softType();
 $(function(){
 	//获取list页面传来当前的id
 	var id = "<%=request.getParameter("id")%>";
@@ -308,6 +309,18 @@ function sub(s){
 		}
 	}
 	
+}
+//绑定类型
+function softType(){
+	var selDom = $("#softType");
+	selDom.empty();
+	selDom.append("<option value='0'>请选择软件类型</option>");
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getPlaysoft_Type.do",function(data){
+ 		$.each(data,function(i,e){
+ 			selDom.append("<option value="+data[i].id+">"+data[i].titleName+"</option>");
+ 		});
+ 	});
 }
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->

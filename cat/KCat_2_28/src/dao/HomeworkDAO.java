@@ -29,8 +29,8 @@ public class HomeworkDAO {
 	}
 	
 	//获取整个内容信息
-	public ArrayList<Homework> getHomework(int cid_count){
-		return homeworkMapper.getHomework(cid_count);
+	public ArrayList<Homework> getHomework(int cid){
+		return homeworkMapper.getHomework(cid);
 	}
 	
 	//获取指定分类的所有内容信息
@@ -54,5 +54,32 @@ public class HomeworkDAO {
 	
 	public void updateHomework(Homework homework){
 		homeworkMapper.updateHomework(homework);
+	}
+	
+	public ArrayList<Homework> getHomework_Type(){
+		return homeworkMapper.getHomework_Type();
+	}
+	
+	public void addHomework_Type(String category){
+		homeworkMapper.addHomework_Type(category);
+	}
+	
+	public void delHomework_Type(int id){
+		homeworkMapper.delHomework_Type(id);
+	}
+	
+	public void updateHomework_Type(String category,int id){
+		homeworkMapper.updateHomework_Type(category, id);
+	}
+	
+	public ArrayList<Homework> getHomework_Type_title(int cid){
+		return homeworkMapper.getHomework_Type_title(cid);
+	}
+	
+	public ArrayList<Homework> getHomework_b(){
+		return homeworkMapper.getHomework_b();
+	}
+	public void updateHomework_b(String jpg,int id){
+		homeworkMapper.updateHomework_b(jpg, id);
 	}
 }

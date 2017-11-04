@@ -138,6 +138,7 @@
 <script type="text/javascript" src="../dist/highlight.js"></script>
 <script type="text/javascript" src="../dist/main.js"></script>
 <script type="text/javascript">
+softType();
 $(function(){
 	//获取list页面传来当前的id
 	var id = "<%=request.getParameter("id")%>";
@@ -311,7 +312,7 @@ $(function(){
 		focusCleanup:false,
 		success:"valid",
 		submitHandler:function(form){
-			$.post("${pageContext.request.contextPath}/updateStudySoft.do",{id:id,softName:$("#softName").val(),softType:$('#softType option:selected').text(),softImage:time_name1,soft_jietu:time_name2,softUrl:'soft/'+time_name3,soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data){
+			$.post("${pageContext.request.contextPath}/updateStudySoft.do",{id:id,softName:$("#softName").val(),cid:$('#softType option:selected').val(),softImage:time_name1,soft_jietu:time_name2,softUrl:'soft/'+time_name3,soft_jianjie:$('#softContent').val(),soft_video:videoName,soft_date:getNowFormatDate(),soft_version:'1.0.0'},function(data){
 				if(data){
 					parent.layer.msg(
 							'修改成功',{time: 500, icon: 1},function(){
@@ -369,6 +370,18 @@ function sub(s){
 		}
 	}
 	
+}
+//绑定类型
+function softType(){
+	var selDom = $("#softType");
+	selDom.empty();
+	selDom.append("<option value='0'>请选择软件</option>");
+	$.ajaxSetup({async:false});
+ 	$.post("${pageContext.request.contextPath}/getType.do",function(data){
+ 		$.each(data,function(i,e){
+ 			selDom.append("<option value="+data[i].id+">"+data[i].softType+"</option>");
+ 		});
+ 	});
 }
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
